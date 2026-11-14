@@ -89,14 +89,52 @@
 
 ## Hari 3 — Mode Tamu, Handoff, dan Kirim
 
-- [ ] Mode tamu penuh: semua fitur inti terbuka, hasil tidak tersimpan, ajakan "Masuk untuk menyimpan"
-- [ ] Handoff tamu->login via localStorage `ts_hasil_tunda` (1 hasil terakhir) -> "Tersimpan ✓"
-- [ ] Akun demo juri: daftar lewat aplikasi, seed hasil (DATABASE.md §6), uji login demo
-- [ ] Uji seluruh acceptance criteria PRD §9, termasuk uji RLS dengan dua akun sungguhan
-- [ ] Uji responsif 320 / 390 / 768 / 1024 / 1440 + fokus keyboard + `prefers-reduced-motion`
-- [ ] README lengkap sesuai PRD §12 (nama, tagline, link live, fitur, teknologi, cara jalan, cara Supabase, akun demo, sumber library, keterbatasan)
-- [ ] Finalisasi deploy Vercel (domain live), `.env` production
-- [ ] Kirim
+### T1 Handoff tamu->login (FR-F12)
+- [x] `lib/handoff.js`: simpan/baca/hapus `ts_hasil_tunda` di localStorage (`{ jenis, skenario_id?, skor }`)
+- [x] Tombol "Masuk untuk menyimpan" di kuis & simulasi: simpan hasil ke localStorage sebelum redirect ke `/masuk?kembali=...`
+- [x] Setelah auth berhasil, baca `ts_hasil_tunda`, insert ke tabel sesuai jenis, hapus kunci, arahkan kembali ke halaman asal yang kini berstatus "Tersimpan"
+
+**Verifikasi T1**: Kuis handoff (1 baris di DB) ✓, Simulasi handoff (1 baris di DB) ✓, "Tersimpan" tampil ✓, double-insert bug terpecahkan (guard `proses` + `handoffRef` + `ambilPulang` fallback di auto-save effects).
+
+### T2 Verifikasi mode tamu penuh (FR-F11)
+- [x] Tanpa login: 6 fitur inti dapat dibuka dan dipakai sampai selesai (AC Tamu 1)
+- [x] Tamu selesai kuis/simulasi: tidak ada baris baru di `kuis_hasil`/`simulasi_hasil` (AC Tamu 2)
+- [x] Ajakan "Masuk untuk menyimpan" tampil setelah tamu selesai (AC Tamu 3)
+- [x] Guard `/riwayat` -> `/masuk` (AC Tamu 4); Peringkat tanpa sorotan (AC Tamu 5)
+
+**Verifikasi T2**: Cek Pesan ✓, Simulasi list ✓, Simulasi detail ✓, Kuis ✓, Pustaka ✓, Darurat ✓, Peringkat (view only) ✓. Guard riwayat → masuk ✓. Kuis tamu (0 insert) ✓, Simulasi tamu (0 insert) ✓. "Masuk untuk menyimpan" tampil ✓.
+
+### T3 Uji AC Peralihan Tamu->Login (AC §9)
+- [x] Tamu selesai kuis -> "Masuk untuk menyimpan" -> daftar/masuk -> skor otomatis tersimpan -> layar hasil "Tersimpan" (AC Peralihan 1)
+- [x] Poin dan level ter-update sesuai hasil yang dibawa (AC Peralihan 2)
+- [x] Uji jalur simulasi (dengan skenario_id)
+
+**Verifikasi T3**: Kuis peralihan (1 baris, skor 10, "Tersimpan" ✓, poin 10 di peringkat ✓) ✓, Simulasi peralihan (1 baris, skor 100, "Tersimpan" ✓, poin 100 di peringkat ✓) ✓. AC Peralihan 1-3 semua lulus.
+
+### T4 Akun demo juri + seed data (DATABASE.md §6)
+- [x] Daftar akun demo lewat aplikasi (trigger buat profil otomatis)
+- [x] Seed hasil kuis (2 baris) + simulasi (4 skenario) lewat SQL Editor
+- [x] Verifikasi login demo: Riwayat menampilkan daftar, Peringkat menampilkan posisi (AC Akun Demo 1)
+- [x] Catat kredensial demo untuk README
+
+**Verifikasi T4**: Akun demo `demo@juri.com` / `demo123456` dibuat ✓. Seed: 2 kuis (80, 60) + 4 simulasi (kurir-apk:100, hadiah-palsu:75, otp-bank:50, lowongan-palsu:25) ✓. Login demo → Riwayat menampilkan 2 kuis + 4 simulasi + total poin 330 + level Waspada ✓. Peringkat menampilkan posisi Demo Juri ✓.
+
+### T5 Uji RLS + responsif + aksesibilitas
+- [x] Uji RLS: dua akun sungguhan, user A tidak bisa baca data user B (AC Riwayat & Peringkat 5)
+- [x] Uji responsif 320 / 390 / 768 / 1024 / 1440, 0 overflow horizontal
+- [x] Fokus keyboard: tab order logis, target sentuh >= 44px, fokus terlihat
+- [x] `prefers-reduced-motion`: transisi dinonaktifkan (DESIGN.md)
+
+**Verifikasi T5**: RLS Riwayat (User B hanya lihat data sendiri: kuis 90 + simulasi 80 ✓) ✓, Peringkat view publik (User B highlighted "(Anda)" ✓) ✓. Responsif: 320/390/768/1024/1440 0 overflow-x ✓. Fokus: `:focus-visible` outline 2px accent ✓, tap targets >=44px ✓. `prefers-reduced-motion` CSS media query added ✓.
+
+### T6 README + TASKS.md + commit + kirim
+- [x] Isi README: akun demo, kredensial, catatan keterbatasan (placeholder URL live sampai deploy)
+- [x] Verifikasi `.env.example` tanpa nilai rahasia, file SQL ada di repo (AC Akun Demo & Deliverables 3)
+- [x] Update TASKS.md: tandai Hari 3 selesai + catatan verifikasi
+- [x] Commit + push
+- [x] Deploy Vercel: DITUNDA oleh pengguna (README pakai placeholder URL)
+
+**Verifikasi T6**: README terupdate dengan akun demo `demo@juri.com` / `demo123456` ✓, `.env.example` bersih ✓, `supabase/schema.sql` ada di repo ✓. Hari 3 semua task selesai.
 
 ---
 

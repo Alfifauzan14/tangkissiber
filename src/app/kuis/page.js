@@ -5,10 +5,12 @@
 // Login: skor tersimpan otomatis ke kuis_hasil; tamu: ajakan masuk.
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import soalSemua from "@/data/soal.json";
 import { hitungLevel } from "@/lib/poin";
 import { useSesi } from "@/lib/sesi";
 import { supabase } from "@/lib/supabase";
+import { ambilPulang, hapusPulang, simpanTunda } from "@/lib/handoff";
 import Container from "@/components/layout/Container";
 import Tombol from "@/components/ui/Tombol";
 import Badge from "@/components/ui/Badge";
@@ -29,6 +31,7 @@ function acak10() {
 
 export default function HalamanKuis() {
   const { pengguna } = useSesi();
+  const router = useRouter();
   const [soal, setSoal] = useState(null); // null = memuat (acak di klien)
   const [idx, setIdx] = useState(0);
   const [pilih, setPilih] = useState(null);
@@ -38,17 +41,38 @@ export default function HalamanKuis() {
   const [totalPoin, setTotalPoin] = useState(null); // poin terkini (login)
   const [percobaan, setPercobaan] = useState(0);
   const simpanRef = useRef("idle"); // guard agar insert hanya sekali (tanpa abort)
+  const [pulang, setPulang] = useState(null); // sinyal handoff selesai
 
   useEffect(() => {
     setSoal(acak10());
   }, []);
 
+  // Baca sinyal pulang dari handoff SEKALI di mount (deps kosong).
+  // Harus jalan SEBELUM efek auto-simpan agar simpanRef="tersimpan"
+  // dan auto-simpan skip insert.
+  useEffect(() => {
+    const info = ambilPulang();
+    if (info && info.jenis === "kuis") {
+      hapusPulang();
+      setPulang(info);
+      simpanRef.current = "tersimpan";
+    }
+  }, []);
+
   // Skor tersimpan otomatis untuk pengguna login (AC Kuis no. 3).
-  // Guard lewat ref, bukan statusSimpan di deps: perubahan state tak boleh
-  // membatalkan insert yang sedang berjalan.
+  // Cek pulang di dalam efek ini JUGA sebagai fallback (bukan hanya efek terpisah)
+  // agar tidak ada race condition: jika handoff baru selesai, skip insert.
   useEffect(() => {
     if (!selesai || !pengguna) return;
     if (simpanRef.current === "menyimpan" || simpanRef.current === "tersimpan") return;
+    // Fallback: cek sinyal pulang langsung (aman jika efek terpisah belum jalan)
+    const info = ambilPulang();
+    if (info && info.jenis === "kuis") {
+      hapusPulang();
+      setPulang(info);
+      simpanRef.current = "tersimpan";
+      return;
+    }
     simpanRef.current = "menyimpan";
     setStatusSimpan("menyimpan");
     (async () => {
@@ -95,6 +119,7 @@ export default function HalamanKuis() {
     setStatusSimpan("idle");
     setTotalPoin(null);
     setPercobaan(0);
+    setPulang(null);
     simpanRef.current = "idle";
   }
 
@@ -217,7 +242,7 @@ export default function HalamanKuis() {
           </p>
 
           <div className="mt-4">
-            {statusSimpan === "tersimpan" ? (
+            {statusSimpan === "tersimpan" || pulang ? (
               <Badge warna="primary" ikon="check_circle">
                 Tersimpan
               </Badge>
@@ -232,7 +257,13 @@ export default function HalamanKuis() {
             ) : statusSimpan === "menyimpan" ? (
               <p className="text-sm text-muted">Menyimpan skor...</p>
             ) : !pengguna ? (
-              <Tombol gaya="tonal" href="/masuk?kembali=/kuis">
+              <Tombol
+                gaya="tonal"
+                onClick={() => {
+                  simpanTunda({ jenis: "kuis", skor });
+                  router.push("/masuk?kembali=/kuis");
+                }}
+              >
                 Masuk untuk menyimpan
               </Tombol>
             ) : null}

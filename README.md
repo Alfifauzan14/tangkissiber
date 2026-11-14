@@ -6,7 +6,7 @@ TangkisSiber adalah website edukasi interaktif yang melatih pengguna mengenali d
 
 ## Link Website Live
 
-- URL: *akan diisi setelah deploy produksi ke Vercel selesai*
+- URL: `https://tangkissiber.vercel.app` *(placeholder; deploy ke Vercel ditunda, lihat bagian Catatan Keterbatasan)*
 
 ## Daftar Fitur
 
@@ -64,10 +64,10 @@ Buka `http://localhost:3000` di peramban.
 
 | | |
 |---|---|
-| Email | *akan diisi setelah akun demo dibuat dan diisi data* |
-| Password | *akan diisi setelah akun demo dibuat dan diisi data* |
+| Email | `demo@juri.com` |
+| Password | `demo123456` |
 
-Akun demo berisi beberapa hasil kuis dan simulasi sehingga Riwayat Saya dan Peringkat langsung terlihat berisi.
+Akun demo berisi beberapa hasil kuis (80, 60) dan simulasi (kurir-apk: 100, hadiah-palsu: 75, otp-bank: 50, lowongan-palsu: 25) total poin 330 (Level Waspada). Riwayat Saya dan Peringkat langsung terlihat berisi.
 
 ## Sumber Library
 

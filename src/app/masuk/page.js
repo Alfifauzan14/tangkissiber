@@ -4,10 +4,11 @@
 // email + password, konfirmasi email mati (demo). Setelah berhasil kembali
 // ke halaman sebelumnya via ?kembali= (FR-F7-04). Sudah login -> diarahkan
 // pergi (ARCHITECTURE.md §4). Kesalahan ditampilkan di bawah field-nya.
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { useSesi } from "@/lib/sesi";
+import { ambilTunda, hapusTunda, simpanPulang } from "@/lib/handoff";
 import Container from "@/components/layout/Container";
 import Tombol from "@/components/ui/Tombol";
 import Ikon from "@/components/ui/Ikon";
@@ -94,17 +95,24 @@ function FormulirMasuk() {
   const [lihatSandi, setLihatSandi] = useState(false);
   const [galat, setGalat] = useState({}); // { nama, email, sandi, umum }
   const [proses, setProses] = useState(false);
+  const handoffRef = useRef(false); // guard agar handoff hanya sekali
 
   const kembali = params.get("kembali") || "/";
   const aman = kembali.startsWith("/") ? kembali : "/";
 
-  // Sudah login: langsung pergi (ARCHITECTURE.md §4)
+  // Sudah login: langsung pergi (ARCHITECTURE.md §4).
+  // Tapi jika handoff belum selesai, jangan redirect dulu.
   useEffect(() => {
-    if (!memuat && pengguna) router.replace(aman);
+    if (!memuat && pengguna && !handoffRef.current) {
+      // biarkan kirim handler yang handle redirect setelah handoff
+    } else if (!memuat && pengguna && handoffRef.current) {
+      router.replace(aman);
+    }
   }, [memuat, pengguna, router, aman]);
 
   async function kirim(e) {
     e.preventDefault();
+    if (proses) return; // guard: jangan submit dua kali
     const g = {};
     if (tab === "daftar" && nama.trim().length < 2) g.nama = "Nama tampil minimal 2 huruf.";
     if (!/^\S+@\S+\.\S+$/.test(email)) g.email = "Format email tidak valid.";
@@ -132,7 +140,34 @@ function FormulirMasuk() {
         return;
       }
     }
-    // Berhasil: kembali ke halaman sebelumnya (FR-F7-04)
+    // Berhasil: handoff tamu→login (FR-F12). Jika ada hasil tamu yang
+    // menunggu di localStorage, sisipkan ke tabel sesuai jenis, lalu
+    // simpan sinyal pulang agar halaman asal tampil "Tersimpan".
+    // Guard ref: pastikan handoff hanya jalan sekali (onAuthStateChange
+    // bisa memicu re-render tapi tidak boleh insert ulang).
+    if (!handoffRef.current) {
+      handoffRef.current = true;
+      const tunda = ambilTunda();
+      if (tunda) {
+        let suksesHandoff = false;
+        if (tunda.jenis === "kuis") {
+          const { error } = await supabase.from("kuis_hasil").insert({ skor: tunda.skor });
+          suksesHandoff = !error;
+        } else if (tunda.jenis === "simulasi" && tunda.skenario_id) {
+          const { error } = await supabase
+            .from("simulasi_hasil")
+            .insert({ skenario_id: tunda.skenario_id, skor: tunda.skor });
+          suksesHandoff = !error;
+        }
+        if (suksesHandoff) {
+          hapusTunda();
+          simpanPulang(tunda);
+          // Beri jeda microtask agar sessionStorage benar-benar tertulis
+          // sebelum router.replace mentrigger navigasi.
+          await Promise.resolve();
+        }
+      }
+    }
     router.replace(aman);
   }
 

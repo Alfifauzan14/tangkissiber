@@ -5,9 +5,10 @@
 // skor 0-100 + ringkasan tanda bahaya di akhir (DESIGN.md §11.3).
 // Skor: aman=100, waspada=50, bahaya=0 per langkah; rata-rata dibulatkan.
 import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useSesi } from "@/lib/sesi";
 import { supabase } from "@/lib/supabase";
+import { simpanTunda, ambilPulang, hapusPulang } from "@/lib/handoff";
 import Tombol from "@/components/ui/Tombol";
 import Badge from "@/components/ui/Badge";
 import Ikon from "@/components/ui/Ikon";
@@ -29,6 +30,7 @@ function Waktu({ t }) {
 
 export default function ChatSkenario({ data }) {
   const { pengguna } = useSesi();
+  const router = useRouter();
   // Waktu diinisialisasi di klien saja: prerender harus deterministik
   // (Next.js 16 Cache Components menolak new Date() saat prerender).
   const [mulai, setMulai] = useState(null);
@@ -39,6 +41,7 @@ export default function ChatSkenario({ data }) {
   const [statusSimpan, setStatusSimpan] = useState("idle"); // idle|menyimpan|tersimpan|gagal
   const [percobaan, setPercobaan] = useState(0);
   const simpanRef = useRef("idle"); // guard agar insert hanya sekali (tanpa abort)
+  const [pulang, setPulang] = useState(null); // sinyal handoff selesai
   const ujungRef = useRef(null);
 
   // Jam berjalan di header chat (FR-F3-01), segar tiap 30 detik
@@ -48,6 +51,19 @@ export default function ChatSkenario({ data }) {
     const t = setInterval(() => setSekarang(new Date()), 30000);
     return () => clearInterval(t);
   }, []);
+
+  // Baca sinyal pulang dari handoff SEKALI di mount (deps kosong).
+  // Harus jalan SEBELUM efek auto-simpan agar simpanRef="tersimpan"
+  // dan auto-simpan skip insert. Tanpa ini, jika selesai=true dari cache,
+  // auto-simpan jalan dan insert ganda.
+  useEffect(() => {
+    const info = ambilPulang();
+    if (info && info.jenis === "simulasi" && info.skenario_id === data.id) {
+      hapusPulang();
+      setPulang(info);
+      simpanRef.current = "tersimpan";
+    }
+  }, [data.id]);
 
   // Gulir ke pesan terbaru
   useEffect(() => {
@@ -62,11 +78,19 @@ export default function ChatSkenario({ data }) {
   }, [jawaban, data.langkah.length]);
 
   // Skor tersimpan otomatis sekali untuk pengguna login (AC Simulasi no. 4).
-  // Guard lewat ref, bukan statusSimpan di deps: perubahan state tak boleh
-  // membatalkan insert yang sedang berjalan.
+  // Cek pulang di dalam efek ini JUGA sebagai fallback (bukan hanya efek terpisah)
+  // agar tidak ada race condition: jika handoff baru selesai, skip insert.
   useEffect(() => {
     if (!selesai || !pengguna) return;
     if (simpanRef.current === "menyimpan" || simpanRef.current === "tersimpan") return;
+    // Fallback: cek sinyal pulang langsung (aman jika efek terpisah belum jalan)
+    const info = ambilPulang();
+    if (info && info.jenis === "simulasi" && info.skenario_id === data.id) {
+      hapusPulang();
+      setPulang(info);
+      simpanRef.current = "tersimpan";
+      return;
+    }
     simpanRef.current = "menyimpan";
     setStatusSimpan("menyimpan");
     (async () => {
@@ -99,6 +123,7 @@ export default function ChatSkenario({ data }) {
     setSelesai(false);
     setStatusSimpan("idle");
     setPercobaan(0);
+    setPulang(null);
     simpanRef.current = "idle";
   }
 
@@ -212,7 +237,7 @@ export default function ChatSkenario({ data }) {
 
           {/* Status penyimpanan */}
           <div className="mt-4">
-            {statusSimpan === "tersimpan" ? (
+            {statusSimpan === "tersimpan" || pulang ? (
               <Badge warna="primary" ikon="check_circle">
                 Tersimpan
               </Badge>
@@ -227,13 +252,16 @@ export default function ChatSkenario({ data }) {
             ) : statusSimpan === "menyimpan" ? (
               <p className="text-sm text-muted">Menyimpan skor...</p>
             ) : null}
-            {!pengguna && statusSimpan === "idle" ? (
-              <Link
-                href={`/masuk?kembali=/simulasi/${data.id}`}
-                className="inline-flex min-h-11 items-center justify-center rounded-md bg-primary-soft px-4 text-sm font-semibold text-primary transition-colors duration-200 hover:bg-[#e0e7ff]"
+            {!pengguna && statusSimpan === "idle" && !pulang ? (
+              <Tombol
+                gaya="tonal"
+                onClick={() => {
+                  simpanTunda({ jenis: "simulasi", skenario_id: data.id, skor });
+                  router.push(`/masuk?kembali=/simulasi/${data.id}`);
+                }}
               >
                 Masuk untuk menyimpan
-              </Link>
+              </Tombol>
             ) : null}
           </div>
 
