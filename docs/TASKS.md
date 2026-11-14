@@ -169,5 +169,37 @@
 
 ## Terkendali dan Tertunda (dilarang dikerjakan di v1.0)
 
-- [ ] Login Google · mode gelap · peran admin · validasi skor sisi server · notifikasi · deteksi AI (semua ke rencana pengembangan, PRD §5.2)
+- [ ] Login Google · mode gelap · peran admin · validasi skor sisi server · deteksi AI (semua ke rencana pengembangan, PRD §5.2)
 - [ ] V10 (seed akun demo) segera setelah auth aplikasi jadi; sisanya checklist V1-V9 sudah lulus
+
+---
+
+## ✅ Aksi User untuk Hari 4 (Perbagus Desain)
+
+### Yang harus **KAMU** lakukan (sekali saja, sekarang):
+
+| # | Aksi | Cara | Estimasi |
+|---|------|------|----------|
+| 1 | **Kirim referensi desain** | Simpan screenshot/URL ke `docs/design-ref/` dengan nama: `hero-*.png`, `card-*.png`, `nav-*.png`, `form-*.png`, `button-*.png`, `page-*.png` | 10–30 menit |
+| 2 | **Isi preferensi singkat** | Edit `docs/design-notes.md` tabel "Daftar Referensi" (baris 22–35) | 5 menit |
+
+**Yang SAYA kerjakan otomatis setelah itu:**
+- T1: Update `DESIGN.md` → v1.1 + `globals.css` tokens
+- T2: Terapkan ke semua komponen & 9 halaman
+- T3: Playwright visual + a11y test (5 breakpoint, focus, reduced-motion, Lighthouse)
+- T4: Deploy Vercel + update README URL live
+
+---
+
+### Aturan Keras (sudah di `docs/design-notes.md`):
+- **Sistem warna risiko 3-status (Aman/Waspada/Bahaya) TIDAK BOLEH diubah** — identitas fungsional produk
+- Referensi hanya mempengaruhi: primary/netral/aksen, tipografi, spacing, radius, shadow, layout, motion
+
+---
+
+### Status siap deploy:
+- ✅ DB bersih: 1 akun demo (`demo@juri.com` / `demo123456`) + seed (2 kuis + 4 simulasi)
+- ✅ PRD v1.1: Notifikasi dihapus dari §5.2
+- ✅ TASKS.md updated
+- ✅ `docs/design-ref/` + `docs/design-notes.md` siap
+- ✅ Commit `1b908ff` pushed ke GitHub

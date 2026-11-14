@@ -114,7 +114,6 @@ Fitur berikut **sengaja ditunda** ke rencana pengembangan (tercatat agar tidak d
 - Mode gelap
 - Peran admin
 - Validasi skor di sisi server
-- Notifikasi
 - Deteksi berbasis AI pada Cek Pesan
 
 ---
