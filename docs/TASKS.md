@@ -44,12 +44,13 @@
 - [x] `darurat.json`: langkah berurutan + kontak resmi terverifikasi (cantumkan sumber)
 
 ### Halaman statis dan kerangka UI
-- [x] Layout root + navigasi (Header mobile 56px, bottom tab bar 5 tujuan, nav desktop) sesuai DESIGN.md §9
+- [x] Layout root + navigasi (revisi: header atas dua baris di mobile, tanpa tab bar bawah; nav desktop tidak berubah) sesuai DESIGN.md §9 hasil revisi
 - [x] Komponen ui dasar: Button (4 gaya), Card, Badge, Input, keadaan Kosong/Memuat/Gagal
 - [x] Beranda `/` dengan 6 kartu pintasan
 - [x] `/darurat` (halaman statis dari `darurat.json`)
 - [x] `/pustaka` (8 kartu + pencarian + filter)
-- [x] Verifikasi visual terhadap DESIGN.md (kontras, radius, tab bar)
+- [x] Verifikasi visual terhadap DESIGN.md (kontras, radius, nav atas)
+- [x] Revisi desain atas permintaan pengguna: navigasi dipindah ke atas (tab bar bawah dihapus; chip nav horizontal di header mobile; verifikasi ulang Playwright)
 
 ---
 

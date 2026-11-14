@@ -22,7 +22,7 @@ skoolia.id dipakai sebagai **arah karakter**, bukan templat yang disalin. Yang d
 | Aspek | skoolia.id | TangkisSiber |
 |---|---|---|
 | Bahasa warna | Biru sebagai satu-satunya warna | Biru + **sistem warna risiko tiga status** (inti identitas produk) |
-| Pola navigasi | Top nav konvensional | **Bottom tab bar di HP** (app-like, sesuai konteks pemakaian di HP) |
+| Pola navigasi | Top nav konvensional | Top nav dua baris dengan chip yang bisa digulir di HP (rev. 14 Nov 2026: pengguna memilih semua navigasi di atas) |
 | Ilustrasi | Orbit ikon produk di panel biru | Orbit **gelembung percakapan dan chip tanda bahaya** mengelilingi perisai |
 | Suara desain | Lembut, administratif | Tegas, waspada, melatih pengambilan keputusan |
 
@@ -202,19 +202,23 @@ Struktur berbeda dari kartu standar: **garis tebal 4px di tepi kiri dengan warna
 
 ## 9. Navigation
 
-### 9.1 Mobile (utama, ≤ 767px)
-- **Header atas tipis (56px):** logo kiri; kanan tombol "Masuk" (tamu) atau chip avatar + nama (login).
-- **Bottom tab bar (64px + safe-area):** 5 tujuan saja: **Beranda, Cek Pesan, Kuis, Simulasi, Riwayat**. Tab aktif: ikon fill `--primary` + label 12px; nonaktif: `--text-muted`.
-- **Pustaka, Darurat, Peringkat** diakses dari kartu Beranda (bukan disembunyikan, ditonjolkan sebagai kartu pintasan). Keputusan: fitur latihan harian masuk tab; fitur rujukan tinggal satu ketukan dari beranda.
-- Konten halaman tidak pernah tersembunyi di belakang tab bar (padding-bottom aman, tanpa tabrakan, R-03).
+### 9.1 Mobile (utama, ≤ 767px) — revisi: navigasi seluruhnya di atas
+
+- **Header atas dua baris, menempel saat digulir (sticky):**
+  - **Baris 1 (56px):** logo kiri; kanan chip darurat "Terlanjur?" (tint merah + ikon) dan tombol "Masuk" (tamu) atau chip avatar + nama (login).
+  - **Baris 2:** chip navigasi horizontal yang bisa digulir: **Beranda, Cek Pesan, Simulasi, Kuis, Pustaka, Peringkat**. Semua tujuan tetap tampak dalam satu baris gulir, tanpa menu hamburger. Chip aktif: latar `--primary`, teks putih; nonaktif: tint `--primary-soft`, teks `--text-muted`. Target sentuh chip 44px.
+- **Pustaka, Darurat, Peringkat** juga ditonjolkan sebagai kartu pintasan di Beranda; pintasan darurat selalu satu ketukan dari header.
+- Konten halaman tidak pernah tersembunyi di belakang navigasi; header menempel sehingga nav selalu terjangkau.
+- Halaman masuk/daftar tetap memuat baris nav (tidak ada lagi halaman tanpa nav bawah).
 
 ### 9.2 Desktop (≥ 1024px)
-Bottom tab bar menghilang. Header memuat: logo kiri, nav horizontal (Beranda, Cek Pesan, Simulasi, Kuis, Pustaka, Peringkat), kanan: "Sudah Terlanjur?" sebagai tautan tegas berwarna `#B91C1C` (masuk akal: pintasan darurat), lalu tombol "Masuk" atau chip profil.
+
+Header satu baris memuat: logo kiri, nav horizontal (Beranda, Cek Pesan, Simulasi, Kuis, Pustaka, Peringkat), kanan: "Sudah Terlanjur?" sebagai tautan tegas berwarna `#B91C1C` (masuk akal: pintasan darurat), lalu tombol "Masuk" atau chip profil.
 
 ### 9.3 Aturan
 - Setiap tautan nav punya halaman nyata (R-24). Tidak ada nav item untuk fitur yang belum ada.
-- Halaman masuk/daftar tanpa bottom tab bar (fokus form).
-- Mobile menu tidak dipakai; semua tujuan sudah tampak.
+- Tidak ada menu hamburger; semua tujuan sudah tampak (digulir horizontal di mobile).
+- Tidak ada tab bar bawah: navigasi seluruhnya di header atas.
 
 ---
 
@@ -224,7 +228,7 @@ Mobile-first, dari 320px.
 
 | Breakpoint | Target | Perubahan kunci |
 |---|---|---|
-| `< 640px` (dasar) | HP 320-639 | 1 kolom; tombol full-width; bottom tab bar; panel ilustrasi masuk jadi strip atas 120px |
+| `< 640px` (dasar) | HP 320-639 | 1 kolom; tombol full-width; nav atas dua baris; panel ilustrasi masuk jadi strip atas 120px |
 | `640-767px` | HP besar | Sama, gutter 24px |
 | `768-1023px` | Tablet | Kartu fitur 2 kolom; kuis dan simulasi tetap 1 kolom (fokus); container 720px |
 | `≥ 1024px` | Desktop | Nav atas; layout 2 kolom untuk hasil cek (form kiri, hasil kanan); panel masuk 2 kolom seperti referensi; container 1120px |

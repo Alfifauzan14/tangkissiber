@@ -1,7 +1,6 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
-import TabBar from "@/components/layout/TabBar";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -29,9 +28,7 @@ export default function RootLayout({ children }) {
         />
         <div className="flex min-h-dvh flex-col">
           <Header />
-          {/* padding bawah agar konten tak tertutup tab bar 64px (R-03) */}
-          <main className="flex-1 pb-28 lg:pb-0">{children}</main>
-          <TabBar />
+          <main className="flex-1">{children}</main>
         </div>
       </body>
     </html>

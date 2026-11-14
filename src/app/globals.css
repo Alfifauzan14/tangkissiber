@@ -53,8 +53,19 @@ body {
   outline-offset: 2px;
 }
 
-/* Tanpa menu gulir horizontal di layar sempit */
+/* Tanpa menu gulir horizontal di layar sempit.
+   Memakai clip (bukan hidden) supaya header sticky tetap bekerja:
+   hidden membuat scroll container baru dan menahan posisi sticky. */
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+/* Baris chip navigasi: bisa digulir, tetapi bilah gulirnya disembunyikan
+   agar tampak seperti baris chip biasa (isi tetap semua tampak). */
+.tanpa-gulir {
+  scrollbar-width: none;
+}
+.tanpa-gulir::-webkit-scrollbar {
+  display: none;
 }
