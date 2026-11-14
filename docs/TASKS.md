@@ -138,6 +138,35 @@
 
 ---
 
+## Hari 4 — Perbagus Desain (sebelum Deploy) — menunggu input pengguna
+
+### T0 Persiapan folder referensi desain
+- [ ] Buat `docs/design-ref/` untuk screenshot/URL contoh desain yang disukai pengguna
+- [ ] Buat `docs/design-notes.md` untuk catatan preferensi visual (warna, spacing, Komponen favorit, dll)
+
+### T1 Update DESIGN.md berdasarkan referensi pengguna
+- [ ] Integrasikan preferensi warna/tipografi/spasi dari referensi ke DESIGN.md (tanpa mengubah sistem warna risiko 3-status)
+- [ ] Perbarui token CSS di `globals.css` sesuai DESIGN.md v1.1
+- [ ] Verifikasi kontras AA, radius, spacing scale
+
+### T2 Terapkan perbagus ke komponen & halaman
+- [ ] Komponen UI: Tombol, Kartu, Badge, Input, Gelembung chat, Opsi kuis
+- [ ] Halaman: Beranda, Cek Pesan, Simulasi (list + detail), Kuis, Pustaka, Darurat, Masuk, Riwayat, Peringkat
+- [ ] Header & Footer konsisten di semua halaman
+
+### T3 Uji visual & aksesibilitas pasca-perbagus
+- [ ] Playwright: 320/390/768/1024/1440, 0 overflow-x
+- [ ] Playwright: fokus keyboard, target sentuh ≥ 44px
+- [ ] Playwright: `prefers-reduced-motion` berfungsi
+- [ ] Lighthouse: Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 90
+
+### T4 Deploy Vercel (setelah perbagus lulus)
+- [ ] Build production lulus
+- [ ] Deploy ke Vercel, catat URL live ke README.md
+- [ ] Uji smoke di production (6 fitur inti + auth + handoff)
+
+---
+
 ## Terkendali dan Tertunda (dilarang dikerjakan di v1.0)
 
 - [ ] Login Google · mode gelap · peran admin · validasi skor sisi server · notifikasi · deteksi AI (semua ke rencana pengembangan, PRD §5.2)
