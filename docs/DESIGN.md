@@ -220,6 +220,13 @@ Header satu baris memuat: logo kiri, nav horizontal (Beranda, Cek Pesan, Simulas
 - Tidak ada menu hamburger; semua tujuan sudah tampak (digulir horizontal di mobile).
 - Tidak ada tab bar bawah: navigasi seluruhnya di header atas.
 
+### 9.4 Footer (revisi 14 Nov 2026)
+Satu bagian saja di semua halaman, ringkas dan tidak mengulang halaman:
+- Kiri: wordmark + satu kalimat misi + tautan tegas "Sudah terlanjur?" berwarna `#B91C1C` ke halaman darurat.
+- Kanan: tautan nav ringkas (Cek Pesan, Simulasi, Kuis, Pustaka, Peringkat).
+- Bawah, di atas garis: disclaimer 12px `--text-muted`: TangkisSiber alat bantu edukasi, bukan jaminan keamanan dan bukan kanal pelaporan resmi; laporan lewat kanal resmi di halaman darurat. Lalu baris hak cipta.
+- Latar `--surface`, garis atas `--border` 1px, tanpa kolom berlebihan dan tanpa newsletter.
+
 ---
 
 ## 10. Responsive Design

@@ -50,6 +50,7 @@
 - [x] `/darurat` (halaman statis dari `darurat.json`)
 - [x] `/pustaka` (8 kartu + pencarian + filter)
 - [x] Verifikasi visual terhadap DESIGN.md (kontras, radius, nav atas)
+- [x] Footer satu bagian di semua halaman (wordmark, tautan nav, disclaimer, hak cipta; DESIGN.md §9.4)
 - [x] Revisi desain atas permintaan pengguna: navigasi dipindah ke atas (tab bar bawah dihapus; chip nav horizontal di header mobile; verifikasi ulang Playwright)
 
 ---
