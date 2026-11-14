@@ -1,0 +1,90 @@
+{
+  "id": "kurir-apk",
+  "judul": "Kurir dan APK",
+  "deskripsi": "Seorang yang mengaku kurir ekspedisi menelpon tentang paket bermasalah dan meminta Anda memasang aplikasi.",
+  "penipu": { "nama": "Pak Andi", "peran": "Kurir ekspedisi" },
+  "tanda_bahaya": ["APK dari tautan", "Nada mendesak", "Data pribadi"],
+  "pesan_awal": "Selamat siang, saya dari ekspedisi *SWIFT*. Paket atas nama Bapak/Ibu bermasalah: alamatnya tidak terdeteksi di sistem kami. Ini bisa bermasalah kalau tidak selesai hari ini.",
+  "langkah": [
+    {
+      "pesan": "Sistem kami mengatakan alamat rumah Bapak/Ibu tidak lengkap. Supaya paket tidak dikembalikan ke gudang, tolong buka link ini dan pasang aplikasi penunjuk alamat kami. Kodenya: bit.ly/tuntun-alamat",
+      "pilihan": [
+        {
+          "teks": "Maaf, saya cek status paket langsung di aplikasi resmi ekspedisinya saja.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat. Kurir sah tidak butuh aplikasi apa pun di HP Anda. Status paket selalu bisa dilihat di aplikasi atau situs resmi ekspedisinya."
+        },
+        {
+          "teks": "Apakah aplikasinya ada di Play Store? Kalau ada, saya pasang versi Play Store saja.",
+          "nilai": "waspada",
+          "umpan_balik": "Bagian tepi: bertanya toko aplikasi resmi menunjukkan hati-hati. Tetapi ingat, kurir sah tidak butuh aplikasi Anda sama sekali, jadi sebaiknya selesaikan lewat aplikasi resmi ekspedisinya."
+        },
+        {
+          "teks": "Baik, saya pasang aplikasinya sekarang, pak.",
+          "nilai": "bahaya",
+          "umpan_balik": "Aplikasi dari tautan orang asing biasanya APK berbahaya yang mencuri akses layar, SMS, dan akun bank. Jangan pernah dipasang."
+        }
+      ]
+    },
+    {
+      "pesan": "Cepat, ya, pak. Paket ini akan dikembalikan ke gudang sore ini. Setelah pasang, izinkan aksesnya semua supaya aplikasi bisa mencari titik lokasi dengan akurat.",
+      "pilihan": [
+        {
+          "teks": "Saya tidak akan memberi izin akses apa pun. Terima kasih, tidak jadi.",
+          "nilai": "aman",
+          "umpan_balik": "Benar. Permintaan akses penuh adalah tanda bahaya besar. Aplikasi yang sah cukup akses secukupnya."
+        },
+        {
+          "teks": "Saya ragu. Bisakah saya konfirmasi dulu ke nomor resmi ekspedisinya?",
+          "nilai": "waspada",
+          "umpan_balik": "Keraguan dan keinginan mengonfirmasi itu baik. Selesaikan benar-benar: hubungi nomor resmi di situs ekspedisinya, bukan nomor yang menelpon Anda."
+        },
+        {
+          "teks": "Baik, semua akses saya izinkan supaya cepat selesai.",
+          "nilai": "bahaya",
+          "umpan_balik": "Akses penuh berarti penipu bisa membaca SMS OTP Anda dan membuka akun bank di HP Anda tanpa Anda tahu."
+        }
+      ]
+    },
+    {
+      "pesan": "Sebentar, sekalian kami perlu verifikasi data. Tolong sebutkan nama lengkap, nomor KTP, dan nomor rekening Anda untuk cek identitas penerima paket.",
+      "pilihan": [
+        {
+          "teks": "Kurir tidak butuh data seperti itu. Saya tutup telepon.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat sekali. Penerimaan paket hanya butuh nama dan alamat di label paket, bukan KTP dan rekening."
+        },
+        {
+          "teks": "Saya hanya mau memberi nama dan alamat sesuai paket, yang lain tidak.",
+          "nilai": "waspada",
+          "umpan_balik": "Cukup aman, tetapi tetap lebih baik menutup telepon. Data apa pun yang diberi bisa dipakai penipu membangun cerita berikutnya."
+        },
+        {
+          "teks": "Nama, KTP, dan rekening saya: [data Anda]",
+          "nilai": "bahaya",
+          "umpan_balik": "Data identitas dan rekening dipakai untuk pinjaman ilegal dan pengaliran uang atas nama Anda. Jangan pernah dibagikan."
+        }
+      ]
+    },
+    {
+      "pesan": "Terakhir, ada ongkos kirim ulang Rp 85.000 yang harus dibayar sekarang. Transfer saja ke rekening pribadi saya ini supaya langsung diproses.",
+      "pilihan": [
+        {
+          "teks": "Pembayaran sah hanya lewat aplikasi resmi ekspedisinya. Saya tidak transfer ke rekening pribadi.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat. Layanan logistik sah memiliki kanal pembayaran resmi, dan pengejaran transfer ke rekening pribadi adalah tanda penipuan."
+        },
+        {
+          "teks": "Saya minta nomor resmi ekspedisinya untuk cek dulu kebenaran tagihan ini.",
+          "nilai": "waspada",
+          "umpan_balik": "Langkah mengonfirmasi itu benar. Tapi hati-hati: nomor yang diberi penipu juga palsu. Cari sendiri nomor resminya di situs resmi."
+        },
+        {
+          "teks": "Baik, saya transfer sekarang supaya paket tidak dikembalikan.",
+          "nilai": "bahaya",
+          "umpan_balik": "Setelah transfer, akan muncul biaya baru lagi. Ini pola klasik: panik buatan lalu pembayaran berulang."
+        }
+      ]
+    }
+  ]
+}

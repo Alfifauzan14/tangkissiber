@@ -1,0 +1,242 @@
+[
+  {
+    "id": "s01",
+    "pertanyaan": "Anda menerima pesan: \"Selamat! Anda menang undian Rp 25 juta. Bayar biaya kirim Rp 150.000 dulu untuk klaim.\" Tindakan paling tepat adalah?",
+    "pilihan": [
+      "Membayar biaya kirim karena hadiahnya jauh lebih besar",
+      "Mengabaikan dan melaporkan pesan tersebut",
+      "Membayar lewat rekening orang lain agar aman",
+      "Membayar setengahnya sebagai bukti niat"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Hadiah sah tidak pernah meminta pembayaran di muka. Tidak ikut undian apa pun tetapi dikatakan menang adalah tanda klasik penipuan hadiah."
+  },
+  {
+    "id": "s02",
+    "pertanyaan": "Siapa yang sebenarnya boleh meminta kode OTP Anda?",
+    "pilihan": [
+      "Petugas bank yang menelepon dengan suara ramah",
+      "Pihak yang menawarkan hadiah untuk mengklaim OTP",
+      "Tidak ada seorang pun, OTP hanya untuk memakai sendiri",
+      "Polisi yang mengaku sedang menyelidiki rekening Anda"
+    ],
+    "jawaban": 2,
+    "penjelasan": "OTP adalah kunci akun Anda. Pihak sah mana pun, termasuk bank dan polisi, tidak pernah memintanya. Siapa pun yang menanyakan OTP hampir pasti penipu."
+  },
+  {
+    "id": "s03",
+    "pertanyaan": "Kurir mengaku paket Anda bermasalah dan meminta Anda memasang aplikasi dari tautan untuk menuntun alamat. Apa yang sebaiknya dilakukan?",
+    "pilihan": [
+      "Memasang karena paket penting",
+      "Memasang, tetapi hapus setelah paket datang",
+      "Menolak, lalu cek status paket di aplikasi resmi ekspedisi",
+      "Memasang di HP orang lain agar aman"
+    ],
+    "jawaban": 2,
+    "penjelasan": "Kurir sah tidak butuh aplikasi apa pun di HP Anda. APK dari tautan orang asing biasanya mencuri akses akun bank."
+  },
+  {
+    "id": "s04",
+    "pertanyaan": "Tautan mana yang paling mencurigakan untuk diakses?",
+    "pilihan": [
+      "https://www.bca.co.id",
+      "https://bri-tfket.online",
+      "https://tokopedia.com",
+      "https://www.ojk.go.id"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Domain dengan tanda hubung dan akhiran aneh meniru nama bank (bri, tfket mirip tiket) adalah ciri situs login palsu. Selalu ketik alamat resmi sendiri."
+  },
+  {
+    "id": "s05",
+    "pertanyaan": "Penawaran investasi dengan untung pasti 20 persen per hari tanpa risiko adalah?",
+    "pilihan": [
+      "Peluang langka yang sebaiknya buruan diambil",
+      "Investasi normal di fintech",
+      "Tanda jelas investasi bodong",
+      "Aman asal modalnya kecil dulu"
+    ],
+    "jawaban": 2,
+    "penjelasan": "Semua investasi punya risiko dan untung tidak pernah pasti. Janji untung besar dan tetap adalah tanda utama investasi bodong."
+  },
+  {
+    "id": "s06",
+    "pertanyaan": "Sebelum berinvestasi, izin perusahaan sebaiknya dicek di mana?",
+    "pilihan": [
+      "Di grup WhatsApp penawarnya",
+      "Di situs resmi OJK",
+      "Di ulasan komentarnya sendiri",
+      "Di aplikasi yang ditawarkan"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Izin perusahaan dianjurkan dicek lewat kanal resmi OJK. Bukti profit dan testimoni dari grup penipu tidak berarti apa-apa."
+  },
+  {
+    "id": "s07",
+    "pertanyaan": "Aplikasi pinjaman online yang sah terdaftar di?",
+    "pilihan": [
+      "Daftar resmi OJK",
+      "Iklan di media sosial",
+      "Rekomendasi grup Telegram",
+      "Ulasan bintang lima di toko aplikasi"
+    ],
+    "jawaban": 0,
+    "penjelasan": "Pinjaman online sah terdaftar di daftar resmi OJK. Pinjol ilegal biasanya bunga mahal dan menagih dengan ancaman."
+  },
+  {
+    "id": "s08",
+    "pertanyaan": "Kenalan daring yang menolak video call, mengaku serius, lalu meminta uang untuk bea cukai paket. Ini adalah modus?",
+    "pilihan": [
+      "Penipuan cinta daring",
+      "Penipuan lowongan kerja",
+      "Penipuan kurir APK",
+      "Penipuan undian"
+    ],
+    "jawaban": 0,
+    "penjelasan": "Hubungan daring yang selalu berujung permintaan uang dengan cerita darurat adalah penipuan cinta. Uang tidak pernah menjadi alasan cinta."
+  },
+  {
+    "id": "s09",
+    "pertanyaan": "Pesan darurat penipu biasanya memakai taktik apa?",
+    "pilihan": [
+      "Memberi waktu berpikir selama sebulan",
+      "Mendesak dengan batas waktu singkat",
+      "Mengajak diskusi dulu selama seminggu",
+      "Meminta Anda berdiskusi dengan keluarga dulu"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Nada mendesak dibuat agar korban tidak sempat berpikir. Batas waktu 2x24 jam, hari ini juga, dan beberapa menit lagi adalah tanda waspada."
+  },
+  {
+    "id": "s10",
+    "pertanyaan": "Lowongan kerja yang meminta pembayaran biaya administrasi sebelum kerja adalah?",
+    "pilihan": [
+      "Perusahaan baru yang perlu modal",
+      "Cara normal perusahaan membina calon karyawan",
+      "Tanda jelas lowongan palsu",
+      "Aman kalau jumlahnya kecil"
+    ],
+    "jawaban": 2,
+    "penjelasan": "Lowongan sah tidak pernah meminta pembayaran dari pelamar, apa pun namanya: biaya formulir, seragam, atau pelatihan."
+  },
+  {
+    "id": "s11",
+    "pertanyaan": "Situs untuk memeriksa dan melaporkan rekening terduga penipuan yang dikelola Komdigi adalah?",
+    "pilihan": [
+      "cekrekening.id",
+      "rekeningpenipu.com",
+      "cekbankku.id",
+      "laporbank.com"
+    ],
+    "jawaban": 0,
+    "penjelasan": "CekRekening.id adalah situs resmi untuk memeriksa nomor rekening dan melaporkan rekening terduga penipuan."
+  },
+  {
+    "id": "s12",
+    "pertanyaan": "Pihak bank menelpon mengatakan ada transaksi aneh dan meminta CVV kartu Anda. Anda sebaiknya?",
+    "pilihan": [
+      "Membaca CVV karena panggilannya dari bank",
+      "Menolak, tutup telepon, lalu hubungi call center resmi bank sendiri",
+      "Meminta CVV mereka sebagai tukar data",
+      "Membaca CVV setelah mereka menyebut nama Anda"
+    ],
+    "jawaban": 1,
+    "penjelasan": "CVV, PIN, OTP, dan sandi tidak pernah diminta pihak bank. Tutup panggilan, lalu telepon sendiri nomor resmi yang tertera di kartu atau situs bank."
+  },
+  {
+    "id": "s13",
+    "pertanyaan": "Tautan pendek seperti bit.ly berbahaya di pesan penipuan karena?",
+    "pilihan": [
+      "Membuat pesan terlihat rapi",
+      "Menyembunyikan alamat asli yang mencurigakan",
+      "Lebih cepat dibuka",
+      "Membuat tautan tidak habis masa aktif"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Pengurai tautan pendek menyembunyikan alamat tujuan sebenarnya, sehingga korban tidak bisa memeriksa domainnya."
+  },
+  {
+    "id": "s14",
+    "pertanyaan": "Apakah aman memakai sandi yang sama untuk semua akun?",
+    "pilihan": [
+      "Aman asal sandinya panjang",
+      "Aman jika akunnya penting",
+      "Tidak aman: satu bocor, semuanya terbuka",
+      "Aman asal jarang login"
+    ],
+    "jawaban": 2,
+    "penjelasan": "Sandi unik untuk setiap akun penting. Satu situs bocor berarti penipu bisa masuk ke akun lain Anda dengan sandi yang sama."
+  },
+  {
+    "id": "s15",
+    "pertanyaan": "Autentikasi dua faktor (2FA) berguna untuk?",
+    "pilihan": [
+      "Mempercepat proses login",
+      "Lapisan keamanan kedua walaupun sandi bocor",
+      "Menghapus riwayat login",
+      "Menggantikan kebutuhan sandi"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Dengan 2FA, penipu yang tahu sandi Anda tetap tidak bisa masuk tanpa faktor kedua. Aktifkan untuk akun bank, email, dan media sosial."
+  },
+  {
+    "id": "s16",
+    "pertanyaan": "Rekening disewakan kepada orang asing untuk dipakai menerima dan mengirim dana (money mule) adalah?",
+    "pilihan": [
+      "Cara aman menambah uang saku",
+      "Membantu transaksi saudara",
+      "Tindakan kriminal: Anda bisa jadi tersangka",
+      "Aman asal rekeningnya baru"
+    ],
+    "jawaban": 2,
+    "penjelasan": "Menyewakan rekening membuat Anda bagian dari pengaliran uang hasil kejahatan dan bisa dipidana, walaupun merasa tidak ikut menipu."
+  },
+  {
+    "id": "s17",
+    "pertanyaan": "Sudah terlanjur transfer ke penipu. Langkah pertama yang sebaiknya dilakukan?",
+    "pilihan": [
+      "Mengirim uang lagi agar dana awal dikembalikan",
+      "Menghubungi bank untuk blokir dan lapor secepatnya",
+      "Menghapus semua bukti agar tidak dipermalukan",
+      "Menunggu penipu mengembalikan dengan iktikad baik"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Kecepatan sangat menentukan. Segera blokir rekening melalui bank, kumpulkan bukti, lalu laporkan. Penipu sering menjanjikan pengembalian agar korban mengirim lagi."
+  },
+  {
+    "id": "s18",
+    "pertanyaan": "Call center resmi untuk bantuan cepat terkait kejahatan siber di Indonesia yang bebas pulsa adalah?",
+    "pilihan": [
+      "100",
+      "110",
+      "120",
+      "150"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Call Center 110 adalah layanan terpadu untuk pengaduan kejahatan siber dan perlindungan konsumen digital."
+  },
+  {
+    "id": "s19",
+    "pertanyaan": "Data pribadi mana yang sebaiknya tidak dibagikan ke orang atau situs yang tidak dikenal?",
+    "pilihan": [
+      "Warna favorit",
+      "Foto tanpa nama",
+      "KTP, nomor rekening, dan sandi akun",
+      "Nama panggilan"
+    ],
+    "jawaban": 2,
+    "penjelasan": "Data identitas dan akun adalah target utama penipu untuk mengambil alih akun, mengajukan pinjaman atas nama Anda, atau memeras Anda."
+  },
+  {
+    "id": "s20",
+    "pertanyaan": "Pesan mengaku dari layanan logistik resmi tetapi memakai nomor telepon biasa dan minta transfer ongkos bea cukai. Tanda bahayanya?",
+    "pilihan": [
+      "Layanan resmi memakai aplikasi resmi dan tidak minta transfer ke rekening pribadi",
+      "Nomor biasa berarti kurir lokal",
+      "Bea cukai memang dibayar lewat transfer ke orang",
+      "Aman asal paketnya dari luar negeri"
+    ],
+    "jawaban": 0,
+    "penjelasan": "Layanan logistik sah punya aplikasi resmi untuk pembayaran dan status paket. Permintaan transfer ke rekening pribadi adalah tanda penipuan."
+  }
+]

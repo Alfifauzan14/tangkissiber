@@ -1,0 +1,105 @@
+{
+  "pesan": {
+    "deskripsi": "Aturan pemeriksaan teks pesan. Setiap aturan berisi pola kata, tingkat risiko, alasan, dan saran dalam bahasa awam.",
+    "aturan": [
+      {
+        "id": "otp",
+        "tingkat": "bahaya",
+        "judul": "Permintaan OTP, PIN, atau sandi",
+        "pola": ["otp", "kode verifikasi", "kode otp", "pin", "cvv", "sandi", "password", "kirimkan kode", "sebutkan kode"],
+        "alasan": "OTP, PIN, CVV, dan sandi adalah kunci akun Anda. Pihak sah mana pun, termasuk bank, tidak pernah memintanya.",
+        "saran": "Jangan pernah memberi kode ke siapa pun. Tutup pesan atau telepon, lalu hubungi sendiri kanal resmi lembaga yang dimaksud."
+      },
+      {
+        "id": "apk",
+        "tingkat": "bahaya",
+        "judul": "Ajakan memasang aplikasi (APK)",
+        "pola": ["apk", "unduh aplikasi", "download aplikasi", "pasang aplikasi", "instal aplikasi", "install aplikasi", "pasang aplikasinya"],
+        "alasan": "Aplikasi dari tautan orang asing (di luar Play Store atau App Store) biasanya mencuri akses layar, SMS OTP, dan akun bank di HP Anda.",
+        "saran": "Jangan pasang. Petugas kurir, bank, atau instansi sah tidak butuh aplikasi apa pun di HP Anda."
+      },
+      {
+        "id": "transfer",
+        "tingkat": "bahaya",
+        "judul": "Permintaan transfer atau pembayaran ke rekening pribadi",
+        "pola": ["transfer ke", "bayar ke rekening", "kirim uang", "kirimkan dana", "deposit", "top up ke", "setor ke rekening", "transfer sekarang"],
+        "alasan": "Permintaan uang lewat rekening pribadi, terutama dengan alasan darurat, adalah pola utama penipuan.",
+        "saran": "Tahan dulu. Periksa klaimnya lewat kanal resmi yang Anda cari sendiri, bukan kontak yang diberi penipu."
+      },
+      {
+        "id": "hadiah",
+        "tingkat": "waspada",
+        "judul": "Iming-iming hadiah atau undian",
+        "pola": ["hadiah", "undian", "menang", "grand prize", "klaim hadiah", "pemenang", "jackpot", "kami memilih anda"],
+        "alasan": "Tidak ikut undian apa pun tetapi dikatakan menang, atau hadiah yang harus dibayar dulu, adalah tanda klasik penipuan.",
+        "saran": "Ingat: hadiah sah tidak pernah meminta pembayaran. Cek undian hanya lewat kanal resmi penyelenggaranya."
+      },
+      {
+        "id": "mendesak",
+        "tingkat": "waspada",
+        "judul": "Nada mendesak dan ancaman",
+        "pola": ["sekarang juga", "2x24 jam", "hari ini juga", "segera", "cepat", "sebelum hangus", "akan diblokir", "akan dikenai denda", "terakhir kali", "batas waktu"],
+        "alasan": "Nada mendesak dibuat agar Anda tidak sempat berpikir dan tidak sempat bertanya ke orang lain.",
+        "saran": "Justru karena mendesak, berhenti dulu. Penipu menyuruh cepat; pihak sah memberi waktu."
+      }
+    ]
+  },
+  "tautan": {
+    "deskripsi": "Aturan pemeriksaan tautan. Setiap aturan berisi pola, tingkat risiko, alasan, dan saran dalam bahasa awam.",
+    "aturan": [
+      {
+        "id": "simbol-at",
+        "tingkat": "bahaya",
+        "judul": "Tanda @ di dalam tautan",
+        "pola": ["@"],
+        "alasan": "Tanda @ menandai nama akun (bagian sebelum @ tidak pernah dipakai situs asli). Semua yang setelah @ adalah alamat penipu.",
+        "saran": "Jangan dibuka. Situs sah tidak pernah memakai @ di alamat tautannya."
+      },
+      {
+        "id": "alamat-ip",
+        "tingkat": "bahaya",
+        "judul": "Tautan berbentuk angka alamat IP",
+        "pola": ["^(http|https)://\\d+\\.\\d+\\.\\d+\\.\\d+"],
+        "alasan": "Situs sah memakai nama domain, bukan barisan angka. Tautan berbentuk IP umumnya situs sementara milik penipu.",
+        "saran": "Jangan dibuka dan jangan isi data apa pun di sana."
+      },
+      {
+        "id": "menyerupai-merek",
+        "tingkat": "bahaya",
+        "judul": "Domain menyerupai merek resmi",
+        "pola": ["bri-tfket", "tfket", "bankbca", "bca-", "-bca", "bri-", "-bri", "brt-", "mandiri-", "-mandiri", "tokped-", "tokopedia-", "-tokopedia", "dana-", "-dana", "gopay-", "gojek-", "shopee-"],
+        "alasan": "Nama merek ditambah tanda hubung, tambahan kata, atau akhiran aneh adalah situs tiruan untuk mencuri login Anda.",
+        "saran": "Jangan login di sana. Ketik sendiri alamat resmi situs atau pakai aplikasi resmi."
+      },
+      {
+        "id": "tautan-pendek",
+        "tingkat": "waspada",
+        "judul": "Tautan pendek",
+        "pola": ["bit.ly/", "s.id/", "tinyurl.com/", "cutt.ly/", "is.gd/", "rb.gy/", "shrtco.de/", "t.co/", "shorturl.at/", "tr.ee/", "surl.li/"],
+        "alasan": "Tautan pendek menyembunyikan alamat tujuan sebenarnya, sehingga tidak bisa diperiksa sebelum dibuka.",
+        "saran": "Hati-hati. Kalau perlu membukanya, gunakan layanan perluas tautan dulu untuk melihat alamat aslinya."
+      },
+      {
+        "id": "tanpa-https",
+        "tingkat": "waspada",
+        "judul": "Tautan tanpa HTTPS",
+        "pola": ["^http://"],
+        "alasan": "Koneksi tanpa HTTPS tidak terenkripsi, dan situs sah modern selalu memakai HTTPS.",
+        "saran": "Jangan isi nama akun atau sandi di situs tanpa HTTPS."
+      },
+      {
+        "id": "subdomain-berlebih",
+        "tingkat": "waspada",
+        "judul": "Subdomain berlebihan",
+        "pola": ["^(http|https)://[^/]*\\.[^/]*\\.[^/]*\\.[^/]*/"],
+        "alasan": "Barisan subdomain yang panjang dipakai penipu agar tautan tampak seperti situs resmi di awalnya, padahal domain aslinya beda.",
+        "saran": "Baca domain paling kanan sebelum tanda garis miring pertama. Itulah pemilik situs sebenarnya."
+      }
+    ]
+  },
+  "tingkat": {
+    "aman": "Aman",
+    "waspada": "Waspada",
+    "bahaya": "Bahaya"
+  }
+}

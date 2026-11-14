@@ -1,0 +1,90 @@
+{
+  "id": "hadiah-palsu",
+  "judul": "Hadiah Palsu",
+  "deskripsi": "Pesan mengatakan Anda menang undian besar, tetapi klaimnya harus dibayar dulu.",
+  "penipu": { "nama": "Admin Undian", "peran": "Penyelenggara undian palsu" },
+  "tanda_bahaya": ["Hadiah iming-iming", "Batas waktu", "Permintaan transfer", "Tautan pendek"],
+  "pesan_awal": "SELAMAT! Nomor ponsel Anda terpilih sebagai pemenang ke-7 Grand Prize BERLIAN Rp 25.000.000 dari Lucky Draw Martabak Bangka 2026. Batas klaim 2x24 jam!",
+  "langkah": [
+    {
+      "pesan": "Untuk memproses pengiriman hadiah, silakan bayar biaya pengiriman Rp 150.000 lewat link berikut sebelum tengah malam: s.id/klaim-hadiah",
+      "pilihan": [
+        {
+          "teks": "Saya tidak pernah ikut undian apa pun. Ini pasti penipuan, saya laporkan.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat. Tidak ikut undian tetapi dikatakan menang adalah tanda klasik. Hadiah sah tidak pernah meminta pembayaran."
+        },
+        {
+          "teks": "Saya cek dulu apakah undian ini benar-benar ada di kanal resmi tokonya.",
+          "nilai": "waspada",
+          "umpan_balik": "Langkah cek kanal resmi itu bagus. Hanya saja pesan seperti ini hampir selalu palsu, jadi jangan ikuti tautannya saat memeriksa."
+        },
+        {
+          "teks": "Wah untung sekali! Saya bayar biaya kirinya sekarang.",
+          "nilai": "bahaya",
+          "umpan_balik": "Setelah biaya pertama, akan muncul biaya pajak, biaya admin, lalu biaya berikutnya. Hadiah tidak pernah datang."
+        }
+      ]
+    },
+    {
+      "pesan": "Terima kasih! Pemenang sebelumnya gagal karena tidak membayar pajak hadiah. Supaya hadiah Bapak/Ibu tidak hangus, bayar pajak Rp 1.250.000 via transfer ke rekening pemerintah kami ini.",
+      "pilihan": [
+        {
+          "teks": "Pajak hadiah dibayar ke negara lewat kanal resmi, bukan rekening pribadi. Saya berhenti di sini.",
+          "nilai": "aman",
+          "umpan_balik": "Benar. Rekening yang disebut pemerintah kami adalah rekening pribadi penipu. Cerita pemenang gagal sebelumnya adalah tekanan psikologis."
+        },
+        {
+          "teks": "Nomor rekening pemerintah mana ya? Saya minta bukti dokumen resminya.",
+          "nilai": "waspada",
+          "umpan_balik": "Minta bukti itu langkah tepat, tapi hati-hati: dokumen dan stempel juga bisa dipalsukan. Lebih aman berhenti sekarang."
+        },
+        {
+          "teks": "Sudah saya transfer, tolong hadiahnya segera dikirim ya.",
+          "nilai": "bahaya",
+          "umpan_balik": "Kerugian membesar. Penipu akan terus mengarang biaya selama korban masih membayar."
+        }
+      ]
+    },
+    {
+      "pesan": "Data hadiah hampir selesai diproses. Kirimkan data lengkap: nama sesuai KTP, nomor KTP, nomor rekening, dan foto KTP Anda untuk buku tamu pengiriman.",
+      "pilihan": [
+        {
+          "teks": "Tidak, saya tidak akan mengirim data pribadi apa pun.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat. KTP dan data rekening dipakai penipu untuk pinjaman ilegal dan pengaliran uang atas nama Anda."
+        },
+        {
+          "teks": "Saya ragu. Pengiriman paket normalnya tidak butuh data sejelas itu.",
+          "nilai": "waspada",
+          "umpan_balik": "Keraguan itu benar. Sebaiknya dihentikan sepenuhnya, bukan sekadar ragu, karena data yang sudah keluar tidak bisa ditarik kembali."
+        },
+        {
+          "teks": "Ini foto KTP saya, nama dan rekening lengkapnya: [data Anda]",
+          "nilai": "bahaya",
+          "umpan_balik": "Data identitas lengkap di tangan penipu membahayakan Anda berbulan-bulan ke depan: pinjaman atas nama, pengaliran uang, hingga pemerasan."
+        }
+      ]
+    },
+    {
+      "pesan": "Satu langkah terakhir! Sistem kami butuh kode OTP untuk konfirmasi penerima hadiah. Kirimkan kode yang baru masuk ke HP Anda supaya hadiah langsung diproses.",
+      "pilihan": [
+        {
+          "teks": "OTP tidak pernah dibagikan ke siapa pun. Ini penipuan, saya blokir nomornya.",
+          "nilai": "aman",
+          "umpan_balik": "Sempurna. OTP adalah kunci akun Anda. Siapa pun yang memintanya adalah penipu, seberapa resmi pun kisahnya terdengar."
+        },
+        {
+          "teks": "Bukan-bukannya OTP hanya untuk transaksi saya sendiri?",
+          "nilai": "waspada",
+          "umpan_balik": "Anda sudah berpikir ke arah yang benar. Terapkan dengan tegas: jangan kirim OTP, sekalipun ditanya berulang."
+        },
+        {
+          "teks": "Baik, kode OTP-nya 482613.",
+          "nilai": "bahaya",
+          "umpan_balik": "Dengan OTP, penipu bisa menyelesaikan transaksi atas nama Anda. Segera blokir rekening dan lapor jika ini benar-benar terjadi."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "hadiah-undian",
+    "judul": "Hadiah dan Undian Palsu",
+    "kategori": "Pesan & Tautan",
+    "ringkas": "Pesan mengatakan Anda menang undian atau hadiah, lalu diminta membayar ongkos kirim atau pajak dulu.",
+    "ciri": [
+      "Anda tidak pernah ikut undian apa pun, tetapi dikatakan menang",
+      "Ada batas waktu singkat untuk mengklaim hadiah",
+      "Diminta membayar biaya terlebih dahulu: ongkos kirim, pajak, atau biaya admin",
+      "Tautan berada di luar situs resmi penyelenggara"
+    ],
+    "contoh_pesanan": "Selamat! Nomor Anda menang undian Grand Prize sebesar Rp 25.000.000 dari [nama brand]. Klaim dalam 2x24 jam sebelum hangus. Bayar biaya kirim Rp 150.000 lewat link ini.",
+    "cara_kerja": [
+      "Penipu mengirim pesan berisi kabar menang undian besar",
+      "Korban diminta membayar sejumlah biaya dulu untuk mengklaim",
+      "Setelah bayar, muncul biaya baru terus sampai korban berhenti",
+      "Hadiah tidak pernah dikirim, akun korban diblokir"
+    ],
+    "tindakan": [
+      "Ingat prinsipnya: hadiah asli tidak pernah meminta pembayaran",
+      "Cek undian resmi hanya lewat kanal resmi brand-nya",
+      "Jangan klik tautan dan jangan kirim uang",
+      "Laporkan nomor pengirim dan tautannya"
+    ]
+  },
+  {
+    "id": "kurir-apk",
+    "judul": "Kurir Palsu dan APK",
+    "kategori": "Pesan & Tautan",
+    "ringkas": "Penipu mengaku kurir paket atau petugas logistik, memaksa korban memasang aplikasi (APK) yang mencuri data bank.",
+    "ciri": [
+      "Paket dikatakan bermasalah: alamat tidak jelas, bea cukai, atau belum dibayar",
+      "Anda diminta memasang aplikasi penunjuk alamat atau konfirmasi paket dari luar Play Store atau App Store",
+      "Ada rasa panik buatan: paket dikatakan akan dikembalikan hari ini",
+      "Aplikasi diminta dipasang lewat tautan langsung, bukan toko aplikasi resmi"
+    ],
+    "contoh_pesanan": "Assalamualaikum, saya dari ekspedisi. Paket Bapak/Ibu bermasalah, alamat tidak terdeteksi. Tolong pasang aplikasi pelacak alamat ini supaya paket bisa dikirim hari ini: bit.ly/pelacak-paket",
+    "cara_kerja": [
+      "Penipu memanggil atau menghubungi korban dengan peran kurir",
+      "Korban diminta memasang APK palsu, biasanya dengan alasan menuntun alamat",
+      "APK mencuri akses layar, SMS, dan data akun bank di HP korban",
+      "Saldo korban habis ditarik tanpa sepenuhnya disadari"
+    ],
+    "tindakan": [
+      "Jangan pernah memasang aplikasi dari tautan yang dikirim orang asing",
+      "Petugas kurir sah tidak butuh aplikasi apa pun di HP Anda",
+      "Tutup telepon, cek status paket langsung di aplikasi resmi ekspedisinya",
+      "Jika terlanjur pasang: hentikan HP, buka aplikasi bank lewat perangkat lain, blokir rekening, lalu lapor"
+    ]
+  },
+  {
+    "id": "otp-bank",
+    "judul": "Petugas Bank Palsu Minta OTP",
+    "kategori": "Perbankan & OTP",
+    "ringkas": "Penipu mengaku petugas bank dan meminta kode OTP, PIN, atau sandi. OTP yang dibocorkan berarti uang hilang.",
+    "ciri": [
+      "Dikatakan ada transaksi aneh, pengajuan kartu, atau rekening bermasalah",
+      "Panggilan atau pesan datang mendesak, korban diajak panik",
+      "Diminta menyebutkan OTP, PIN, CVV, atau sandi apapun",
+      "Petugas bank sah tidak pernah meminta data rahasia seperti itu"
+    ],
+    "contoh_pesanan": "Ibu, saya dari divisi kartu BCA. Ada transaksi sebesar Rp 3.500.000 atas nama Ibu yang belum dikonfirmasi. Segera kirimkan kode OTP yang baru masuk supaya transaksi bisa kami tolak.",
+    "cara_kerja": [
+      "Penipu menekan psikologi korban dengan cerita transaksi aneh",
+      "Mereka mencoba masuk akun korban atau mengajukan transaksi",
+      "Kode OTP dikirim sistem ke HP korban, lalu diminta penipu",
+      "Dengan OTP, transaksi diselesaikan dan uang hangus"
+    ],
+    "tindakan": [
+      "Ingat: OTP, PIN, CVV, dan sandi tidak pernah ditanyakan pihak bank",
+      "Tutup panggilan, lalu hubungi call center bank lewat nomor resmi (ada di kartu atau situs bank)",
+      "Jangan beri kode apa pun ke siapa pun, termasuk yang mengaku petugas",
+      "Jika terlanjur: blokir rekening lewat aplikasi bank, lalu lapor ke polisi"
+    ]
+  },
+  {
+    "id": "tautan-phishing",
+    "judul": "Tautan Situs Login Palsu",
+    "kategori": "Pesan & Tautan",
+    "ringkas": "Tautan membawa ke situs tiruan bank, e-wallet, atau media sosial untuk mencuri nama akun dan sandi.",
+    "ciri": [
+      "Pesan menyebut akun akan diblokir, poin akan hangus, atau verifikasi wajib hari ini",
+      "Alamat situs mirip aslinya tapi tidak persis sama, misalnya ada tanda hubung atau huruf berubah",
+      "Halaman meminta login dan data pribadi lengkap",
+      "Sitasi datang lewat tautan pendek tanpa alamat jelas"
+    ],
+    "contoh_pesanan": "Perhatian! Akun BRI Anda akan diblokir karena data belum tervalidasi. Validasi sekarang di https://brt-tfket.online sebelum malam ini.",
+    "cara_kerja": [
+      "Penipu membuat situs yang tampilannya sama persis dengan situs resmi",
+      "Korban login di situs tiruan dan data akun tersimpan di server penipu",
+      "Data dipakai untuk masuk akun asli korban",
+      "Saldo, e-wallet, atau akun media sosial diambil alih"
+    ],
+    "tindakan": [
+      "Periksa alamat situs dengan teliti sebelum login",
+      "Selalu masuk lewat aplikasi resmi atau ketik alamat situs sendiri",
+      "Jangan login dari tautan yang datang lewat SMS, WhatsApp, atau email",
+      "Jika terlanjur login: segera ubah sandi di situs resmi dan aktifkan autentikasi dua faktor"
+    ]
+  },
+  {
+    "id": "investasi-bodong",
+    "judul": "Investasi Bodong",
+    "kategori": "Investasi & Pinjaman",
+    "ringkas": "Ajakan berinvestasi dengan untung pasti dan cepat. Situsnya tampak jalan, tapi uang sudah tidak bisa ditarik kembali.",
+    "ciri": [
+      "Dijanji keuntungan pasti, misalnya 10 sampai 30 persen per hari",
+      "Tidak ada izin resmi dari OJK untuk produk investasinya",
+      "Akun layanan dipakai milik orang lain, bukan rekening perusahaan resmi",
+      "Sekali deposito awal berhasil ditarik, korban diajak menambah besar"
+    ],
+    "contoh_pesanan": "Mas, jangan sampai ketinggalan. Modal Rp 500.000 untung Rp 75.000 per hari, tanpa risiko, bisa ditarik kapan saja. Slot komunitas hari ini tinggal 3. Cek bukti member profit di grup kita.",
+    "cara_kerja": [
+      "Penipu membangun kepercayaan lewat grup dan bukti profit palsu",
+      "Korban deposito kecil, penarikan diizinkan agar semakin percaya",
+      "Korban menambah setoran besar, penarikan mulai ditolak dengan aneka alasan",
+      "Situs dan grup ditutup, uang hangus"
+    ],
+    "tindakan": [
+      "Cek izin perusahaan di situs OJK (oijk.ojk.go.id) sebelum berinvestasi",
+      "Ingat: untung pasti tanpa risiko tidak pernah ada",
+      "Jangan ikut ajakan dari orang yang baru dikenal di media sosial",
+      "Jika sudah menjadi korban: kumpulkan bukti transfer, laporkan ke OJK 157 dan polisi"
+    ]
+  },
+  {
+    "id": "pinjol-ilegal",
+    "judul": "Pinjaman Online Ilegal",
+    "kategori": "Investasi & Pinjaman",
+    "ringkas": "Aplikasi pinjaman tanpa izin OJK dengan bunga tinggi dan pengejaran yang menakut-nakuti.",
+    "ciri": [
+      "Aplikasi tidak terdaftar di daftar resmi OJK",
+      "Proses terlalu mudah: tanpa cek kelayakan, uang langsung cair",
+      "Bunga dan biaya mahal, tenor pendek",
+      "Menagih dengan mengakses kontak HP dan menyebarkan data pribadi"
+    ],
+    "contoh_pesanan": "Pinjaman cair 30 menit, tanpa agunan, tanpa dicatat, semua bisa! Unduh aplikasinya sekarang dan isi data lengkap Anda.",
+    "cara_kerja": [
+      "Korban memasang aplikasi dan memberi izin akses data penuh",
+      "Pinjaman cair cepat dengan nominal kecil",
+      "Bunga dan denda membengkak, jauh melebihi pokok",
+      "Kontak korban dihujat dan disebarkan, korban ditekan membayar berulang"
+    ],
+    "tindakan": [
+      "Cek daftar resmi di situs OJK sebelum memasang aplikasi pinjaman",
+      "Beri izin akses aplikasi secukupnya, jangan izinkan akses kontak dan galeri",
+      "Jika terjerat: jangan pinjam ke pinjol lain untuk bayar, laporkan ke OJK 157 dan aduankonten.id",
+      "Ancaman dan penyebaran data adalah tindak kejahatan: lapor ke polisi"
+    ]
+  },
+  {
+    "id": "lowongan-palsu",
+    "judul": "Lowongan Kerja Palsu",
+    "kategori": "Rekrutmen & Kerja",
+    "ringkas": "Peluang kerja mudah dan gaji besar, lalu diminta membayar biaya pelatihan atau memasang aplikasi khusus.",
+    "ciri": [
+      "Gaji besar untuk pekerjaan ringan, syarat rendah",
+      "Wawancara lewat chat saja, tanpa alamat kantor yang jelas",
+      "Diminta membayar: biaya formulir, seragam, pelatihan, atau komputer",
+      "Diminta memasang aplikasi kerja dari tautan luar atau mengirim data pribadi lengkap"
+    ],
+    "contoh_pesanan": "Perusahaan kami mencari admin online. Gaji Rp 4.000.000 per minggu, kerja dari rumah, tanpa pengalaman. Bayar biaya administrasi Rp 350.000 dulu untuk daftar, lalu tugas pertama langsung diberikan.",
+    "cara_kerja": [
+      "Penipu menyebarkan iklan kerja menarik di media sosial dan pesan pribadi",
+      "Korban diminta membayar biaya administrasi atau peralatan",
+      "Ada juga modus tugas kecil yang dibayar agar korban yakin, lalu setoran besar diminta",
+      "Setelah uang masuk, perekrut menghilang"
+    ],
+    "tindakan": [
+      "Lowongan sah tidak pernah meminta pembayaran dari pelamar",
+      "Cek perusahaan: situs resmi, alamat kantor, dan kontak yang bisa diverifikasi",
+      "Jangan kirim KTP, rekening, atau data pribadi lengkap sebelum kerja resmi",
+      "Laporkan akun perekrut palsu ke platform tempat iklannya berada"
+    ]
+  },
+  {
+    "id": "cinta-daring",
+    "judul": "Penipuan Cinta Daring",
+    "kategori": "Pesan & Tautan",
+    "ringkas": "Kenalan daring yang mengaku dekat, membangun hubungan bulan-bulan, lalu meminta uang dengan cerita darurat.",
+    "ciri": [
+      "Kenalan baru lewat media sosial atau aplikasi obrolan, cepat mengaku serius",
+      "Profil kelihatan sempurna: pekerjaan bagus, tetapi jarang bisa video call",
+      "Ada cerita darurat yang butuh uang: bea cukai paket, rumah sakit, atau tiket pulang",
+      "Ajakan berinvestasi bersama pun sering muncul dari hubungan ini"
+    ],
+    "contoh_pesanan": "Sayang, paket berisi cincin dan barang berharga untukmu tertahan di bea cukai. Mereka minta biaya pelepasan Rp 5.000.000. Aku sudah transfer setengahnya, sisa besok habis. Tolong bantu aku, ya.",
+    "cara_kerja": [
+      "Penipu membangun hubungan dan kepercayaan selama berbulan-bulan",
+      "Cerita cinta dan masa depan membuat korban secara emosional terikat",
+      "Cerita darurat mengalir: selalu ada alasan butuh uang",
+      "Setelah korban berhenti kirim, kontak menghilang"
+    ],
+    "tindakan": [
+      "Hati-hati dengan kenalan daring yang menolak video call dan bertemu langsung",
+      "Uang tidak pernah jadi alasan cinta: tolak semua permintaan transfer",
+      "Jangan berbagi data pribadi, rekening, atau foto sensitif",
+      "Jika sudah menjadi korban: lapor ke polisi dan jangan malu, korban banyak yang tak menyangka"
+    ]
+  }
+]

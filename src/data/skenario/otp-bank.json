@@ -1,0 +1,90 @@
+{
+  "id": "otp-bank",
+  "judul": "Petugas Bank Minta OTP",
+  "deskripsi": "Panggilan telepon dari orang yang mengaku petugas bank, meminta konfirmasi transaksi aneh dan kode OTP.",
+  "penipu": { "nama": "Bu Rina", "peran": "Petugas divisi kartu bank" },
+  "tanda_bahaya": ["Permintaan OTP", "Panik buatan", "Nada mendesak"],
+  "pesan_awal": "Halo, selamat pagi. Saya Rina dari divisi kartu KREDIT BANK MAJU. Kami mendeteksi transaksi sebesar Rp 3.500.000 di aplikasi belum Anda konfirmasi. Ini dari Jakarta pusat, ya.",
+  "langkah": [
+    {
+      "pesan": "Sistem mencatat transaksi 18.45 WIB tadi malam di kota Makassar. Anda tidak ikut transaksi itu, kan? Kalau iya, saya bisa bantu tolak dan blokir kartu sekarang.",
+      "pilihan": [
+        {
+          "teks": "Saya tidak ikut transaksi itu, tapi saya akan cek dulu di aplikasi bank dan telepon call center resmi bank sendiri.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat. Menutup telepon lalu menghubungi nomor resmi sendiri adalah tindakan paling aman. Nomor call center ada di kartu debit dan situs bank."
+        },
+        {
+          "teks": "Betul saya tidak ikut. Bagaimana cara membatalkannya?",
+          "nilai": "waspada",
+          "umpan_balik": "Wajar bertanya cara pembatalannya, tetapi jangan melanjutkan proses lewat telepon masuk ini. Pihak bank sah akan meminta Anda datang atau menghubungi kanal resmi."
+        },
+        {
+          "teks": "Ya, cepat tolak dan blokirnya sekarang, Bu!",
+          "nilai": "bahaya",
+          "umpan_balik": "Anda masuk ke jebakan panik buatan. Penipu akan memanfaatkan kepanikan ini untuk langkah berikutnya: meminta OTP."
+        }
+      ]
+    },
+    {
+      "pesan": "Baik, saya bantu proses. Kalau begitu coba cek HP Anda, pasti baru saja masuk SMS kode OTP dari bank. Baca kodenya ke saya supaya saya bisa tolak transaksinya.",
+      "pilihan": [
+        {
+          "teks": "Petugas bank tidak pernah minta OTP. Saya tutup telepon ini.",
+          "nilai": "aman",
+          "umpan_balik": "Sempurna. Ini aturan emas: OTP, PIN, CVV, dan sandi tidak pernah diminta pihak bank, kapan pun, untuk alasan apa pun."
+        },
+        {
+          "teks": "Kalau saya baca kodenya ke Anda, transaksi saya benar-benar bisa ditolak?",
+          "nilai": "waspada",
+          "umpan_balik": "Pertanyaan itu menunjukkan Anda belum yakin, dan keraguan Anda benar. Jawabannya: jangan baca OTP ke siapa pun, tutup telepon."
+        },
+        {
+          "teks": "Oke, kodenya 902457.",
+          "nilai": "bahaya",
+          "umpan_balik": "Dengan kode itu, penipu menyelesaikan transaksi atas nama Anda. Jika benar terjadi: segera blokir rekening lewat aplikasi bank, hubungi call center resmi, lalu lapor."
+        }
+      ]
+    },
+    {
+      "pesan": "Sekalian, supaya blokir kartunya langsung berlaku, sebutkan PIN kartu Anda sebentar saja. Ini standar prosedur verifikasi divisi kartu.",
+      "pilihan": [
+        {
+          "teks": "Tidak. Tidak ada prosedur bank yang meminta PIN lewat telepon.",
+          "nilai": "aman",
+          "umpan_balik": "Benar sekali. Verifikasi divisi kartu tidak pernah minta PIN. Kalimat ini muncul persis setelah OTP, tanda penipu menekan lebih dalam."
+        },
+        {
+          "teks": "PIN hanya saya tahu. Saya akan ke kantor cabang saja untuk blokir kartu.",
+          "nilai": "waspada",
+          "umpan_balik": "Sudah tepat menolak. Menjawab lebih baik lagi: blokir kartu bisa langsung di aplikasi resmi bank tanpa perlu ke kantor."
+        },
+        {
+          "teks": "PIN saya 123456, cepat blokirnya ya, Bu.",
+          "nilai": "bahaya",
+          "umpan_balik": "OTP dan PIN sekaligus di tangan penipu berarti akses penuh ke kartu dan akun Anda. Segera blokir dari aplikasi bank."
+        }
+      ]
+    },
+    {
+      "pesan": "Untuk arsip penolakan transaksi, tolong instal aplikasi verifikasi divisi kartu ini ya, Bu. Cukup 2 menit: bank-maju-verif.apk",
+      "pilihan": [
+        {
+          "teks": "Bank sah punya aplikasi resmi di Play Store atau App Store. Saya tidak akan pasang dari tautan ini.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat. Aplikasi bank resmi hanya ada di toko aplikasi resmi. APK dari pesan telepon adalah aplikasi curian akses."
+        },
+        {
+          "teks": "Saya cek dulu nama aplikasi ini di Play Store.",
+          "nilai": "waspada",
+          "umpan_balik": "Keinginan mengecek itu benar. Tapi jangan ikuti tautannya sama sekali; penipu kadang menyediakan versi tiruan bahkan di dalam pencarian."
+        },
+        {
+          "teks": "Baik, saya pasang aplikasinya sekarang.",
+          "nilai": "bahaya",
+          "umpan_balik": "APK ini bisa menampilkan layar tiruan, membaca SMS OTP, dan mengendalikan HP Anda. Hubungi bank lewat kanal resmi untuk bantuan penyelamatan."
+        }
+      ]
+    }
+  ]
+}

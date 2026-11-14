@@ -1,0 +1,77 @@
+{
+  "judul": "Sudah Terlanjur?",
+  "pengantar": "Uang sudah terkirim atau data sudah terlanjur diberi? Tenang dulu. Yang menentukan adalah kecepatan langkah berikutnya. Ikuti langkah di bawah satu per satu.",
+  "langkah": [
+    {
+      "urutan": 1,
+      "judul": "Berhenti berkomunikasi",
+      "isi": "Jangan kirim uang lagi apa pun alasannya. Penipu hampir selalu menjanjikan pengembalian dana agar korban mengirim lagi. Setiap rupiah tambahan adalah kerugian baru. Blokir nomor dan akunnya."
+    },
+    {
+      "urutan": 2,
+      "judul": "Blokir rekening dan kartu secepatnya",
+      "isi": "Telepon call center resmi bank Anda (nomor ada di kartu debit atau situs resmi bank), blokir rekening dan kartu lewat aplikasi bank. Untuk e-wallet, blokir lewat aplikasinya. Jika terlanjur memberi OTP atau memasang APK: matikan HP, lalu buka aplikasi bank dari perangkat lain untuk memblokir."
+    },
+    {
+      "urutan": 3,
+      "judul": "Kumpulkan bukti",
+      "isi": "Simpan tangkapan layar seluruh percakapan, tautan yang dikirim, nomor rekening penipu, tanggal, dan jumlah transfer. Bukti lengkap mempercepat proses investigasi dan pengembalian dana."
+    },
+    {
+      "urutan": 4,
+      "judul": "Cek dan lapor rekening penipu",
+      "isi": "Masuk ke CekRekening.id untuk memeriksa nomor rekening dan mengajukan laporan. Laporan Anda membantu rekening itu diblokir dan melindungi orang berikutnya.",
+      "tautan": { "teks": "Buka CekRekening.id", "url": "https://cekrekening.id" }
+    },
+    {
+      "urutan": 5,
+      "judul": "Laporkan ke kanal resmi",
+      "isi": "Pilih kanal sesuai jenisnya: call center 110 untuk bantuan cepat kejahatan siber, Patroli Siber untuk pelaporan polisi, Aduan Konten untuk konten dan aplikasi penipuan, OJK 157 untuk investasi dan pinjaman, LAPOR! untuk aduan lintas instansi. Cantumkan seluruh bukti dari langkah 3.",
+      "tautan": { "teks": "Lihat daftar kanal di bawah", "url": null }
+    },
+    {
+      "urutan": 6,
+      "judul": "Perkuat keamanan Anda",
+      "isi": "Ubah sandi semua akun penting (email, bank, media sosial) dengan sandi yang unik, aktifkan autentikasi dua faktor, dan periksa izin aplikasi di HP Anda. Ceritakan kepada keluarga agar tidak menjadi korban berikutnya."
+    }
+  ],
+  "kanal": [
+    {
+      "nama": "Call Center 110",
+      "keterangan": "Layanan bebas pulsa untuk pengaduan cepat kejahatan siber dan perlindungan konsumen digital",
+      "aksi": { "teks": "Telepon 110", "url": "tel:110" },
+      "sumber": "Kementerian Komunikasi dan Digital (Komdigi) bersama Polri"
+    },
+    {
+      "nama": "CekRekening.id",
+      "keterangan": "Memeriksa nomor rekening terduga penipuan dan mengajukan laporan blokir rekening",
+      "aksi": { "teks": "Buka cekrekening.id", "url": "https://cekrekening.id" },
+      "sumber": "Kementerian Komunikasi dan Digital (Komdigi)"
+    },
+    {
+      "nama": "Patroli Siber",
+      "keterangan": "Pelaporan kejahatan dunia maya ke Bareskrim Polri",
+      "aksi": { "teks": "Buka patrolisiber.id", "url": "https://patrolisiber.id" },
+      "sumber": "Bareskrim Polri"
+    },
+    {
+      "nama": "Aduan Konten",
+      "keterangan": "Melaporkan konten, akun, dan aplikasi penipuan di internet",
+      "aksi": { "teks": "Buka aduankonten.id", "url": "https://aduankonten.id" },
+      "sumber": "Kementerian Komunikasi dan Digital (Komdigi)"
+    },
+    {
+      "nama": "OJK 157",
+      "keterangan": "Pengaduan lembaga investasi ilegal dan pinjaman online ilegal",
+      "aksi": { "teks": "Buka kontak157.ojk.go.id", "url": "https://kontak157.ojk.go.id" },
+      "sumber": "Otoritas Jasa Keuangan (OJK)"
+    },
+    {
+      "nama": "LAPOR!",
+      "keterangan": "Layanan aduan lintas instansi pemerintah",
+      "aksi": { "teks": "Buka lapor.go.id", "url": "https://www.lapor.go.id" },
+      "sumber": "SP4N-LAPOR! (Presiden RI)"
+    }
+  ],
+  "catatan": "Daftar kanal ini disalin dari situs resmi masing-masing lembaga pada saat penulisan (November 2026). Verifikasi ulang sebelum bertindak."
+}

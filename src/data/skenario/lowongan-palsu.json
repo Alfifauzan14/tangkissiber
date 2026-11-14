@@ -1,0 +1,90 @@
+{
+  "id": "lowongan-palsu",
+  "judul": "Lowongan Kerja Palsu",
+  "deskripsi": "Chat dari perekrut yang menawarkan pekerjaan ringan dengan gaji besar, lalu meminta bayaran dan data pribadi.",
+  "penipu": { "nama": "Hendra", "peran": "Perekrut HRD" },
+  "tanda_bahaya": ["Gaji terlalu besar", "Permintaan transfer", "Data pribadi", "APK dari tautan"],
+  "pesan_awal": "Hai kak! Kami dari PT Jaya Digital bergerak di bidang e-commerce. Sedang cari admin online, kerja dari rumah, gaji Rp 4.000.000 per minggu. Kakak tertarik?",
+  "langkah": [
+    {
+      "pesan": "Jobdesc-nya cuma masukin data pesanan, 2 jam per hari, tanpa pengalaman, tanpa interview berat. Slot terbatas karena habis dicari banyak orang. Mau langsung kami proses?",
+      "pilihan": [
+        {
+          "teks": "Gaji per minggu itu besar banget untuk pekerjaan 2 jam. Saya cek dulu profil perusahaan ini di kanal resmi.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat. Gaji besar untuk pekerjaan ringan tanpa syarat adalah tanda utama lowongan palsu. Perusahaan sah bisa diverifikasi: situs resmi, alamat kantor, dan karyawan nyata."
+        },
+        {
+          "teks": "Boleh tahu alamat kantornya di mana, dan apakah ada izin resminya?",
+          "nilai": "waspada",
+          "umpan_balik": "Pertanyaan yang tepat. Hati-hati: jawaban mereka akan diarang untuk terlihat sah. Cek sendiri lewat pencarian dan peta resmi, bukan lewat link dari mereka."
+        },
+        {
+          "teks": "Menarik! Proses ya, kak, saya mau daftar.",
+          "nilai": "bahaya",
+          "umpan_balik": "Perekrut palsu akan segera minta pembayaran. Setiap rupiah yang dibayar tidak kembali."
+        }
+      ]
+    },
+    {
+      "pesan": "Untuk formulir pendaftaran, ada biaya administrasi Rp 350.000. Ini standar semua karyawan kami, nanti dikembalikan di gaji pertama. Transfer ke rekening ini ya kak.",
+      "pilihan": [
+        {
+          "teks": "Perusahaan sah tidak pernah minta bayaran dari pelamar. Saya berhenti di sini.",
+          "nilai": "aman",
+          "umpan_balik": "Benar. Biaya formulir, seragam, pelatihan, atau administrasi dari pelamar adalah tanda pasti penipuan lowongan."
+        },
+        {
+          "teks": "Kalau dijamin dikembalikan di gaji pertama, saya mau cek dulu ulasan perusahaan ini.",
+          "nilai": "waspada",
+          "umpan_balik": "Ulasan bisa dipalsukan dan grup testimoni pun bisa dikelola penipu. Dasar berpikirnya lebih baik: tidak ada lowongan sah yang meminta bayaran, titik."
+        },
+        {
+          "teks": "Oke kak, saya transfer Rp 350.000 sekarang.",
+          "nilai": "bahaya",
+          "umpan_balik": "Biaya baru akan terus muncul: komputer, seragam, pelatihan premium. Semakin lama, semakin banyak."
+        }
+      ]
+    },
+    {
+      "pesan": "Data pendaftaran terakhir: kirimkan scan KTP, nomor rekening, dan pasfoto kakak untuk kontrak dan pembayaran gaji.",
+      "pilihan": [
+        {
+          "teks": "Kontrak sah baru diisi setelah kerja jelas. Saya tidak akan kirim data seperti ini sekarang.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat. Data pribadi lengkap sebelum kerja resmi membuka pintu pinjaman ilegal atas nama Anda dan penyalahgunaan rekening."
+        },
+        {
+          "teks": "Saya cuma mau kasih nama dan nomor telepon, selebihnya setelah saya tahu perusahaan ini asli.",
+          "nilai": "waspada",
+          "umpan_balik": "Batasan itu bagus, tapi lebih aman menghentikan pembicaraan sepenuhnya. Perekrut palsu selalu punya ratusan tawaran berikutnya untuk menekan."
+        },
+        {
+          "teks": "Ini scan KTP dan rekening saya, kak.",
+          "nilai": "bahaya",
+          "umpan_balik": "KTP dan rekening di tangan penipu dipakai untuk pinjaman online ilegal dan rekening money mule atas nama Anda."
+        }
+      ]
+    },
+    {
+      "pesan": "Sistem absensi karyawan kami aplikasi khusus, kak. Unduh di sini biar gaji langsung dihitung: jaya-digital-absen.apk Setelah itu tugas pertama langsung dikirim.",
+      "pilihan": [
+        {
+          "teks": "Aplikasi kerja sah ada di Play Store atau App Store, bukan file APK dari chat. Saya tolak.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat. APK dari chat biasanya mencuri akses layar dan SMS, termasuk OTP rekening Anda."
+        },
+        {
+          "teks": "Apakah aplikasi ini terdaftar di Play Store? Saya cari nama absennya di sana.",
+          "nilai": "waspada",
+          "umpan_balik": "Cek toko aplikasi resmi itu kebiasaan yang benar. Kalau tidak ada di sana, itu jawabannya: jangan pasang dari tautan langsung."
+        },
+        {
+          "teks": "Baik kak, unduh dan pasang sekarang.",
+          "nilai": "bahaya",
+          "umpan_balik": "Sejak aplikasi ini terpasang, penipu bisa membaca SMS OTP Anda dan mengambil alih akun bank di HP ini."
+        }
+      ]
+    }
+  ]
+}
