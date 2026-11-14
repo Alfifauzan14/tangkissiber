@@ -33,8 +33,8 @@
 - [x] Font Poppins via `next/font`, ikon Material Symbols Rounded
 - [x] `lib/supabase.js`: satu instance klien; `.env.local` diisi URL + anon key (ambil via MCP); `.env.example` tanpa nilai rahasia; `.gitignore` menutup `.env.local`
 - [x] `lib/poin.js`, `lib/sesi.js`, `lib/cekPesan.js` (logika murni)
-- [ ] **Deploy skeleton ke Vercel di hari ini** (mitigasi risiko integrasi R7)
-- [ ] Commit awal ke GitHub (docs + schema + scaffold)
+- [ ] **Deploy skeleton ke Vercel di hari ini** (mitigasi risiko integrasi R7) — ditunda oleh pengguna ("Lain kali saja")
+- [x] Commit awal ke GitHub (docs + schema + scaffold) — `2e30b39` + `4550ac4`, sudah di-push
 
 ### Konten JSON (semua di `src/data/`)
 - [x] `modus.json`: 8 kartu modus (ciri-ciri, contoh pesan, cara kerja, tindakan)
@@ -55,7 +55,7 @@
 
 ---
 
-## Hari 2 — Fitur Inti
+## Hari 2 — Fitur Inti — selesai
 
 ### Cek Pesan
 - [x] `/cek-pesan`: form tempel pesan/tautan
@@ -77,6 +77,13 @@
 - [x] Simpan skor otomatis setelah kuis/simulasi selesai (insert; `user_id` default database)
 - [x] `/riwayat`: daftar hasil kuis + simulasi, skor terbaik, level, total poin (poin dari view `peringkat` atau hitung ulang via `lib/poin.js`)
 - [x] `/peringkat`: Top 20 dari view, posisi pengguna disorot, tamu hanya melihat
+
+### Catatan verifikasi Hari 2 (commit `9f1da41`)
+- Semua AC PRD §9 Hari 2 lulus via Playwright: Cek Pesan 1-4, Simulasi 1-3, Kuis 1-2, Masuk/Daftar 1-5, Riwayat & Peringkat 1-4, Tamu 2-5.
+- Bug diperbaiki: (1) Next 16 Cache Components menolak `new Date()` saat prerender, waktu dipindah ke `useEffect`; (2) pola `<a><button>` diubah jadi prop `href` di `Tombol`; (3) efek simpan macet di "Menyimpan..." karena `statusSimpan` di deps + cleanup abort, diganti guard `useRef`; (4) `onAuthStateChange` selalu set `profil: null`, kini ambil profil ulang di kedua jalur.
+- `useSesi` mengambil profil (nama_tampil, total_poin) dari view `peringkat`, bukan tabel `profiles`.
+- 0 error console di semua halaman teruji. 320px muat tanpa overflow.
+- Data uji dibersihkan dari database (0 baris di kuis_hasil, simulasi_hasil, profiles) agar Hari 3 mulai dari kondisi bersih.
 
 ---
 
