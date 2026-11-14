@@ -65,11 +65,9 @@ export default function Beranda() {
           memeriksa pesan, membalas chat penipu, dan kuis wawasan. Gratis, tanpa perlu akun.
         </p>
         <div className="mt-6">
-          <Link href="/cek-pesan" className="inline-flex">
-            <Tombol gaya="primary" ikon="content_paste_search" className="w-full md:w-auto">
-              Periksa Pesan Sekarang
-            </Tombol>
-          </Link>
+          <Tombol gaya="primary" ikon="content_paste_search" href="/cek-pesan" className="w-full md:w-auto">
+            Periksa Pesan Sekarang
+          </Tombol>
         </div>
       </section>
 

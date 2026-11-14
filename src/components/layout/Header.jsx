@@ -5,10 +5,31 @@
 // digulir horizontal (semua tujuan tampak, tanpa menu hamburger).
 // Desktop: nav horizontal di dalam header seperti semula.
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Container from "./Container";
 import Ikon from "../ui/Ikon";
 import { useSesi } from "@/lib/sesi";
+import { supabase } from "@/lib/supabase";
+
+// Tombol Keluar (FR-F7-05): icon-only di mobile, teks penuh di desktop.
+function TombolKeluar() {
+  const router = useRouter();
+  async function keluar() {
+    await supabase.auth.signOut();
+    router.replace("/");
+  }
+  return (
+    <button
+      type="button"
+      onClick={keluar}
+      aria-label="Keluar"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted transition-colors duration-150 hover:bg-primary-soft hover:text-primary lg:h-9 lg:w-auto lg:gap-2 lg:rounded-md lg:px-3 lg:text-sm lg:font-semibold"
+    >
+      <Ikon nama="logout" ukuran={18} />
+      <span className="hidden lg:inline">Keluar</span>
+    </button>
+  );
+}
 
 const NAV = [
   { href: "/", label: "Beranda" },
@@ -67,20 +88,29 @@ export default function Header() {
             Sudah Terlanjur?
           </Link>
           {memuat ? null : pengguna ? (
-            <Link
-              href="/riwayat"
-              className="flex items-center gap-2 rounded-full bg-primary-soft py-1.5 pl-1.5 pr-3 text-sm font-semibold text-primary"
-            >
-              <span
-                aria-hidden="true"
-                className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs text-white"
+            <div className="flex items-center gap-2">
+              <Link
+                href="/riwayat"
+                className="flex items-center gap-2 rounded-full bg-primary-soft py-1.5 pl-1.5 pr-3 text-sm font-semibold text-primary"
+                aria-label={`${profil?.nama_tampil || "Akun"} - lihat riwayat`}
               >
-                {(profil?.nama_tampil || pengguna.email || "?").charAt(0).toUpperCase()}
-              </span>
-              <span className="hidden max-w-28 truncate sm:inline">
-                {profil?.nama_tampil || "Pengguna"}
-              </span>
-            </Link>
+                <span
+                  aria-hidden="true"
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs text-white"
+                >
+                  {(profil?.nama_tampil || pengguna.email || "?").charAt(0).toUpperCase()}
+                </span>
+                <span className="hidden max-w-24 truncate sm:inline">
+                  {profil?.nama_tampil || "Pengguna"}
+                </span>
+                {profil?.total_poin !== undefined && profil?.total_poin !== null ? (
+                  <span className="angka hidden rounded-full bg-primary px-1.5 text-[11px] font-bold text-white md:inline">
+                    {profil.total_poin}
+                  </span>
+                ) : null}
+              </Link>
+              <TombolKeluar />
+            </div>
           ) : diMasuk ? null : (
             <Link
               href="/masuk"

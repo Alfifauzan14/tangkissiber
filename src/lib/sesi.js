@@ -5,6 +5,15 @@
 import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
 
+async function ambilProfil(uid) {
+  const { data } = await supabase
+    .from("peringkat")
+    .select("id, nama_tampil, total_poin")
+    .eq("id", uid)
+    .single();
+  return data ?? null;
+}
+
 export function useSesi() {
   const [status, setStatus] = useState({ memuat: true, pengguna: null, profil: null });
 
@@ -15,21 +24,14 @@ export function useSesi() {
     async function muat() {
       const { data } = await supabase.auth.getSession();
       const pengguna = data.session?.user ?? null;
-      let profil = null;
-      if (pengguna) {
-        const { data: baris } = await supabase
-          .from("profiles")
-          .select("id, nama_tampil")
-          .eq("id", pengguna.id)
-          .single();
-        profil = baris ?? null;
-      }
+      const profil = pengguna ? await ambilProfil(pengguna.id) : null;
       if (aktif) setStatus({ memuat: false, pengguna, profil });
 
-      langganan = supabase.auth.onAuthStateChange((_acara, sesi) => {
-        if (aktif) {
-          setStatus({ memuat: false, pengguna: sesi?.user ?? null, profil: null });
-        }
+      langganan = supabase.auth.onAuthStateChange(async (_acara, sesi) => {
+        if (!aktif) return;
+        const pengguna = sesi?.user ?? null;
+        const profil = pengguna ? await ambilProfil(pengguna.id) : null;
+        if (aktif) setStatus({ memuat: false, pengguna, profil });
       }).data;
     }
 

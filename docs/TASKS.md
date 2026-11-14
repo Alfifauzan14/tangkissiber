@@ -58,25 +58,25 @@
 ## Hari 2 — Fitur Inti
 
 ### Cek Pesan
-- [ ] `/cek-pesan`: form tempel pesan/tautan
-- [ ] Mesin aturan `lib/cekPesan.js` membaca `aturan-cek.json` (tanpa jaringan)
-- [ ] Kartu hasil risiko (garis status 4px + tint) + alasan awam + saran tindakan + disclaimer
+- [x] `/cek-pesan`: form tempel pesan/tautan
+- [x] Mesin aturan `lib/cekPesan.js` membaca `aturan-cek.json` (tanpa jaringan)
+- [x] Kartu hasil risiko (garis status 4px + tint) + alasan awam + saran tindakan + disclaimer
 
 ### Simulasi Chat
-- [ ] `/simulasi`: daftar 4 skenario
-- [ ] `/simulasi/[skenario]`: gelembung chat (motif sudut ekor), pilihan respons per langkah, umpan balik langsung
-- [ ] Akhir: skor 0-100 + ringkasan tanda bahaya
+- [x] `/simulasi`: daftar 4 skenario
+- [x] `/simulasi/[skenario]`: gelembung chat (motif sudut ekor), pilihan respons per langkah, umpan balik langsung
+- [x] Akhir: skor 0-100 + ringkasan tanda bahaya
 
 ### Kuis
-- [ ] `/kuis`: 10 soal acak dari 20, penjelasan per jawaban, skor akhir + level
+- [x] `/kuis`: 10 soal acak dari 20, penjelasan per jawaban, skor akhir + level
 
 ### Auth dan penyimpanan
-- [ ] `/masuk`: tab Masuk/Daftar (nama tampil, email, password), redirect `?kembali=`
-- [ ] Guard `/riwayat` dan `/masuk` (klien, via `useSesi`)
-- [ ] Header: nama + level + Riwayat Saya + Keluar (login); tombol Masuk (tamu)
-- [ ] Simpan skor otomatis setelah kuis/simulasi selesai (insert; `user_id` default database)
-- [ ] `/riwayat`: daftar hasil kuis + simulasi, skor terbaik, level, total poin (poin dari view `peringkat` atau hitung ulang via `lib/poin.js`)
-- [ ] `/peringkat`: Top 20 dari view, posisi pengguna disorot, tamu hanya melihat
+- [x] `/masuk`: tab Masuk/Daftar (nama tampil, email, password), redirect `?kembali=`
+- [x] Guard `/riwayat` dan `/masuk` (klien, via `useSesi`)
+- [x] Header: nama + level + Riwayat Saya + Keluar (login); tombol Masuk (tamu)
+- [x] Simpan skor otomatis setelah kuis/simulasi selesai (insert; `user_id` default database)
+- [x] `/riwayat`: daftar hasil kuis + simulasi, skor terbaik, level, total poin (poin dari view `peringkat` atau hitung ulang via `lib/poin.js`)
+- [x] `/peringkat`: Top 20 dari view, posisi pengguna disorot, tamu hanya melihat
 
 ---
 
