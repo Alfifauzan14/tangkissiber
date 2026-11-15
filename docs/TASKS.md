@@ -202,9 +202,9 @@
 - [x] Halaman `/admin` (terpisah dari nav utama) + middleware guard
 
 ### 5. Deteksi AI (Heuristik Ringan)
-- [ ] Library/heuristik: entropy + burstiness + timing di Edge Function submit
-- [ ] Flag `ai_curiga` boolean di `kuis_hasil` & `simulasi_hasil`
-- [ ] Badge "Kemungkinan AI" di riwayat (hanya admin/pemilik)
+- [x] Library/heuristik: entropy + burstiness + timing di Edge Function submit
+- [x] Flag `ai_curiga` boolean di `kuis_hasil` & `simulasi_hasil`
+- [x] Badge "Kemungkinan AI" di riwayat (hanya admin/pemilik)
 
 ### 6. V10 Seed Demo Otomatis
 - [ ] `scripts/seed-demo.mjs` idempoten (service role key)

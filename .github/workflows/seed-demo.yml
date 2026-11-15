@@ -1,0 +1,48 @@
+# Seed Demo GitHub Action (Post-v1.0 #6)
+# Jalan sekali saat deploy production ke Vercel
+name: Seed Demo Production
+
+on:
+  workflow_dispatch: # Manual trigger
+  deployment:
+    types: [created]
+    environment: production
+
+jobs:
+  seed-demo:
+    name: Seed Demo Accounts
+    runs-on: ubuntu-latest
+    if: github.event.deployment.environment == 'production' || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run seed demo script
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/seed-demo.mjs
+
+      - name: Verify seed
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          echo "Verifying demo user exists..."
+          node -e "
+            import { createClient } from '@supabase/supabase-js';
+            const s = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+            const { data } = await s.auth.admin.listUsers();
+            const demo = data.users.find(u => u.email === 'demo@juri.com');
+            if (!demo) throw new Error('Demo user not found');
+            console.log('✓ Demo user verified:', demo.id);
+          "
