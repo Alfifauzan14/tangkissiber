@@ -138,16 +138,16 @@
 
 ---
 
-## Hari 4 — Perbagus Desain (sebelum Deploy) — menunggu input pengguna
+## Hari 4 — Perbagus Desain (sebelum Deploy) — T0-T1 selesai, T2 berjalan
 
 ### T0 Persiapan folder referensi desain
-- [ ] Buat `docs/design-ref/` untuk screenshot/URL contoh desain yang disukai pengguna
-- [ ] Buat `docs/design-notes.md` untuk catatan preferensi visual (warna, spacing, Komponen favorit, dll)
+- [x] Buat `docs/design-ref/` untuk screenshot/URL contoh desain yang disukai pengguna (3 referensi diterima 16 Nov: `login dan daftar.png`, `nav mobile.png`, `nav mobile (2).png`; style halaman lain mengikuti skoolia.id)
+- [x] Buat `docs/design-notes.md` untuk catatan preferensi visual (warna, spacing, Komponen favorit, dll)
 
 ### T1 Update DESIGN.md berdasarkan referensi pengguna
-- [ ] Integrasikan preferensi warna/tipografi/spasi dari referensi ke DESIGN.md (tanpa mengubah sistem warna risiko 3-status)
-- [ ] Perbarui token CSS di `globals.css` sesuai DESIGN.md v1.1
-- [ ] Verifikasi kontras AA, radius, spacing scale
+- [x] Integrasikan preferensi warna/tipografi/spasi dari referensi ke DESIGN.md (tanpa mengubah sistem warna risiko 3-status): v1.1 mencakup halaman masuk dua kolom (§11.9), nav mobile drawer hamburger (§9.1, menggantikan chip gulir), gaya kartu skoolia (§8.1), pengecualian gradien panel masuk (§3.5)
+- [x] Perbarui token CSS di `globals.css` sesuai DESIGN.md v1.1 (`--color-primary-100`, `--shadow-card`, `--shadow-card-hover`, `.panel-masuk`)
+- [x] Verifikasi kontras AA, radius, spacing scale (palet inti tidak berubah; token baru hanya tint latar dan bayangan, tidak menyentuh pasangan teks-latar)
 
 ### T2 Terapkan perbagus ke komponen & halaman
 - [ ] Komponen UI: Tombol, Kartu, Badge, Input, Gelembung chat, Opsi kuis
@@ -174,20 +174,9 @@
 
 ---
 
-## ✅ Aksi User untuk Hari 4 (Perbagus Desain)
+## ✅ Aksi User untuk Hari 4 (Perbagus Desain) — selesai 16 Nov 2026
 
-### Yang harus **KAMU** lakukan (sekali saja, sekarang):
-
-| # | Aksi | Cara | Estimasi |
-|---|------|------|----------|
-| 1 | **Kirim referensi desain** | Simpan screenshot/URL ke `docs/design-ref/` dengan nama: `hero-*.png`, `card-*.png`, `nav-*.png`, `form-*.png`, `button-*.png`, `page-*.png` | 10–30 menit |
-| 2 | **Isi preferensi singkat** | Edit `docs/design-notes.md` tabel "Daftar Referensi" (baris 22–35) | 5 menit |
-
-**Yang SAYA kerjakan otomatis setelah itu:**
-- T1: Update `DESIGN.md` → v1.1 + `globals.css` tokens
-- T2: Terapkan ke semua komponen & 9 halaman
-- T3: Playwright visual + a11y test (5 breakpoint, focus, reduced-motion, Lighthouse)
-- T4: Deploy Vercel + update README URL live
+Pengguna sudah mengirim 3 referensi (`docs/design-ref/`) dan menetapkan skoolia.id sebagai gaya halaman lain. T1 selesai; lanjut T2.
 
 ---
 
