@@ -160,6 +160,19 @@ function Drawer({ terbuka, tutup, refHamburger }) {
             </Link>
           );
         })}
+        {profil?.peran === "admin" && (
+          <Link
+            key="/admin"
+            href="/admin"
+            onClick={tutup}
+            aria-current={pathname === "/admin" ? "page" : undefined}
+            className={`flex min-h-[52px] items-center border-b border-line px-5 text-[15px] font-semibold transition-colors duration-150 ${
+              pathname === "/admin" ? "text-primary" : "text-ink hover:text-primary"
+            }`}
+          >
+            Panel Admin
+          </Link>
+        )}
       </nav>
 
       {/* Bawah drawer: pintasan darurat, lalu toggle, lalu masuk atau profil */}
@@ -270,6 +283,18 @@ export default function Header() {
               </Link>
             );
           })}
+          {profil?.peran === "admin" && (
+            <Link
+              key="/admin"
+              href="/admin"
+              aria-current={pathname === "/admin" ? "page" : undefined}
+              className={`rounded-sm px-3 py-2 text-sm font-medium transition-colors duration-150 ${
+                pathname === "/admin" ? "bg-primary-soft text-primary" : "text-muted hover:text-primary"
+              }`}
+            >
+              Panel Admin
+            </Link>
+          )}
         </nav>
         <div className="flex items-center gap-2">
           <DarkModeToggle />

@@ -191,10 +191,10 @@
 - [x] Tombol "Masuk dengan Google" di `/masuk` (conditional render)
 
 ### 3. Validasi Skor Sisi Server (Edge Functions)
-- [ ] `app/api/kuis/submit/route.js` — hitung skor dari jawaban, simpan ke `kuis_hasil`
-- [ ] `app/api/simulasi/submit/route.js` — hitung skor, simpan ke `simulasi_hasil`
-- [ ] Kunci jawaban di DB (`kuis_soal.kunci`, `simulasi_skenario.jawaban_benar`)
-- [ ] Rate limit per user (Supabase `pg_ratelimit` atau middleware)
+- [x] `app/api/kuis/submit/route.js` — hitung skor dari jawaban, simpan ke `kuis_hasil`
+- [x] `app/api/simulasi/submit/route.js` — hitung skor, simpan ke `simulasi_hasil`
+- [x] Kunci jawaban di DB (`kuis_soal.kunci`, `simulasi_skenario.jawaban_benar`)
+- [x] Rate limit per user (Supabase `pg_ratelimit` atau middleware)
 
 ### 4. Peran Admin (RLS + Edge Function)
 - [ ] Migrasi: kolom `peran` enum('user','admin') di `profil` + RLS policy
