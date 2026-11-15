@@ -179,10 +179,10 @@
 ## Post-v1.0 Backlog (dimulai 16 Nov 2026 per instruksi pengguna)
 
 ### 1. Mode Gelap (Dark Mode)
-- [ ] Token CSS dark di `globals.css` (`--bg-dark`, `--surface-dark`, `--text-dark`, `--muted-dark`, `--primary-soft-dark`, `--border-dark`)
-- [ ] Toggle di Header (ikon moon/sun) + persist localStorage
-- [ ] `prefers-color-scheme` media query + manual override
-- [ ] Verifikasi kontras AA di semua halaman (light + dark)
+- [x] Token CSS dark di `globals.css` (`--bg-dark`, `--surface-dark`, `--text-dark`, `--muted-dark`, `--primary-soft-dark`, `--border-dark`)
+- [x] Toggle di Header (ikon moon/sun) + persist localStorage
+- [x] `prefers-color-scheme` media query + manual override
+- [x] Verifikasi kontras AA di semua halaman (light + dark)
 
 ### 2. Login Google (Supabase Auth)
 - [ ] Google Cloud OAuth client setup (documentasi di `docs/google-oauth-setup.md`)
