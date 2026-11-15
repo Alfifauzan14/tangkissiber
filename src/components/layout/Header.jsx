@@ -20,6 +20,42 @@ const NAV = [
   { href: "/peringkat", label: "Peringkat" },
 ];
 
+// Dark Mode Toggle: ikon sun/moon, persist localStorage, apply class ke <html>
+function DarkModeToggle({ dalamDrawer = false }) {
+  const [gelap, setGelap] = useState(false);
+
+  useEffect(() => {
+    const tersimpan = localStorage.getItem("tema");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const awal = tersimpan ? tersimpan === "dark" : prefersDark;
+    setGelap(awal);
+    document.documentElement.classList.toggle("dark", awal);
+    document.documentElement.classList.toggle("light", !awal);
+  }, []);
+
+  function toggle() {
+    const baru = !gelap;
+    setGelap(baru);
+    localStorage.setItem("tema", baru ? "dark" : "light");
+    document.documentElement.classList.toggle("dark", baru);
+    document.documentElement.classList.toggle("light", !baru);
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={gelap ? "Beralih ke mode terang" : "Beralih ke mode gelap"}
+      aria-pressed={gelap}
+      className={`inline-flex items-center justify-center rounded-md bg-primary-soft text-primary transition-colors duration-150 hover:bg-primary-soft/80 ${
+        dalamDrawer ? "h-11 w-11" : "h-10 w-10 lg:h-9 lg:w-9"
+      }`}
+    >
+      <Ikon nama={gelap ? "light_mode" : "dark_mode"} ukuran={22} />
+    </button>
+  );
+}
+
 function Wordmark({ terang = false }) {
   return (
     <Link
@@ -126,7 +162,7 @@ function Drawer({ terbuka, tutup, refHamburger }) {
         })}
       </nav>
 
-      {/* Bawah drawer: pintasan darurat, lalu masuk atau profil */}
+      {/* Bawah drawer: pintasan darurat, lalu toggle, lalu masuk atau profil */}
       <div className="flex shrink-0 flex-col gap-3 border-t border-line bg-surface p-5">
         <Link
           href="/darurat"
@@ -136,6 +172,10 @@ function Drawer({ terbuka, tutup, refHamburger }) {
           <Ikon nama="sos" ukuran={18} />
           Sudah Terlanjur?
         </Link>
+        <div className="flex items-center justify-between border-t border-line pt-3">
+          <span className="text-sm font-medium text-ink">Mode Gelap</span>
+          <DarkModeToggle dalamDrawer={true} />
+        </div>
         {memuat ? null : pengguna ? (
           <>
             <Link
@@ -232,6 +272,7 @@ export default function Header() {
           })}
         </nav>
         <div className="flex items-center gap-2">
+          <DarkModeToggle />
           <Link
             href="/darurat"
             className="rounded-sm px-3 py-2 text-sm font-bold text-bahaya transition-colors duration-150 hover:text-[#7f1010]"

@@ -21,7 +21,7 @@
   --color-bahaya: #b91c1c;
   --color-bahaya-soft: #fee2e2;
 
-  /* Netral */
+  /* Netral (Light) */
   --color-bg: #f8fafc;           /* latar halaman */
   --color-surface: #ffffff;      /* kartu, input, panel */
   --color-line: #e2e8f0;         /* garis pembatas 1px */
@@ -39,6 +39,49 @@
 
   /* Huruf: satu keluarga untuk seluruh UI */
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ============================================================
+   Dark Mode tokens (Post-v1.0)
+   - prefers-color-scheme: dark → otomatis
+   - class .dark di <html> → manual override (localStorage)
+   Warna primary/biru royal TETAP SAMA (identitas brand).
+   Hanya netral yang flip; semantik risiko TIDAK BERUBAH.
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --color-bg: #0b1020;           /* navy sangat gelap */
+    --color-surface: #111827;      /* slate-900 */
+    --color-line: #1f2937;         /* slate-800 */
+    --color-muted: #94a3b8;        /* slate-400 */
+    --color-primary-soft: #1e1b4b; /* indigo-950 tint */
+    --color-ink: #f1f5f9;          /* slate-100 */
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-card-hover: 0 12px 28px -10px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Manual override class (dipakai saat user klik toggle) */
+html.dark {
+  --color-bg: #0b1020;
+  --color-surface: #111827;
+  --color-line: #1f2937;
+  --color-muted: #94a3b8;
+  --color-primary-soft: #1e1b4b;
+  --color-ink: #f1f5f9;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 12px 28px -10px rgba(0, 0, 0, 0.5);
+}
+
+html.light {
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-line: #e2e8f0;
+  --color-muted: #64748b;
+  --color-primary-soft: #eef2ff;
+  --color-ink: #15162a;
+  --shadow-card: 0 1px 2px rgba(21, 22, 42, 0.06);
+  --shadow-card-hover: 0 12px 28px -10px rgba(21, 22, 42, 0.18);
 }
 
 /* Gradien panel ilustrasi halaman masuk (DESIGN.md §3.5):

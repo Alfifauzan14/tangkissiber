@@ -176,6 +176,42 @@
 
 ---
 
+## Post-v1.0 Backlog (dimulai 16 Nov 2026 per instruksi pengguna)
+
+### 1. Mode Gelap (Dark Mode)
+- [ ] Token CSS dark di `globals.css` (`--bg-dark`, `--surface-dark`, `--text-dark`, `--muted-dark`, `--primary-soft-dark`, `--border-dark`)
+- [ ] Toggle di Header (ikon moon/sun) + persist localStorage
+- [ ] `prefers-color-scheme` media query + manual override
+- [ ] Verifikasi kontras AA di semua halaman (light + dark)
+
+### 2. Login Google (Supabase Auth)
+- [ ] Google Cloud OAuth client setup (documentasi di `docs/google-oauth-setup.md`)
+- [ ] Supabase Dashboard → Auth → Providers → Enable Google
+- [ ] Callback URL production + localhost
+- [ ] Tombol "Masuk dengan Google" di `/masuk` (conditional render)
+
+### 3. Validasi Skor Sisi Server (Edge Functions)
+- [ ] `app/api/kuis/submit/route.js` — hitung skor dari jawaban, simpan ke `kuis_hasil`
+- [ ] `app/api/simulasi/submit/route.js` — hitung skor, simpan ke `simulasi_hasil`
+- [ ] Kunci jawaban di DB (`kuis_soal.kunci`, `simulasi_skenario.jawaban_benar`)
+- [ ] Rate limit per user (Supabase `pg_ratelimit` atau middleware)
+
+### 4. Peran Admin (RLS + Edge Function)
+- [ ] Migrasi: kolom `peran` enum('user','admin') di `profil` + RLS policy
+- [ ] Edge Function guard: `supabase.auth.getClaims()` cek `claims.peran === 'admin'`
+- [ ] Halaman `/admin` (terpisah dari nav utama) + middleware guard
+
+### 5. Deteksi AI (Heuristik Ringan)
+- [ ] Library/heuristik: entropy + burstiness + timing di Edge Function submit
+- [ ] Flag `ai_curiga` boolean di `kuis_hasil` & `simulasi_hasil`
+- [ ] Badge "Kemungkinan AI" di riwayat (hanya admin/pemilik)
+
+### 6. V10 Seed Demo Otomatis
+- [ ] `scripts/seed-demo.mjs` idempoten (service role key)
+- [ ] GitHub Action `seed-demo.yml` jalan sekali pas deploy production
+
+---
+
 ## ✅ Aksi User untuk Hari 4 (Perbagus Desain) — selesai 16 Nov 2026
 
 Pengguna sudah mengirim 3 referensi (`docs/design-ref/`) dan menetapkan skoolia.id sebagai gaya halaman lain. T1 selesai; lanjut T2.
