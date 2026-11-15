@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import soalSemua from "@/data/soal.json";
 import { hitungLevel } from "@/lib/poin";
 import { useSesi } from "@/lib/sesi";
-import { supabase } from "@/lib/supabase";
 import { ambilPulang, hapusPulang, simpanTunda } from "@/lib/handoff";
 import Container from "@/components/layout/Container";
 import Tombol from "@/components/ui/Tombol";
@@ -35,7 +34,7 @@ export default function HalamanKuis() {
   const [soal, setSoal] = useState(null); // null = memuat (acak di klien)
   const [idx, setIdx] = useState(0);
   const [pilih, setPilih] = useState(null);
-  const [benar, setBenar] = useState(0);
+  const [jawaban, setJawaban] = useState({}); // { soalId: pilihanIndex }
   const [selesai, setSelesai] = useState(false);
   const [statusSimpan, setStatusSimpan] = useState("idle");
   const [totalPoin, setTotalPoin] = useState(null); // poin terkini (login)
@@ -59,9 +58,14 @@ export default function HalamanKuis() {
     }
   }, []);
 
+  // Hitung jumlah benar dari state jawaban
+  const benar = Object.entries(jawaban).filter(([id, j]) => {
+    const soalItem = soalSemua.find((s) => s.id === id);
+    return soalItem && j === soalItem.jawaban;
+  }).length;
+
   // Skor tersimpan otomatis untuk pengguna login (AC Kuis no. 3).
-  // Cek pulang di dalam efek ini JUGA sebagai fallback (bukan hanya efek terpisah)
-  // agar tidak ada race condition: jika handoff baru selesai, skip insert.
+  // Panggil API /api/kuis/submit untuk validasi sisi server.
   useEffect(() => {
     if (!selesai || !pengguna) return;
     if (simpanRef.current === "menyimpan" || simpanRef.current === "tersimpan") return;
@@ -76,29 +80,33 @@ export default function HalamanKuis() {
     simpanRef.current = "menyimpan";
     setStatusSimpan("menyimpan");
     (async () => {
-      const skor = benar * POIN_PER_SOAL;
-      const { error } = await supabase.from("kuis_hasil").insert({ skor });
-      if (error) {
+      try {
+        const res = await fetch("/api/kuis/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ jawaban }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) {
+          simpanRef.current = "gagal";
+          setStatusSimpan("gagal");
+          return;
+        }
+        simpanRef.current = "tersimpan";
+        setStatusSimpan("tersimpan");
+        setTotalPoin(data.total_poin);
+      } catch (e) {
+        console.error("Gagal submit kuis:", e);
         simpanRef.current = "gagal";
         setStatusSimpan("gagal");
-        return;
       }
-      simpanRef.current = "tersimpan";
-      setStatusSimpan("tersimpan");
-      // level sesuai total poin terkini dari view peringkat
-      const { data: baris } = await supabase
-        .from("peringkat")
-        .select("total_poin")
-        .eq("id", pengguna.id)
-        .single();
-      setTotalPoin(baris ? baris.total_poin : skor);
     })();
-  }, [selesai, pengguna, benar, percobaan]);
+  }, [selesai, pengguna, jawaban, percobaan]);
 
   function jawab(i) {
     if (pilih !== null) return;
     setPilih(i);
-    if (i === soal[idx].jawaban) setBenar((b) => b + 1);
+    setJawaban((prev) => ({ ...prev, [soal[idx].id]: i }));
   }
 
   function lanjut() {

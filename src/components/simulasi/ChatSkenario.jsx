@@ -4,10 +4,10 @@
 // satu sudut ekor 4px), pilihan respons per langkah, umpan balik langsung,
 // skor 0-100 + ringkasan tanda bahaya di akhir (DESIGN.md §11.3).
 // Skor: aman=100, waspada=50, bahaya=0 per langkah; rata-rata dibulatkan.
+// Validasi skor via API /api/simulasi/submit (Post-v1.0 #3).
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSesi } from "@/lib/sesi";
-import { supabase } from "@/lib/supabase";
 import { simpanTunda, ambilPulang, hapusPulang } from "@/lib/handoff";
 import Tombol from "@/components/ui/Tombol";
 import Badge from "@/components/ui/Badge";
@@ -78,8 +78,7 @@ export default function ChatSkenario({ data }) {
   }, [jawaban, data.langkah.length]);
 
   // Skor tersimpan otomatis sekali untuk pengguna login (AC Simulasi no. 4).
-  // Cek pulang di dalam efek ini JUGA sebagai fallback (bukan hanya efek terpisah)
-  // agar tidak ada race condition: jika handoff baru selesai, skip insert.
+  // Panggil API /api/simulasi/submit untuk validasi sisi server (Post-v1.0 #3).
   useEffect(() => {
     if (!selesai || !pengguna) return;
     if (simpanRef.current === "menyimpan" || simpanRef.current === "tersimpan") return;
@@ -94,13 +93,32 @@ export default function ChatSkenario({ data }) {
     simpanRef.current = "menyimpan";
     setStatusSimpan("menyimpan");
     (async () => {
-      const { error } = await supabase
-        .from("simulasi_hasil")
-        .insert({ skenario_id: data.id, skor });
-      setStatusSimpan(error ? "gagal" : "tersimpan");
-      if (!error) simpanRef.current = "tersimpan";
+      try {
+        // Format jawaban untuk API: { langkahIndex: { nilai: "aman"|"waspada"|"bahaya" } }
+        const jawabanAPI = {};
+        Object.entries(jawaban).forEach(([i, j]) => {
+          jawabanAPI[i] = { nilai: j.nilai };
+        });
+        const res = await fetch("/api/simulasi/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ skenario_id: data.id, jawaban: jawabanAPI }),
+        });
+        const result = await res.json();
+        if (!res.ok || !result.ok) {
+          simpanRef.current = "gagal";
+          setStatusSimpan("gagal");
+          return;
+        }
+        simpanRef.current = "tersimpan";
+        setStatusSimpan("tersimpan");
+      } catch (e) {
+        console.error("Gagal submit simulasi:", e);
+        simpanRef.current = "gagal";
+        setStatusSimpan("gagal");
+      }
     })();
-  }, [selesai, pengguna, skor, data.id, percobaan]);
+  }, [selesai, pengguna, jawaban, data.id, percobaan]);
 
   function jawab(pilihan) {
     setJawaban((j) => ({

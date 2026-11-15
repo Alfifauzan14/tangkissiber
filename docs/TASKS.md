@@ -185,10 +185,10 @@
 - [x] Verifikasi kontras AA di semua halaman (light + dark)
 
 ### 2. Login Google (Supabase Auth)
-- [ ] Google Cloud OAuth client setup (documentasi di `docs/google-oauth-setup.md`)
-- [ ] Supabase Dashboard → Auth → Providers → Enable Google
-- [ ] Callback URL production + localhost
-- [ ] Tombol "Masuk dengan Google" di `/masuk` (conditional render)
+- [x] Google Cloud OAuth client setup (documentasi di `docs/google-oauth-setup.md`)
+- [x] Supabase Dashboard → Auth → Providers → Enable Google
+- [x] Callback URL production + localhost
+- [x] Tombol "Masuk dengan Google" di `/masuk` (conditional render)
 
 ### 3. Validasi Skor Sisi Server (Edge Functions)
 - [ ] `app/api/kuis/submit/route.js` — hitung skor dari jawaban, simpan ke `kuis_hasil`
