@@ -26,7 +26,7 @@ export default function HalamanSimulasi() {
           <a
             key={s.id}
             href={`/simulasi/${s.id}`}
-            className="flex flex-col rounded-lg border border-line bg-surface p-4 shadow-[0_1px_2px_rgba(21,22,42,0.06)] transition-transform duration-200 ease-out hover:-translate-y-0.5 md:p-6"
+            className="flex flex-col rounded-lg border border-line bg-surface p-4 shadow-[var(--shadow-card)] transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)] md:p-6"
           >
             <span className="flex items-center gap-2">
               <span

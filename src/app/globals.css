@@ -72,13 +72,34 @@ body {
   overflow-x: clip;
 }
 
-/* Baris chip navigasi: bisa digulir, tetapi bilah gulirnya disembunyikan
-   agar tampak seperti baris chip biasa (isi tetap semua tampak). */
-.tanpa-gulir {
-  scrollbar-width: none;
+/* Ikon Material Symbols: glyph lewat codepoint (CSS content), bukan teks
+   ligature, agar teks ikon tidak dihitung sebagai teks tampak oleh audit
+   aksesibilitas (Lighthouse "label-content-name-mismatch"). */
+.ikon-glyph {
+  display: inline-block;
+  direction: ltr;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  font-family: "Material Symbols Rounded";
+  font-style: normal;
+  font-weight: normal;
+  font-variation-settings: "FILL" 1, "wght" 500, "GRAD" 0, "opsz" 24;
 }
-.tanpa-gulir::-webkit-scrollbar {
-  display: none;
+.ikon-glyph::before {
+  content: var(--glyph);
+}
+
+/* Drawer navigasi mobile: fade saat terbuka (DESIGN.md §9.1) */
+@keyframes muncul {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* prefers-reduced-motion: nonaktifkan transisi & animasi untuk aksesibilitas (DESIGN.md) */

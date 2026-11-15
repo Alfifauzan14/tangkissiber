@@ -26,18 +26,18 @@ export default function Footer() {
             </p>
             <Link
               href="/darurat"
-              className="mt-2 inline-flex text-sm font-bold text-bahaya underline-offset-2 hover:underline"
+              className="mt-1 inline-flex min-h-11 items-center -my-2 text-sm font-bold text-bahaya underline-offset-2 hover:underline"
             >
               Sudah terlanjur? Ikuti langkah darurat
             </Link>
           </div>
 
-          <nav aria-label="Tautan footer" className="flex flex-wrap gap-x-5 gap-y-2 content-start">
+          <nav aria-label="Tautan footer" className="flex flex-wrap items-center gap-x-5 gap-y-1 content-start">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted underline-offset-2 transition-colors duration-150 hover:text-primary hover:underline"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center text-sm text-muted underline-offset-2 transition-colors duration-150 hover:text-primary hover:underline"
               >
                 {item.label}
               </Link>

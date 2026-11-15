@@ -81,7 +81,7 @@ export default function Beranda() {
             <Link
               key={k.href}
               href={k.href}
-              className="rounded-lg border border-line bg-surface p-4 shadow-[0_1px_2px_rgba(21,22,42,0.06)] transition-transform duration-200 ease-out hover:-translate-y-0.5 md:p-6"
+              className="rounded-lg border border-line bg-surface p-4 shadow-[var(--shadow-card)] transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)] md:p-6"
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-md bg-primary-soft text-primary">
                 <Ikon nama={k.ikon} ukuran={22} />
@@ -103,7 +103,7 @@ export default function Beranda() {
             <Link
               key={k.href}
               href={k.href}
-              className={`flex items-start gap-3 rounded-lg border p-4 transition-transform duration-200 ease-out hover:-translate-y-0.5 ${
+              className={`flex items-start gap-3 rounded-lg border p-4 shadow-[var(--shadow-card)] transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)] ${
                 k.bahaya ? "border-bahaya/30 bg-bahaya-soft/50" : "border-line bg-surface"
               }`}
             >
@@ -116,7 +116,7 @@ export default function Beranda() {
               </span>
               <span>
                 <h3 className={`font-semibold ${k.bahaya ? "text-bahaya" : "text-ink"}`}>{k.judul}</h3>
-                <p className="mt-0.5 text-sm text-muted">{k.isi}</p>
+                <p className={`mt-0.5 text-sm ${k.bahaya ? "text-ink/80" : "text-muted"}`}>{k.isi}</p>
               </span>
             </Link>
           ))}

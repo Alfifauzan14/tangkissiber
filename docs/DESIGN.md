@@ -224,7 +224,7 @@ Struktur berbeda dari kartu standar: **garis tebal 4px di tepi kiri dengan warna
   - **Bar biru di atas (56px):** wordmark putih + tombol X kotak putih dengan ikon `--primary` (radius-sm).
   - **Daftar halaman** di atas latar `--surface`: satu baris per tujuan (**Beranda, Cek Pesan, Simulasi, Kuis, Pustaka, Peringkat**), teks Poppins 600 `--ink`, tinggi sentuh 52px, garis `--border` 1px antar baris. Halaman yang sedang dibuka ditandai teks `--primary`.
   - **Bagian bawah drawer:** baris tegas "Sudah Terlanjur?" berwarna `#B91C1C` (pintasan darurat), lalu tombol "Masuk" (tamu) atau chip avatar + nama + "Keluar" (login).
-- Drawer terbuka dengan fade 200ms (berhenti total saat `prefers-reduced-motion`); gulir latar halaman terkunci selama drawer terbuka; menutup lewat tombol X atau tombol kembali perangkat; Esc menutup dan fokus kembali ke tombol hamburger (aksesibilitas).
+- Drawer terbuka dengan fade 200ms (berhenti total saat `prefers-reduced-motion`); gulir latar halaman terkunci selama drawer terbuka; menutup lewat tombol X atau tombol Esc; fokus kembali ke tombol hamburger saat drawer tertutup (aksesibilitas).
 - **Pustaka, Darurat, Peringkat** juga ditonjolkan sebagai kartu pintasan di Beranda.
 - Konten halaman tidak pernah tersembunyi di belakang navigasi; header menempel sehingga pintasan drawer selalu terjangkau.
 - Halaman masuk/daftar memakai header ringkas khusus (§9.5), bukan header utama.
@@ -311,7 +311,7 @@ Komposisi satu fokus: badge status besar di atas, kartu hasil risiko (§8.2) di 
 ### 11.9 Halaman masuk/daftar (revisi 16 Nov 2026, referensi `login dan daftar.png`)
 
 Desktop (≥ 1024px): dua kolom, tinggi mengikuti viewport.
-- **Kolom kiri (form, maks 480px, terpusat vertikal):** ikon masuk dalam kotak `--primary` radius-md dengan pola grid samar di belakangnya (pengecualian §3.4); heading h1 ("Masuk ke akunmu") + satu kalimat bantuan; input surel dan sandi dengan ikon di dalamnya (depan: ikon bidang; sandi: tombol lihat/sembunyi di belakang); baris checkbox "Ingat saya" + tautan "Lupa kata sandi?"; tombol primary "Masuk" membentang penuh. Halaman daftar memakai struktur sama dengan tombol "Daftar".
+- **Kolom kiri (form, maks 480px, terpusat vertikal):** ikon masuk dalam kotak `--primary` radius-md dengan pola grid samar di belakangnya (pengecualian §3.4); heading h1 ("Masuk ke akunmu") + satu kalimat bantuan; input surel dan sandi dengan ikon di dalamnya (depan: ikon bidang; sandi: tombol lihat/sembunyi di belakang); tombol primary "Masuk" membentang penuh. Halaman daftar memakai struktur sama dengan tombol "Daftar". **Baris "Remember me" + "Forgot Password?" dari referensi tidak diadopsi:** sesi selalu tersimpan (persistSession) sehingga checkbox akan jadi kontrol palsu, dan pemulihan sandi bukan fitur PRD v1.1 (R-24: tidak ada tautan ke fitur yang belum ada).
 - **Kolom kanan (panel ilustrasi, radius-xl, gradien §3.5, inset dari tepi):** judul h2 dengan satu frasa disorot `--primary`, ilustrasi orbit (§2.3), caption satu kalimat di bawah. Titik indikator karosel hanya dipakai jika caption benar-benar berganti (3 kalimat, berganti tiap 5 detik, berhenti saat `prefers-reduced-motion`); bila statis, titik dihilangkan agar tidak menjadi elemen palsu.
 - **Baris "Atau masuk dengan" dari referensi tidak diadopsi:** masuk Google berada di daftar fitur yang ditunda PRD §5.2, dan R-24 melarang elemen UI untuk fitur yang belum ada.
 

@@ -150,18 +150,20 @@
 - [x] Verifikasi kontras AA, radius, spacing scale (palet inti tidak berubah; token baru hanya tint latar dan bayangan, tidak menyentuh pasangan teks-latar)
 
 ### T2 Terapkan perbagus ke komponen & halaman
-- [ ] Komponen UI: Tombol, Kartu, Badge, Input, Gelembung chat, Opsi kuis
-- [ ] Halaman: Beranda, Cek Pesan, Simulasi (list + detail), Kuis, Pustaka, Darurat, Masuk, Riwayat, Peringkat
-- [ ] Header & Footer konsisten di semua halaman
+- [x] Komponen UI: Tombol (tidak berubah, sudah sesuai §7), Kartu (bayangan hover `--shadow-card-hover`), Badge, Input (halaman masuk: ikon di dalam bidang), Gelembung chat, Opsi kuis (sudah sesuai v1.0, sistem warna risiko tidak diubah)
+- [x] Halaman: Beranda (kartu hover baru), Cek Pesan, Simulasi (list + detail), Kuis, Pustaka, Darurat, Masuk (didesain ulang dua kolom sesuai referensi), Riwayat, Peringkat (halaman lain mengikuti gaya skoolia lewat token bersama)
+- [x] Header & Footer konsisten di semua halaman (Header: bilah biru + drawer hamburger di mobile, nav horizontal di desktop; Footer: target sentuh ≥ 44px)
+- [x] Bonus performa (agar Lighthouse Performance ≥ 90): klien Supabase (~240KB) dimuat lazy (import dinamis) dari `useSesi` dan tombol Keluar, tidak lagi memblokir halaman pertama tamu
 
 ### T3 Uji visual & aksesibilitas pasca-perbagus
-- [ ] Playwright: 320/390/768/1024/1440, 0 overflow-x
-- [ ] Playwright: fokus keyboard, target sentuh ≥ 44px
-- [ ] Playwright: `prefers-reduced-motion` berfungsi
-- [ ] Lighthouse: Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 90
+- [x] Playwright (`scripts/uji-visual.mjs`): 320/390/768/1024/1440 × 8 halaman, 0 overflow-x
+- [x] Playwright: fokus keyboard terlihat (outline 2px), semua target sentuh ≥ 44px (header, drawer, footer)
+- [x] Playwright: drawer terbuka/terkunci gulir/fokus ke X/Esc tutup/fokus kembali ke hamburger; `prefers-reduced-motion` menghentikan transisi (1e-05s)
+- [x] Lighthouse (tool browser + CLI): Accessibility 1.0, Best Practices 1.0, SEO 1.0 di /, /masuk, /cek-pesan, /kuis, /darurat; Performance 0.90-0.92 (beranda, emulasi mobile default) setelah optimasi lazy Supabase
+- [x] Smoke auth pasca-optimasi (`scripts/uji-auth.mjs`): tamu drawer (Masuk + Darurat), login akun demo, chip profil + poin 330, Keluar
 
 ### T4 Deploy Vercel (setelah perbagus lulus)
-- [ ] Build production lulus
+- [x] Build production lulus
 - [ ] Deploy ke Vercel, catat URL live ke README.md
 - [ ] Uji smoke di production (6 fitur inti + auth + handoff)
 
