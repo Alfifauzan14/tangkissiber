@@ -1,7 +1,7 @@
-// Edge Function: Validasi Skor Kuis Sisi Server
+// Edge Function: Validasi Skor Kuis Sisi Server + Deteksi AI (Post-v1.0 #5)
 // POST /api/kuis/submit
-// Body: { jawaban: { soalId: pilihanIndex } }
-// Validasi: cek jawaban user vs kunci di soal.json, hitung skor, simpan ke kuis_hasil
+// Body: { jawaban: { soalId: pilihanIndex }, timing: { mulai: timestamp, selesai: timestamp, perSoal: { soalId: ms } } }
+// Validasi: cek jawaban user vs kunci di soal.json, hitung skor, simpan ke kuis_hasil + ai_curiga
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
@@ -9,6 +9,17 @@ import soalSemua from "@/data/soal.json";
 
 const POIN_PER_SOAL = 10;
 const JUMLAH_SOAL = 10;
+
+// Heuristik AI thresholds (conservative - hanya flag yang jelas mencurigakan)
+const AI_THRESHOLD = {
+  // Terlalu cepat: < 2 detik per soal rata-rata (manusia butuh baca+pilih ~5-10 detik)
+  MIN_WAKTU_PER_SOAL_MS: 2000,
+  // Terlalu sempurna: skor 100 + waktu sangat cepat
+  SKOR_SEMPURNA_MAX_WAKTU_TOTAL_MS: 30000, // 30 detik untuk 10 soal = 3 detik/soal
+  // Pola burst: banyak jawaban dalam < 500ms berturut-turut
+  BURST_THRESHOLD_MS: 500,
+  MIN_BURST_COUNT: 3,
+};
 
 // In-memory rate limit (simple sliding window)
 const rateLimitMap = new Map();
@@ -27,6 +38,47 @@ function cekRateLimit(userId) {
   validRequests.push(now);
   rateLimitMap.set(userId, validRequests);
   return true;
+}
+
+// Heuristik deteksi AI untuk kuis
+function deteksiAI_Kuis({ jawaban, timing }) {
+  if (!timing || !timing.mulai || !timing.selesai) return false;
+  
+  const totalWaktu = timing.selesai - timing.mulai;
+  const rataWaktuPerSoal = totalWaktu / JUMLAH_SOAL;
+  
+  // Hitung skor
+  let benar = 0;
+  for (const soal of soalSemua) {
+    if (jawaban[soal.id] === soal.jawaban) benar++;
+  }
+  const skor = benar * POIN_PER_SOAL;
+  
+  // Flag 1: Terlalu cepat secara umum
+  if (rataWaktuPerSoal < AI_THRESHOLD.MIN_WAKTU_PER_SOAL_MS) {
+    return true;
+  }
+  
+  // Flag 2: Skor sempurna (100) + waktu total sangat cepat
+  if (skor === 100 && totalWaktu < AI_THRESHOLD.SKOR_SEMPURNA_MAX_WAKTU_TOTAL_MS) {
+    return true;
+  }
+  
+  // Flag 3: Pola burst - banyak jawaban cepat berturut-turut
+  if (timing.perSoal) {
+    let burstCount = 0;
+    for (const soal of soalSemua) {
+      const ms = timing.perSoal[soal.id];
+      if (ms && ms < AI_THRESHOLD.BURST_THRESHOLD_MS) {
+        burstCount++;
+        if (burstCount >= AI_THRESHOLD.MIN_BURST_COUNT) return true;
+      } else {
+        burstCount = 0;
+      }
+    }
+  }
+  
+  return false;
 }
 
 export async function POST(request) {
@@ -68,7 +120,7 @@ export async function POST(request) {
 
     // Parse body
     const body = await request.json();
-    const { jawaban } = body; // { soalId: pilihanIndex }
+    const { jawaban, timing } = body; // timing: { mulai, selesai, perSoal }
 
     if (!jawaban || typeof jawaban !== "object") {
       return NextResponse.json(
@@ -97,10 +149,13 @@ export async function POST(request) {
 
     const skor = benar * POIN_PER_SOAL;
 
+    // Deteksi AI
+    const ai_curiga = deteksiAI_Kuis({ jawaban, timing });
+
     // Simpan ke kuis_hasil
     const { error: insertError } = await supabase
       .from("kuis_hasil")
-      .insert({ user_id: user.id, skor });
+      .insert({ user_id: user.id, skor, ai_curiga });
 
     if (insertError) {
       console.error("Gagal simpan kuis_hasil:", insertError);
@@ -124,6 +179,7 @@ export async function POST(request) {
       total: JUMLAH_SOAL,
       total_poin: baris ? baris.total_poin : skor,
       detail,
+      ai_curiga,
     });
   } catch (e) {
     console.error("Error kuis submit:", e);

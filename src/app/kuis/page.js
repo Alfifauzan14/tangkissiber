@@ -41,9 +41,16 @@ export default function HalamanKuis() {
   const [percobaan, setPercobaan] = useState(0);
   const simpanRef = useRef("idle"); // guard agar insert hanya sekali (tanpa abort)
   const [pulang, setPulang] = useState(null); // sinyal handoff selesai
+  
+  // Timing untuk deteksi AI (Post-v1.0 #5)
+  const [waktuMulai, setWaktuMulai] = useState(null);
+  const [waktuPerSoal, setWaktuPerSoal] = useState({}); // { soalId: ms }
+  const soalMulaiRef = useRef(Date.now());
 
   useEffect(() => {
     setSoal(acak10());
+    setWaktuMulai(Date.now());
+    soalMulaiRef.current = Date.now();
   }, []);
 
   // Baca sinyal pulang dari handoff SEKALI di mount (deps kosong).
@@ -84,7 +91,14 @@ export default function HalamanKuis() {
         const res = await fetch("/api/kuis/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ jawaban }),
+          body: JSON.stringify({ 
+            jawaban, 
+            timing: { 
+              mulai: waktuMulai, 
+              selesai: Date.now(), 
+              perSoal: waktuPerSoal 
+            } 
+          }),
         });
         const data = await res.json();
         if (!res.ok || !data.ok) {
@@ -105,16 +119,22 @@ export default function HalamanKuis() {
 
   function jawab(i) {
     if (pilih !== null) return;
+    const sekarang = Date.now();
+    const soalId = soal[idx].id;
+    const durasi = sekarang - soalMulaiRef.current;
     setPilih(i);
-    setJawaban((prev) => ({ ...prev, [soal[idx].id]: i }));
+    setJawaban((prev) => ({ ...prev, [soalId]: i }));
+    setWaktuPerSoal((prev) => ({ ...prev, [soalId]: durasi }));
   }
 
   function lanjut() {
+    const sekarang = Date.now();
     if (idx + 1 >= soal.length) {
       setSelesai(true);
     } else {
       setIdx(idx + 1);
       setPilih(null);
+      soalMulaiRef.current = sekarang;
     }
   }
 
@@ -122,7 +142,10 @@ export default function HalamanKuis() {
     setSoal(acak10());
     setIdx(0);
     setPilih(null);
-    setBenar(0);
+    setJawaban({});
+    setWaktuPerSoal({});
+    setWaktuMulai(Date.now());
+    soalMulaiRef.current = Date.now();
     setSelesai(false);
     setStatusSimpan("idle");
     setTotalPoin(null);

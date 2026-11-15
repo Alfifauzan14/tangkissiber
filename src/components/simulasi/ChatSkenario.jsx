@@ -43,11 +43,18 @@ export default function ChatSkenario({ data }) {
   const simpanRef = useRef("idle"); // guard agar insert hanya sekali (tanpa abort)
   const [pulang, setPulang] = useState(null); // sinyal handoff selesai
   const ujungRef = useRef(null);
+  
+  // Timing untuk deteksi AI (Post-v1.0 #5)
+  const [waktuMulaiSim, setWaktuMulaiSim] = useState(null);
+  const [waktuPerLangkah, setWaktuPerLangkah] = useState({}); // { langkahIndex: ms }
+  const langkahMulaiRef = useRef(Date.now());
 
   // Jam berjalan di header chat (FR-F3-01), segar tiap 30 detik
   useEffect(() => {
     setMulai(new Date());
     setSekarang(new Date());
+    setWaktuMulaiSim(Date.now());
+    langkahMulaiRef.current = Date.now();
     const t = setInterval(() => setSekarang(new Date()), 30000);
     return () => clearInterval(t);
   }, []);
@@ -102,7 +109,15 @@ export default function ChatSkenario({ data }) {
         const res = await fetch("/api/simulasi/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ skenario_id: data.id, jawaban: jawabanAPI }),
+          body: JSON.stringify({ 
+            skenario_id: data.id, 
+            jawaban: jawabanAPI,
+            timing: { 
+              mulai: waktuMulaiSim, 
+              selesai: Date.now(), 
+              perLangkah: waktuPerLangkah 
+            } 
+          }),
         });
         const result = await res.json();
         if (!res.ok || !result.ok) {
@@ -121,23 +136,31 @@ export default function ChatSkenario({ data }) {
   }, [selesai, pengguna, jawaban, data.id, percobaan]);
 
   function jawab(pilihan) {
+    const sekarang = Date.now();
+    const durasi = sekarang - langkahMulaiRef.current;
     setJawaban((j) => ({
       ...j,
       [idx]: { teks: pilihan.teks, nilai: pilihan.nilai, umpan_balik: pilihan.umpan_balik },
     }));
+    setWaktuPerLangkah((prev) => ({ ...prev, [idx]: durasi }));
   }
 
   function lanjut() {
+    const sekarang = Date.now();
     if (idx + 1 >= data.langkah.length) {
       setSelesai(true);
     } else {
       setIdx(idx + 1);
+      langkahMulaiRef.current = sekarang;
     }
   }
 
   function ulang() {
     setIdx(0);
     setJawaban({});
+    setWaktuPerLangkah({});
+    setWaktuMulaiSim(Date.now());
+    langkahMulaiRef.current = Date.now();
     setSelesai(false);
     setStatusSimpan("idle");
     setPercobaan(0);

@@ -197,9 +197,9 @@
 - [x] Rate limit per user (Supabase `pg_ratelimit` atau middleware)
 
 ### 4. Peran Admin (RLS + Edge Function)
-- [ ] Migrasi: kolom `peran` enum('user','admin') di `profil` + RLS policy
-- [ ] Edge Function guard: `supabase.auth.getClaims()` cek `claims.peran === 'admin'`
-- [ ] Halaman `/admin` (terpisah dari nav utama) + middleware guard
+- [x] Migrasi: kolom `peran` enum('user','admin') di `profil` + RLS policy
+- [x] Edge Function guard: `supabase.auth.getClaims()` cek `claims.peran === 'admin'`
+- [x] Halaman `/admin` (terpisah dari nav utama) + middleware guard
 
 ### 5. Deteksi AI (Heuristik Ringan)
 - [ ] Library/heuristik: entropy + burstiness + timing di Edge Function submit
