@@ -9,9 +9,10 @@
 import { useEffect, useState } from "react";
 
 async function ambilProfil(supabase, uid) {
+  // Fetch from profiles table to get peran (role) for admin check
   const { data } = await supabase
-    .from("peringkat")
-    .select("id, nama_tampil, total_poin")
+    .from("profiles")
+    .select("id, nama_tampil, total_poin, peran")
     .eq("id", uid)
     .single();
   return data ?? null;

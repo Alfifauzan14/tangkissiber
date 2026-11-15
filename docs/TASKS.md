@@ -207,10 +207,32 @@
 - [x] Badge "Kemungkinan AI" di riwayat (hanya admin/pemilik)
 
 ### 6. V10 Seed Demo Otomatis
-- [ ] `scripts/seed-demo.mjs` idempoten (service role key)
-- [ ] GitHub Action `seed-demo.yml` jalan sekali pas deploy production
+- [x] `scripts/seed-demo.mjs` idempoten (service role key)
+- [x] GitHub Action `seed-demo.yml` jalan sekali pas deploy production
 
 ---
+
+## ✅ Post-v1.0 Backlog Uji E2E (16 Nov 2026)
+
+**Playwright E2E: 17/18 passed** (1 flaky nav link timing)
+- ✅ Dark Mode: initial light, toggle, prefers-color-scheme, drawer toggle
+- ✅ Google OAuth: button hidden when env not set
+- ✅ Auth: login demo user
+- ✅ Kuis API: submit returns score + ai_curiga
+- ✅ Simulasi API: submit returns score + ai_curiga
+- ✅ Admin: page accessible, user list + role dropdown, API verify
+- ✅ AI Detection: kuis fast=true, simulasi fast=true, normal=false
+- ✅ Rate Limit: blocks after 5 requests
+- ✅ Non-admin: redirected to home
+
+**Visual/Accessibility: ALL PASS**
+- 0 overflow-x di semua breakpoint/halaman
+- Semua target sentuh ≥ 44px
+- Drawer: terbuka, terkunci, fokus X, tertutup, fokus kembali
+- Fokus: outline 2px accent
+- Reduced motion: transisi dinonaktifkan
+
+**Build: LULUS**
 
 ## ✅ Aksi User untuk Hari 4 (Perbagus Desain) — selesai 16 Nov 2026
 
