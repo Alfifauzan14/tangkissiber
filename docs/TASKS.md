@@ -313,4 +313,5 @@ Seluruh UI dan fitur inti sudah lengkap. Berikut langkah konkret berikutnya untu
    - `src/data/modus.json` diperbanyak dari 8 menjadi **12 artikel** pustaka modus.
    - 4 skenario simulasi (`src/data/skenario/*.json`) diperkaya menjadi masing-masing **5 langkah** percakapan.
    - `supabase/cleanup-and-seed-demo.sql` & `scripts/seed-demo.mjs` diperbarui untuk membersihkan data uji coba lama serta menyiapkan **Demo User** (`demo@juri.com` / `demo123456`) dan **Demo Admin** (`admin@tangkissiber.id` / `admin123456`).
-5. [ ] **Deploy ke Vercel & Uji End-to-End Live** (dilakukan terakhir setelah Anda selesai uji lokal)
+5. [x] **Deploy ke Vercel & Uji Live (`https://tangkissiber.vercel.app`)**
+   - Proyek `tangkissiber` (`prj_BG2hfSREfSzz5tTIdbu7ImWeftpF`) dibuat di Vercel, terhubung ke `Alfifauzan14/tangkissiber` (`main`), Environment Variables terpasang, dan deployment `dpl_6rxdpwnsesBW4zDBmhzwwkPeMhhF` berstatus `READY` (`https://tangkissiber.vercel.app` HTTP `200`).

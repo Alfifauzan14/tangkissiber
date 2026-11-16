@@ -6,29 +6,26 @@
 |---|---|
 | **Nama Produk** | TangkisSiber |
 | **Tagline** | Latihan Menangkis Penipuan Digital |
-| **Versi Dokumen** | 1.2 (Diselaraskan dengan implementasi) |
-| **Status** | **Disetujui & Diimplementasikan** — v1.0 disetujui 14 Nov 2026; diperbarui 16 Nov 2026 |
-| **Tanggal** | 16 November 2026 (v1.0: 14 November 2026) |
-| **Batas Waktu Pengiriman** | 3 hari sejak dokumen ini disetujui |
-| **Repo** | https://github.com/Alfifauzan14/tangkissiber.git |
+| **Versi Dokumen** | 2.0 (Versi Production & Rilis Lengkap) |
+| **Status** | **Live di Production** — https://tangkissiber.vercel.app |
+| **Tanggal Pembaruan** | 16 November 2026 (v1.0: 14 November 2026; v1.2–2.0: 16 November 2026) |
+| **Repositori** | https://github.com/Alfifauzan14/tangkissiber |
 
 ---
 
 ## 1. Ringkasan & Pemahaman Ide
 
-TangkisSiber adalah **web app edukasi interaktif** yang melatih pengguna mengenali dan menangkis penipuan digital melalui **pembelajaran berbasis latihan**, bukan sekadar membaca materi.
+TangkisSiber adalah **web app edukasi interaktif** yang melatih masyarakat mengenali dan menangkis penipuan digital melalui **pembelajaran berbasis latihan (practice-based learning)**, bukan sekadar membaca materi pasif.
 
-**Premis inti produk:** banyak korban penipuan online tidak tertipu karena tidak peduli, melainkan karena **belum pernah berlatih** menghadapi situasinya. TangkisSiber menjawabnya dengan memberi tempat berlatih yang aman:
+**Premis inti produk:** banyak korban penipuan daring tidak tertipu karena tidak peduli, melainkan karena **belum pernah berlatih** menghadapi tekanannya. TangkisSiber menyediakan ruang latihan yang aman dan praktis:
 
-1. **Mengenali modus** melalui Pustaka Modus,
-2. **Berlatih** melalui simulasi percakapan seperti aplikasi chat,
-3. **Diujis** melalui kuis,
-4. **Memeriksa** pesan atau tautan sungguhan lewat alat cek berbasis aturan,
-5. **Tahu langkah penyelamatan** lewat halaman darurat.
+1. **Mengenali modus** melalui **Pustaka Modus** (12 artikel modus penipuan digital terkini).
+2. **Berlatih menghadapi pelaku** melalui **Simulasi Chat** interaktif bergaya percakapan ponsel.
+3. **Menguji pemahaman** melalui **Kuis Anti Penipuan** berpola kategori & mode fokus.
+4. **Memeriksa pesan atau tautan sungguhan** lewat **Cek Pesan** berbasis AI Google Gemini dengan fallback mesin aturan lokal.
+5. **Mengetahui langkah penyelamatan cepat** lewat halaman **Darurat ("Sudah Terlanjur?")** berisi kontak resmi terverifikasi.
 
-Progres pengguna disimpan dan dapat dibandingkan melalui **sistem poin, level, dan peringkat**. Aplikasi responsif (mobile-first), dapat dipakai tanpa login (mode tamu), dan menyimpan progres bagi yang login.
-
-**Konteks pengembangan:** project ini dibuat untuk **lomba dengan tenggat 3 hari**, sehingga ruang lingkup versi 1.0 harus tetap ketat mengikuti spesifikasi yang telah disepakati dan tidak boleh melebar.
+Seluruh fitur latihan inti dapat diakses **tanpa login wajib (Mode Tamu)**. Bagi pengguna yang masuk (email/password atau Google OAuth), progres tersimpan otomatis dengan validasi skor di sisi server, lengkap dengan sistem **poin, level, Riwayat Saya, Peringkat Top 20**, serta **Panel Admin** terpisah untuk pengelolaan pengguna dan konten aplikasi secara dinamis.
 
 ---
 
@@ -36,388 +33,147 @@ Progres pengguna disimpan dan dapat dibandingkan melalui **sistem poin, level, d
 
 | # | Masalah | Bukti/Penjelasan |
 |---|---------|------------------|
-| M1 | Korban belum pernah berlatih menghadapi situasi penipuan | Ketika pesan "petugas bank" minta OTP datang, korban tidak punya pengalaman menolak — panik dan mengikuti instruksi |
-| M2 | Materi edukasi yang ada bersifat pasif | Artikel dan video hanya dibaca/ditonton; tidak melatih pengambilan keputusan di bawah tekanan |
-| M3 | Modus terus berubah dan menyesuaikan konteks lokal | Kurir APK, hadiah palsu, OTP bank, lowongan kerja palsu — korban tidak mengenali ciri-cirinya |
-| M4 | Tidak ada alat cepat untuk memeriksa pesan/tautan mencurigakan | Pengguna awam tidak tahu cara mengecek tautan pendek, domain palsu, dsb. |
-| M5 | Korban panik dan tidak tahu langkah pertama saat sudah terlanjur | Tidak tahu harus blokir rekening, laporkan ke mana, atau urutan langkahnya |
-| M6 | Motivasi belajar rendah tanpa umpan balik dan progres | Tidak ada skor, level, atau pembanding yang membuat latihan terasa berdampak |
+| M1 | Korban belum pernah berlatih menghadapi situasi penipuan | Saat pesan "petugas bank" meminta OTP atau kurir mengirim file APK datang, korban panik dan mengikuti instruksi |
+| M2 | Materi edukasi yang ada bersifat pasif | Artikel/poster hanya dibaca sekali tanpa melatih pengambilan keputusan di bawah tekanan sosial |
+| M3 | Modus terus berevolusi mengikuti konteks lokal | Kurir APK, undangan pernikahan APK, QRIS palsu, AI voice cloning, task scam, hingga phishing instansi |
+| M4 | Tidak ada alat cepat berbahasa awam untuk memeriksa pesan/tautan | Pengguna awam kesulitan membedakan domain resmi vs domain lookalike, tautan pendek, dan rekayasa sosial |
+| M5 | Korban panik dan tidak tahu urutan penyelamatan saat terlanjur | Tidak tahu harus memutus kontak, memblokir rekening, dan melapor ke kanal resmi mana terlebih dahulu |
+| M6 | Motivasi belajar rendah tanpa umpan balik terukur | Tidak ada skor, penjelasan langsung, level kesiapsiagaan, atau papan peringkat |
 
 ---
 
 ## 3. Target Pengguna
 
 ### 3.1 Pengguna Utama
-- **Pelajar SMA/SMK dan mahasiswa** — kelompok yang aktif di WhatsApp dan media sosial, rentan terhadap modus hadiah/kurir/lowongan kerja, dan terbiasa dengan aplikasi chat.
+- **Pelajar SMA/SMK dan mahasiswa** — pengguna aktif WhatsApp dan media sosial yang akrab dengan antarmuka chat dan rentan terhadap modus hadiah, lowongan kerja, task scam, maupun tautan phishing.
 
 ### 3.2 Pengguna Sekunder
-- **Keluarga dan masyarakat umum** yang sering menerima pesan atau tautan mencurigakan, terutama lewat WhatsApp dan media sosial.
+- **Keluarga dan masyarakat umum** yang sering menerima pesan/tautan mencurigakan (kurir paket, undian, pesan mengatasnamakan bank atau instansi).
 
 ### 3.3 Konteks Pemakaian
-- Melalui **HP (mobile-first)**.
-- **Tanpa keahlian teknis** — semua bahasa harus awam.
+- **Mobile-first & responsif desktop** (nyaman mulai lebar layar `360px` hingga desktop `1280px+`).
+- **Bahasa awam** — istilah teknis (phishing, OTP, APK, lookalike domain) selalu dijelaskan secara sederhana dalam bahasa Indonesia.
+- **Mode Terang & Mode Gelap** — dapat diganti langsung dari header/drawer dan tersimpan di peramban.
 
 ### 3.4 Pengguna Khusus
-- **Juri lomba** — menggunakan akun demo untuk mencoba fitur penyimpanan progres tanpa harus mendaftar.
-
-### Persona ringkas
-
-**Rara (17, pelajar SMK):** menerima link "menang undian" di WhatsApp group. Ingin tahu apakah itu penipuan, tapi tidak tahu cara mengeceknya. Punya HP, tidak punya keahlian teknis.
-
-**Bapak Hendra (45, orang tua Rara):** sering menerima pesan "kurir" yang minta pasang APK. Tidak mau register akun apa pun — mau langsung coba.
-
-**Juri Lomba:** ingin melihat seluruh fitur dalam waktu singkat, termasuk bukti bahwa data tersimpan (riwayat, peringkat) — menggunakan akun demo.
+- **Juri lomba / penguji** — tersedia **Akun Demo User** (`demo@juri.com`) untuk menguji alur pengguna & riwayat tersimpan, serta **Akun Demo Admin** (`admin@tangkissiber.id`) untuk menguji Panel Admin.
 
 ---
 
-## 4. Tujuan Produk
+## 4. Tujuan & Ukuran Keberhasilan
 
-### 4.1 Tujuan Produk
-1. Membuat pengguna **terlatih** menghadapi 4 modus penipuan utama melalui simulasi interaktif.
-2. Memberi **alat bantu edukasi** untuk memeriksa pesan dan tautan sungguhan secara instan.
-3. Menyediakan **panduan darurat** yang jelas dan berurutan dengan kontak resmi terverifikasi.
-4. Mendorong pengulangan latihan melalui **poin, level, dan peringkat**.
-5. Menyediakan **mode tamu tanpa hambatan** — semua fitur inti bisa dicoba tanpa login.
-
-### 4.2 Ukuran Keberhasilan (untuk konteks lomba)
-- Juri dapat mencoba **seluruh fitur** dalam < 10 menit tanpa bantuan.
-- Alur tamu → daftar → skor tersimpan → muncul di peringkat, berjalan mulus tanpa error.
-- Akun demo juri berfungsi dan memiliki beberapa hasil yang sudah tersimpan.
+1. Pengguna dapat langsung mencoba seluruh 6 fitur utama **tanpa hambatan login (Mode Tamu)**.
+2. Pengguna dapat melatih respons terhadap **4 skenario penipuan utama (masing-masing 5 langkah)** dan **5 paket kuis kategori (total bank 35 soal)**.
+3. Pengguna memperoleh analisis cepat atas pesan/tautan sungguhan dengan tingkat risiko yang jelas (`Aman`, `Waspada`, `Bahaya`) beserta disclaimer edukatif.
+4. Pengunjung yang sebelumnya berlatih sebagai tamu tidak kehilangan skor terakhir saat memutuskan masuk/daftar (**handoff tamu → login**).
+5. Admin dapat memperbarui konten aplikasi (`Pustaka Modus`, `Bank Soal Kuis`, `Skenario Simulasi`, `Panduan Darurat`, `Aturan Cek Pesan`) langsung dari Panel Admin tanpa ubah kode.
 
 ---
 
-## 5. Ruang Lingkup: Fitur
+## 5. Arsitektur Rute & Fitur Lengkap (Versi 2.0)
 
-### 5.1 Fitur Utama (P0 — harus ada di versi 1.0)
+### 5.1 Peta Rute Aplikasi
 
-| # | Fitur | Ringkasan |
-|---|-------|-----------|
-| F1 | **Beranda & Navigasi** | Landing dengan pilihan 6 fitur; menu menampilkan nama, level, dan Riwayat Saya saat login |
-| F2 | **Cek Pesan** | Tempel pesan/tautan → analisis rule-based → tingkat risiko, alasan awam, saran tindakan, disclaimer |
-| F3 | **Simulasi Chat** | UI seperti aplikasi chat; 4 skenario; pilih respons per langkah; umpan balik langsung; skor + ringkasan tanda bahaya di akhir |
-| F4 | **Pustaka Modus** | 8 kartu modus; pencarian dan filter; ciri-ciri, contoh pesan, cara kerja, apa yang dilakukan |
-| F5 | **Kuis** | 10 soal acak dari bank 20; penjelasan per jawaban; skor dan level di akhir |
-| F6 | **Halaman Darurat ("Sudah Terlanjur?")** | Langkah cepat berurutan + kontak/kanal pelaporan resmi terverifikasi |
-| F7 | **Masuk / Daftar** | Email + password + nama tampil; konfirmasi email mati (demo); tombol keluar |
-| F8 | **Riwayat Saya** | Khusus login: daftar hasil kuis & simulasi, skor terbaik, level, total poin |
-| F9 | **Peringkat** | Top 20 berdasarkan total poin; posisi pengguna disorot; tamu hanya melihat |
-| F10 | **Poin & Level** | Maks 500 poin; 4 level (lihat §7) |
-| F11 | **Mode Tamu** | Semua fitur inti bisa dicoba; hasil tidak disimpan; ajakan "Masuk untuk menyimpan" |
-| F12 | **Peralihan Tamu → Login** | Hasil terakhir dibawa lewat proses masuk dan otomatis tersimpan; status "Tersimpan ✓" |
-| F13 | **Akun Demo Juri** | Berisi beberapa hasil; kredensial di README dan proposal |
+| Rute | Jenis | Deskripsi |
+|---|---|---|
+| `/` | Publik | Beranda (Hero Cyber Ocean, ringkasan fitur, statistik konten, ajakan latihan, Footer dengan tautan Kebijakan Privasi) |
+| `/cek-pesan` | Publik | Alat periksa pesan & tautan mencurigakan (`POST /api/cek-pesan`) + 3 contoh cepat (`Kurir APK`, `Minta OTP`, `Undian Palsu`) |
+| `/simulasi` | Publik | Daftar 4 skenario simulasi chat interaktif |
+| `/simulasi/[skenario]` | Publik | Ruang simulasi chat bergaya ponsel (`kurir-apk`, `hadiah-palsu`, `otp-bank`, `lowongan-palsu`) tanpa header/footer publik |
+| `/kuis` | Publik | Pilihan 5 paket kuis + mode fokus ala Duolingo + ringkasan skor gauge SVG |
+| `/pustaka` | Publik | Pustaka Modus (12 artikel terkurasi dengan pencarian kata kunci & filter kategori) |
+| `/darurat` | Publik | Panduan "Sudah Terlanjur?" langkah berurutan + kanal pelaporan resmi terverifikasi |
+| `/peringkat` | Publik | Top 20 pengguna berdasarkan total poin (hanya nama tampil & poin, tanpa email) |
+| `/riwayat` | Khusus Login | Daftar riwayat kuis & simulasi, skor terbaik, level, total poin |
+| `/masuk` | Publik | Masuk & Daftar (Email/Password + Google OAuth) dengan kartu split tanpa navbar/footer |
+| `/auth/callback` | Auth Callback | Penanganan pertukaran kode OAuth Supabase → redirect kembali ke halaman tujuan |
+| `/privasi` | Publik | Halaman Kebijakan Privasi resmi TangkisSiber |
+| `/admin/masuk` | Auth Admin | Halaman login khusus pengelola/admin |
+| `/admin` | Khusus Admin | Panel Admin dengan sidebar 7 menu & tombol `Ke Situs` |
 
-### 5.2 Fitur Tambahan (di luar versi 1.0 — dilarang dikerjakan saat ini)
+### 5.2 API Endpoints (Next.js App Router)
 
-Fitur berikut **sengaja ditunda** ke rencana pengembangan (tercatat agar tidak dianggap lupa):
+| Endpoint | Metode | Fungsi |
+|---|---|---|
+| `/api/cek-pesan` | `POST` | Menganalisis teks/tautan via Google Gemini (`gemini-flash-lite-latest`), fallback otomatis ke mesin aturan lokal (`src/lib/cekPesan.js`) jika API key kosong/gagal |
+| `/api/kuis/submit` | `POST` | Memvalidasi jawaban kuis di sisi server terhadap kunci jawaban bank soal, menghitung skor `0–100`, mendeteksi anomali kecepatan/pola (`ai_curiga`), lalu menyimpan ke `kuis_hasil` |
+| `/api/simulasi/submit` | `POST` | Memvalidasi pilihan langkah simulasi di sisi server, menghitung skor `0–100`, mendeteksi anomali (`ai_curiga`), lalu menyimpan ke `simulasi_hasil` |
+| `/api/admin/verify` | `POST` / `GET` | Verifikasi peran admin dari sesi Supabase untuk akses panel pengelola |
 
-- Login Google
-- Mode gelap
-- Peran admin
-- Validasi skor di sisi server
-- Deteksi berbasis AI pada Cek Pesan
+### 5.3 Daftar Fitur Terimplementasi
 
-### 5.3 Pembaruan Terimplementasi (v1.2 — 16 November 2026)
-
-Seluruh fitur Post-v1.0 berikut telah diimplementasikan sesuai kebutuhan produk:
-- **Analisis Pesan AI Gemini (`/api/cek-pesan`):** Mendukung analisis berbasis Google Gemini (`gemini-2.5-flash` via `GEMINI_API_KEY`) dengan fallback otomatis ke mesin aturan lokal dan indikator sumber analisis.
-- **Kuis Kategori & Mode Fokus (`/kuis`):** Diawali 5 kartu kategori (`Campuran Lengkap`, `OTP & Perbankan`, `Kurir, APK & Tautan`, `Hadiah & Lowongan`, `Kuis Kilat`) mengambil soal dari bank **35 soal** terkurasi, lalu masuk ke mode fokus ala Duolingo (tanpa navbar/footer) dengan skor gauge SVG di akhir.
-- **Pustaka Modus (`/pustaka`):** Berisi **12 artikel** modus penipuan digital terkini (termasuk QRIS palsu, AI voice cloning, task scam, dan phishing instansi) lengkap dengan pencarian dan filter kategori.
-- **Simulasi Chat Frame Ponsel (`/simulasi/[skenario]`):** 4 skenario masing-masing **5 langkah** dengan antarmuka chat ala WhatsApp di dalam frame ponsel, area pesan scroll terisolasi, dan ringkasan hasil akhir.
-- **Akun Demo Terpisah:** Tersedia akun Demo User (`demo@juri.com`) dan akun Demo Admin (`admin@tangkissiber.id`) melalui `supabase/cleanup-and-seed-demo.sql` / `scripts/seed-demo.mjs`.
-- **Validasi Skor Server & Heuristik AI (`/api/kuis/submit`, `/api/simulasi/submit`):** Validasi kunci jawaban di server serta deteksi anomali kecepatan/pola jawaban (`ai_curiga`).
-- **Panel Admin Sidebar Terpisah (`/admin`, `/admin/masuk`):** Terpisah dari navigasi publik; memiliki menu `Ringkasan`, `Pengguna & Riwayat` (CRUD), dan 5 modul `Kelola Konten` (`Pustaka Modus`, `Bank Soal Kuis`, `Skenario Simulasi`, `Panduan Darurat`, `Aturan Cek Pesan`).
-- **Mode Gelap & Login Google (`/masuk`, `/auth/callback`):** Dukungan tema gelap/terang serta OAuth Google opsional dengan handoff skor tamu.
-
----
-
-## 6. User Journey & User Flow
-
-### 6.1 Journey Tamu
-
-> Beranda → pilih fitur (Cek Pesan / Pustaka / Darurat / Simulasi / Kuis / Peringkat) → pakai fitur → hasil tampil di layar (**tidak tersimpan**) → ajakan "Masuk untuk menyimpan".
-
-Halaman Riwayat Saya yang dibuka oleh tamu mengarahkan ke halaman Masuk.
-
-### 6.2 Journey Daftar & Masuk
-
-> Klik Masuk → pilih tab **Masuk** atau **Daftar** → isi data (nama tampil, email, password untuk daftar) → akun dan profil otomatis terbentuk → langsung masuk → **kembali ke halaman sebelumnya**.
-
-### 6.3 Journey Pengguna Login
-
-> Masuk → menu menampilkan nama, level, dan Riwayat Saya → pakai fitur → skor **otomatis tersimpan** setelah simulasi/kuis selesai → poin naik hanya bila melampaui rekor sebelumnya → lihat Riwayat Saya dan Peringkat.
-
-### 6.4 Journey Peralihan Tamu → Login
-
-> Selesai kuis sebagai tamu → klik "Masuk untuk menyimpan" → hasil disimpan sementara di browser → masuk atau daftar berhasil → skor otomatis tersimpan → layar hasil berstatus **"Tersimpan ✓"**.
-
-### 6.5 Diagram Alur Utama
-
-```
-                 ┌──────────────┐
-                 │   Beranda    │
-                 └──────┬───────┘
-      ┌─────────┬───────┼────────┬──────────┬──────────┐
-      ▼         ▼       ▼        ▼          ▼          ▼
-  Cek Pesan  Pustaka  Darurat  Simulasi    Kuis     Peringkat
-      │         │       │        │          │          │
-      ▼         ▼       ▼        ▼          ▼          ▼
-   Hasil     Kartu   Langkah  Skor +     Skor +     Top 20
-   (layar)   modus   resmi    ringkasan  level      (lihat saja
-      │                        │          │        jika tamu)
-      └────────────┬───────────┴──────────┘
-                   ▼
-        [Tamu] "Masuk untuk menyimpan"
-                   │
-                   ▼
-          Masuk / Daftar ──► hasil tamu otomatis tersimpan
-                   │
-                   ▼
-        [Login] Riwayat Saya + Peringkat + poin naik
-```
+| # | Fitur | Spesifikasi Terimplementasi |
+|---|---|---|
+| F1 | **Beranda & Navigasi Adaptif** | Header transparan di atas hero dan solid saat scroll; navigasi desktop + drawer mobile; tombol **Mode Gelap/Terang**; pill profil (nama + total poin), tombol **Panel Admin** otomatis bila `peran === "admin"`, dan tombol **Keluar** yang mengarahkan bersih ke `/` tanpa terjebak loop `/riwayat`. |
+| F2 | **Cek Pesan & Tautan** | Tempel teks/tautan atau pilih 3 preset contoh (`Kurir APK`, `Minta OTP`, `Undian Palsu`). Analisis memakai **Google Gemini (`gemini-flash-lite-latest`)** dengan fallback otomatis ke mesin aturan lokal (`src/data/aturan-cek.json` & override `konten_aplikasi`). Menampilkan tingkat risiko (`Aman`, `Waspada`, `Bahaya`), sinyal bahaya berbahasa awam, saran tindakan, sumber analisis (`AI Gemini` / `Aturan Lokal`), dan disclaimer edukasi. Hasil tidak disimpan ke database. |
+| F3 | **Simulasi Chat** | **4 skenario** (`kurir-apk`, `hadiah-palsu`, `otp-bank`, `lowongan-palsu`), masing-masing **5 langkah** di dalam frame chat bergaya ponsel dengan area pesan scroll terisolasi, umpan balik langsung di setiap pilihan, skor `0–100` tervalidasi server, dan ringkasan tanda bahaya di akhir. |
+| F4 | **Pustaka Modus** | **12 artikel** modus penipuan terkini (termasuk kurir APK, undangan APK, OTP bank, lowongan palsu, hadiah palsu, QRIS palsu, AI voice cloning, task scam, phishing instansi, dll.) dengan pencarian kata kunci, filter kategori, ciri-ciri, contoh pesan, cara kerja, dan langkah pencegahan. |
+| F5 | **Kuis Anti Penipuan** | Bank **35 soal** terkurasi yang dapat dimainkan lewat **5 paket kategori** (`Campuran Lengkap` 10 soal, `OTP & Perbankan` 10 soal, `Kurir, APK & Tautan` 10 soal, `Hadiah & Lowongan` 10 soal, dan `Kuis Kilat` 5 soal). Mode fokus ala Duolingo, umpan balik/penjelasan tiap soal, penghitungan skor di server, serta gauge SVG & badge level di layar hasil. |
+| F6 | **Halaman Darurat ("Sudah Terlanjur?")** | Langkah penyelamatan cepat berurutan dan daftar kanal pelaporan resmi terverifikasi yang dapat diklik langsung dari ponsel. |
+| F7 | **Masuk, Daftar & Google OAuth** | Tab Masuk & Daftar (Email + Password + Nama Tampil) serta tombol **Masuk dengan Google** (Supabase OAuth + `/auth/callback`). Tombol `← Kembali` otomatis mengarah ke `/` jika berasal dari rute berproteksi (`/riwayat` atau `/admin`) agar tidak terjadi redirect loop. |
+| F8 | **Riwayat Saya** | Khusus pengguna login; tamu diarahkan ke `/masuk?kembali=/riwayat`. Menampilkan daftar percobaan kuis & simulasi, skor terbaik per kategori, level saat ini, dan total poin. |
+| F9 | **Peringkat** | Menampilkan **Top 20** pengguna dari view `peringkat` terurut poin menurun; baris pengguna aktif disorot; tamu hanya melihat tanpa sorotan. Hanya menampilkan `nama_tampil` dan `total_poin` (tanpa email). |
+| F10 | **Sistem Poin & Level** | Total poin = skor terbaik kuis (maks 100) + skor terbaik tiap skenario simulasi (4 × 100) → **maksimum 500 poin**. Level: **Pemula** (`< 150`), **Waspada** (`150–349`), **Penangkis** (`350–499`), **Penjaga Siber** (`≥ 500`). |
+| F11 | **Mode Tamu & Handoff Skor** | Tamu dapat mencoba semua fitur inti; skor terakhir disimpan sementara di `localStorage` (`src/lib/handoff.js`) saat klik `"Masuk untuk menyimpan"` dan otomatis dikirim ke akun setelah login/daftar berhasil hingga berstatus `"Tersimpan ✓"`. |
+| F12 | **Mode Gelap (Dark Mode)** | Tersedia di navbar desktop & drawer mobile, menyimpan preferensi ke `localStorage` dan kelas `.dark` pada `<html>`. |
+| F13 | **Panel Admin (`/admin`)** | Akses khusus pengguna dengan `profiles.peran = 'admin'`. Memiliki navigasi sidebar 3 grup & 7 menu: `Ringkasan` (statistik pengguna, kuis, simulasi), `Pengguna & Riwayat` (cari, filter peran, ubah nama tampil, kelola riwayat), dan `Konten Aplikasi` (`Pustaka Modus`, `Bank Soal Kuis`, `Skenario Simulasi`, `Panduan Darurat`, `Aturan Cek Pesan`) yang tersimpan ke tabel `konten_aplikasi`. Tersedia tautan `Ke Situs` dan tombol kembali `Panel Admin` di header publik. |
+| F14 | **Kebijakan Privasi (`/privasi`)** | Halaman kebijakan privasi resmi yang ditautkan di footer situs untuk transparansi pengelolaan data akun & kesiapan verifikasi OAuth. |
 
 ---
 
-## 7. Functional Requirements
+## 6. User Flow Utama
 
-Penomoran: `FR-<fitur>-<nn>`. Setiap butir adalah kebutuhan wajib versi 1.0 kecuali dinyatakan lain.
+### 6.1 Alur Tamu → Login
+> Beranda → pilih fitur (`Cek Pesan` / `Simulasi` / `Kuis` / `Pustaka` / `Darurat` / `Peringkat`) → selesaikan latihan → hasil tampil di layar (tidak masuk DB) → klik **"Masuk untuk menyimpan"** → hasil tersimpan sementara di `localStorage` → login/daftar via `/masuk` → hasil otomatis terkirim ke `/api/kuis/submit` atau `/api/simulasi/submit` → status berubah menjadi **"Tersimpan ✓"**.
 
-### 7.1 Beranda & Navigasi (F1)
-- **FR-F1-01** Beranda menampilkan judul/tagline dan kartu pintasan ke 6 fitur: Cek Pesan, Pustaka, Darurat, Simulasi, Kuis, Peringkat.
-- **FR-F1-02** Menu/header menampilkan tombol Masuk (tamu), atau nama + level + tautan Riwayat Saya + tombol Keluar (login).
-- **FR-F1-03** Semua halaman dapat diakses dari navigasi di semua ukuran layar (mobile-first).
+### 6.2 Alur Admin
+> Buka `/admin/masuk` → login akun admin (`admin@tangkissiber.id`) → masuk ke `/admin` → kelola ringkasan, pengguna, atau konten aplikasi → klik **Ke Situs** untuk meninjau tampilan publik / landing page → klik **Panel Admin** di header untuk langsung kembali ke `/admin`.
 
-### 7.2 Cek Pesan (F2) — rule-based, hasil tidak disimpan untuk siapa pun
-- **FR-F2-01** Pengguna menempel teks pesan **dan/atau** tautan, lalu menekan tombol periksa.
-- **FR-F2-02** Analisis pesan mendeteksi sinyal: (a) nada mendesak/batas waktu, (b) permintaan OTP/PIN/password, (c) iming-iming hadiah, (d) permintaan transfer/uang, (e) ajakan memasang APK.
-- **FR-F2-03** Analisis tautan mendeteksi: (a) tautan pendek (shortener), (b) alamat berbentuk IP, (c) tanpa HTTPS, (d) subdomain berlebihan, (e) karakter `@`, (f) domain yang menyerupai merek (lookalike).
-- **FR-F2-04** Hasil menampilkan **tingkat risiko**: **Aman / Waspada / Bahaya**, beserta **alasan dalam bahasa awam** untuk setiap sinyal yang terdeteksi, dan **saran tindakan**.
-- **FR-F2-05** Hasil selalu disertai **disclaimer**: ini alat bantu edukasi, bukan jaminan 100%.
-- **FR-F2-06** Aturan cek disimpan sebagai data aturan yang dapat diperbarui tanpa mengubah logika halaman.
+---
 
-### 7.3 Simulasi Chat (F3)
-- **FR-F3-01** Tampilan menyerupai aplikasi chat: gelembung pesan penipu, waktu berjalan, dan pilihan respons pengguna di setiap langkah.
-- **FR-F3-02** Tersedia **4 skenario**: (1) kurir & APK, (2) hadiah palsu, (3) "petugas bank" minta OTP, (4) lowongan kerja palsu.
-- **FR-F3-03** Setiap pilihan respons langsung mendapat **umpan balik** (benar/berisiko/bahaya + penjelasan singkat).
-- **FR-F3-04** Di akhir skenario: **skor 0–100** dan **ringkasan tanda bahaya** yang muncul di percakapan.
-- **FR-F3-05** Skenario dan pohon percakapan disimpan sebagai JSON di dalam repo.
+## 7. Basis Data & Keamanan (Supabase Postgres)
 
-### 7.4 Pustaka Modus (F4)
-- **FR-F4-01** Menampilkan **8 kartu modus** dalam layout kartu yang responsif.
-- **FR-F4-02** Setiap kartu berisi: **ciri-ciri**, **contoh pesan**, **cara kerja penipu**, dan **apa yang sebaiknya dilakukan**.
-- **FR-F4-03** Tersedia **pencarian** (kata kunci) dan **filter** (kategori modus).
-- **FR-F4-04** Data modus disimpan sebagai JSON di dalam repo.
+Skema lengkap didefinisikan melalui file SQL di folder `supabase/`:
 
-### 7.5 Kuis (F5)
-- **FR-F5-01** Setiap percobaan mengambil **10 soal acak** dari bank **20 soal** (acak penuh tiap sesi, pengulangan soal antar percobaan diizinkan).
-- **FR-F5-02** Setiap jawaban langsung ditampilkan **penjelasannya** (benar/salah + mengapa).
-- **FR-F5-03** Di akhir kuis: **skor 0–100** dan **level** pengguna.
-- **FR-F5-04** Soal, pilihan, jawaban benar, dan penjelasan disimpan sebagai JSON di repo.
+1. `supabase/schema.sql` — Skema inti: tabel `profiles`, `kuis_hasil`, `simulasi_hasil`, constraint skor `0–100`, index, trigger pembuatan profil otomatis (`handle_new_user`), kebijakan RLS, dan view `peringkat`.
+2. `supabase/migration-admin-role.sql` — Penambahan kolom `peran` (`'user'` | `'admin'`) pada `profiles`.
+3. `supabase/migration-ai-detection.sql` — Penambahan kolom `ai_curiga` pada `kuis_hasil` dan `simulasi_hasil` untuk menandai anomali pengerjaan.
+4. `supabase/migration-admin-crud.sql` — Pembuatan tabel `konten_aplikasi` (`kunci`, `data` JSONB, `updated_at`) dengan RLS baca publik dan tulis khusus admin.
+5. `supabase/cleanup-and-seed-demo.sql` — Pembersihan data uji coba dan penyediaan 2 akun demo (`demo@juri.com` dan `admin@tangkissiber.id`).
 
-### 7.6 Halaman Darurat (F6)
-- **FR-F6-01** Halaman berjudul "Sudah Terlanjur?" berisi **langkah cepat berurutan** (mis. jangan kirim uang lagi → blokir rekening → laporkan → ubah sandi).
-- **FR-F6-02** Menampilkan **kontak dan kanal pelaporan resmi** yang telah diverifikasi dari sumber resmi.
-- **FR-F6-03** Kontak tampil sebagai tautan/telepon yang dapat diklik dari HP.
-
-### 7.7 Masuk / Daftar (F7)
-- **FR-F7-01** Halaman Masuk memiliki **tab Masuk** dan **tab Daftar**.
-- **FR-F7-02** Daftar meminta: **nama tampil**, **email**, **password**.
-- **FR-F7-03** Autentikasi memakai **Supabase Auth (email + password)**; konfirmasi email dimatikan untuk demo.
-- **FR-F7-04** Setelah daftar/masuk berhasil, pengguna **kembali ke halaman sebelumnya**.
-- **FR-F7-05** Tersedia tombol **Keluar**.
-
-### 7.8 Riwayat Saya (F8)
-- **FR-F8-01** Hanya untuk pengguna login; tamu diarahkan ke halaman Masuk.
-- **FR-F8-02** Menampilkan daftar hasil **kuis** dan **simulasi**, **skor terbaik**, **level**, dan **total poin**.
-
-### 7.9 Peringkat (F9)
-- **FR-F9-01** Menampilkan **Top 20** pengguna berdasarkan **total poin** (dari view `peringkat`).
-- **FR-F9-02** Posisi pengguna yang sedang login **disorot**.
-- **FR-F9-03** Tamu hanya dapat **melihat**, tanpa posisi disorot.
-- **FR-F9-04** Yang tampil hanya **nama tampil** dan **poin** — tanpa email (lihat §7.13).
-
-### 7.10 Sistem Poin & Level (F10)
-- **FR-F10-01** Total poin = **skor terbaik kuis** (maks 100) + **skor terbaik tiap skenario simulasi** (4 × 100) → **maksimum 500**.
-- **FR-F10-02** Poin naik **hanya bila melampaui rekor** sebelumnya (skor terbaik per kategori).
-- **FR-F10-03** Level berdasarkan total poin:
-
-| Level | Rentang Poin |
-|-------|--------------|
-| Pemula | < 150 |
-| Waspada | 150–349 |
-| Penangkis | 350–499 |
-| Penjaga Siber | ≥ 500 |
-
-### 7.11 Mode Tamu (F11)
-- **FR-F11-01** Semua fitur inti (Cek Pesan, Pustaka, Darurat, Simulasi, Kuis, Peringkat) **terbuka untuk tamu**.
-- **FR-F11-02** Hasil fitur tamu **tidak tersimpan** di database, hanya tampil di layar.
-- **FR-F11-03** Setelah tamu menyelesaikan kuis/simulasi, tampil ajakan **"Masuk untuk menyimpan"**.
-
-### 7.12 Peralihan Tamu → Login (F12)
-- **FR-F12-01** Hasil terakhir tamu disimpan sementara **di browser** (localStorage) saat menekan "Masuk untuk menyimpan".
-- **FR-F12-02** Setelah masuk/daftar berhasil, hasil tersebut **otomatis tersimpan** ke akun.
-- **FR-F12-03** Layar hasil berubah status menjadi **"Tersimpan ✓"**.
-
-### 7.13 Basis Data (Supabase Postgres)
-
-3 tabel + 1 view, RLS aktif di semua tabel:
-
-| Objek | Isi |
-|-------|-----|
-| `profiles` | `id` (sama dengan id user), `nama_tampil`, `created_at` |
-| `kuis_hasil` | `id`, `user_id`, `skor` (0–100), `created_at` |
-| `simulasi_hasil` | `id`, `user_id`, `skenario_id`, `skor` (0–100), `created_at` |
-| `peringkat` (view) | `id`, `nama_tampil`, `total_poin` — **hanya nama tampil dan poin, tanpa email** |
-
-- **FR-F13-01** Skor dibatasi **0–100** lewat constraint database.
-- **FR-F13-02** RLS: pengguna hanya bisa **membaca dan menulis datanya sendiri**; view `peringkat` mengekspos hanya nama tampil + poin.
-- **FR-F13-03** File SQL untuk menyiapkan seluruh skema (tabel, view, RLS, constraint, trigger pembuatan profil) **disertakan di repo**.
-
-> Validasi penuh skor di sisi server dicatat sebagai **rencana pengembangan** (lihat §5.2).
-
-### 7.14 Teknologi & Arsitektur
-- **FR-F14-01** Next.js (App Router) dengan **JavaScript**; Tailwind CSS, mobile-first, responsif.
-- **FR-F14-02** **Tidak ada server API khusus**; Supabase dipanggil langsung dari sisi klien.
-- **FR-F14-03** Hosting **Vercel**; source code di GitHub (`tangkissiber`, publik).
-- **FR-F14-04** Kredensial Supabase di `.env.local` (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`); repo menyediakan `.env.example` **tanpa nilai rahasia**.
-
-### 7.15 Deliverables Lomba (README & lainnya)
-- **FR-F15-01** README di repo memuat: nama, tagline, deskripsi singkat; link website live; daftar fitur; teknologi; cara menjalankan (clone, `npm install`, isi `.env.local`, `npm run dev`); cara menyiapkan Supabase (file SQL disertakan); akun demo (email & password); sumber library; catatan keterbatasan (alat cek adalah alat bantu edukasi, bukan jaminan 100%).
-- **FR-F15-02** Akun demo juri berisi beberapa hasil dan kredensialnya dicantumkan di README dan proposal.
+| Objek Database | Kolom Utama | Kebijakan Akses (RLS) |
+|---|---|---|
+| `profiles` | `id`, `nama_tampil`, `peran`, `created_at` | Pengguna baca/ubah profil sendiri; Admin kelola pengguna |
+| `kuis_hasil` | `id`, `user_id`, `skor` (`0–100`), `ai_curiga`, `created_at` | Pengguna hanya baca/tambah milik sendiri |
+| `simulasi_hasil` | `id`, `user_id`, `skenario_id`, `skor` (`0–100`), `ai_curiga`, `created_at` | Pengguna hanya baca/tambah milik sendiri |
+| `konten_aplikasi` | `kunci`, `data` (`jsonb`), `updated_at` | Baca publik (`SELECT`); tulis khusus admin |
+| `peringkat` (view) | `id`, `nama_tampil`, `total_poin` | Terbuka untuk publik **tanpa mengekspos email** |
 
 ---
 
 ## 8. Non-Functional Requirements
 
-| Kategori | Kebutuhan |
-|----------|-----------|
-| **Responsivitas** | Mobile-first; tampil dan fungsional mulai dari layar ~360px hingga desktop; semua kontrol mudah disentuh (target sentuh cukup besar) |
-| **Kemudahan pakai** | Bahasa sepenuhnya awam (tidak ada istilah teknis tanpa penjelasan); pengguna tanpa keahlian teknis dapat menyelesaikan alur tanpa panduan |
-| **Performa** | Konten dibaca dari JSON lokal (tanpa fetch berat); halaman ringan agar nyaman di jaringan HP biasa; gambar seminimal mungkin |
-| **Keamanan** | RLS aktif di semua tabel; view peringkat tidak mengekspos email; anon key saja yang masuk bundle klien (tanpa service key); password ditangani Supabase Auth |
-| **Privasi** | Data yang dikumpulkan hanya email + nama tampil + skor; peringkat hanya menampilkan nama tampil dan poin |
-| **Keandalan** | Kegagalan penyimpanan skor menampilkan pesan kesalahan yang jelas dan tidak merusak alur; percobaan ulang dimungkinkan |
-| **Kompatibilitas** | Peramban seluler modern (Chrome, Safari) dan desktop modern |
-| **Konsistensi** | Bahasa Indonesia di seluruh UI; terminologi poin/level konsisten di semua halaman |
-| **Maintainability** | Konten (modus, skenario, soal, aturan cek) dalam JSON terpisah agar mudah diperbarui tanpa menyentuh komponen UI |
+| Kategori | Implementasi |
+|---|---|
+| **Responsivitas** | Mobile-first Tailwind CSS v4, fungsional dari lebar `~360px` hingga desktop. |
+| **Performa** | Default konten dibaca cepat dari JSON lokal (`src/data/*`) dengan override dinamis opsional dari Supabase `konten_aplikasi`; klien auth dimuat efisien. |
+| **Keamanan & Privasi** | RLS aktif di semua tabel; view `peringkat` bebas email; validasi kunci jawaban kuis & simulasi dilakukan di API route server; tidak ada `service_role` key atau `GEMINI_API_KEY` yang terekspos ke bundle klien. |
+| **Reliabilitas AI** | Jika `GEMINI_API_KEY` tidak diatur, kuota habis, atau API gagal, `/api/cek-pesan` otomatis fallback ke mesin aturan lokal tanpa error ke pengguna. |
+| **Maintainability** | Seluruh modul konten terpisah dari komponen UI dan dapat diperbarui melalui file JSON di `src/data/` maupun langsung dari Panel Admin. |
 
 ---
 
-## 9. Acceptance Criteria
+## 9. Akun Demo & Kredensial Pengujian
 
-Kriteria diuji manual di HP (ukuran ~360px) dan desktop. Setiap kriteria wajib lulus sebelum fitur dinyatakan selesai.
-
-### AC — Mode Tamu
-1. Tanpa login, semua 6 fitur dapat dibuka dan dipakai sampai selesai.
-2. Setelah tamu menyelesaikan kuis/simulasi, hasil hanya tampil di layar; **tidak ada baris baru** di `kuis_hasil`/`simulasi_hasil`.
-3. Ajakan "Masuk untuk menyimpan" tampil setelah tamu menyelesaikan kuis/simulasi.
-4. Tamu yang membuka Riwayat Saya diarahkan ke halaman Masuk.
-5. Tamu dapat melihat Peringkat tanpa baris yang disorot.
-
-### AC — Cek Pesan
-1. Menempel pesan dengan nada mendesak + permintaan OTP → hasil **Bahaya** dengan alasan awam yang menyebut kedua sinyal.
-2. Menempel tautan pendek tanpa HTTPS → sinyal terdeteksi dan dijelaskan.
-3. Hasil selalu menampilkan disclaimer alat bantu edukasi.
-4. Hasil pengecekan tidak tersimpan ke database (baik tamu maupun login).
-
-### AC — Simulasi Chat
-1. Keempat skenario dapat dimainkan dari awal hingga ringkasan tanpa error.
-2. Setiap pilihan respons memunculkan umpan balik sebelum langkah berikutnya.
-3. Skor akhir berada dalam rentang 0–100 dan ringkasan tanda bahaya relevan dengan percakapan.
-4. Login: skor otomatis tersimpan di `simulasi_hasil` dengan `skenario_id` yang benar; hanya skor yang melampaui rekor yang menaikkan poin.
-
-### AC — Pustaka Modus
-1. 8 kartu tampil lengkap (ciri-ciri, contoh pesan, cara kerja, tindakan).
-2. Pencarian dengan kata kunci memfilter kartu yang relevan; filter kategori berfungsi.
-
-### AC — Kuis
-1. Setiap percobaan menampilkan 10 soal dari bank 20.
-2. Penjelasan muncul setiap kali jawaban dipilih.
-3. Skor akhir 0–100 + level ditampilkan; login: hasil tersimpan otomatis.
-
-### AC — Darurat
-1. Langkah tampil berurutan dan dapat diikuti dari HP.
-2. Semua kontak/kanal adalah sumber resmi yang telah diverifikasi dan tautannya dapat diklik.
-
-### AC — Masuk / Daftar
-1. Daftar dengan nama tampil + email + password berhasil tanpa konfirmasi email.
-2. Profil otomatis terbentuk di `profiles` saat pendaftaran.
-3. Setelah berhasil, pengguna kembali ke halaman sebelumnya.
-4. Tombol Keluar mengembalikan ke status tamu.
-5. Email/password salah menampilkan pesan kesalahan yang jelas.
-
-### AC — Riwayat Saya & Peringkat
-1. User login melihat daftar riwayat kuis & simulasi, skor terbaik, level, dan total poin yang konsisten dengan database.
-2. Peringkat menampilkan maksimal 20 pengguna terurut poin menurun.
-3. Posisi pengguna login disorot bila masuk Top 20.
-4. Tidak ada email yang tampil di halaman peringkat.
-5. Pengguna lain tidak dapat membaca data riwayat pengguna lain (RLS teruji).
-
-### AC — Peralihan Tamu → Login
-1. Tamu menyelesaikan kuis → "Masuk untuk menyimpan" → masuk/daftar → skor otomatis tersimpan → layar hasil berstatus "Tersimpan ✓".
-2. Poin dan level ter-update sesuai hasil yang dibawa.
-
-### AC — Akun Demo & Deliverables
-1. Akun demo dapat masuk dan menampilkan beberapa riwayat tersimpan.
-2. Kredensial demo ada di README dan proposal.
-3. Website live di Vercel; README lengkap sesuai daftar di FR-F15-01; `.env.example` ada tanpa nilai rahasia; file SQL ada di repo.
+| Peran | Email | Password | Keterangan |
+|---|---|---|---|
+| **Demo User (Juri)** | `demo@juri.com` | `demo123456` | Berisi riwayat awal 3 percobaan kuis (70, 80, 90) & 4 skenario simulasi (75, 80, 85, 90) = **420 poin (Level Penangkis)** |
+| **Demo Admin** | `admin@tangkissiber.id` | `admin123456` | Akses penuh Panel Admin (`/admin`) dan pintasan `Panel Admin` di header |
 
 ---
 
-## 10. Risiko & Asumsi
+## 10. Keterbatasan yang Dicatat
 
-### 10.1 Risiko
-
-| ID | Risiko | Dampak | Mitigasi |
-|----|--------|--------|----------|
-| R1 | **Tenggat 3 hari sangat ketat** untuk 6 fitur + auth + deploy | Tinggi | Ruang lingkup terkunci (tidak ada fitur tambahan); kerjakan P0 saja sesuai urutan §11; deploy Vercel sejak hari pertama agar integrasi teruji awal |
-| R2 | Alat cek rule-based bisa salah mengklasifikasi | Sedang | Disclaimer wajib di setiap hasil ("alat bantu edukasi, bukan jaminan 100%"); hasil selalu disertai saran tindakan aman |
-| R3 | **Volume konten besar** (20 soal, 8 modus, 4 skenario percakapan, aturan cek) menunda fitur | Tinggi | Tulis konten JSON lebih dulu (hari 1) secara paralel dengan struktur aplikasi; jumlah konten dikunci sesuai spesifikasi, tidak menambah |
-| R4 | Kesalahan konfigurasi RLS membocorkan data | Tinggi | File SQL tunggal yang teruji; uji manual: user A tidak bisa baca data user B; view peringkat tanpa email |
-| R5 | Kontak darurat tidak akurat/kedaluwarsa | Sedang | Verifikasi manual dari sumber resmi saat penulisan konten; cantumkan sumber |
-| R6 | Akun demo kosong saat juri mengecek | Sedang | Seed beberapa hasil ke akun demo sebelum pengiriman; uji login demo |
-| R7 | Masalah env/integrasi Vercel ↔ Supabase di saat mepet | Sedang | Setup env + deploy skeleton di jam-jam pertama, bukan di akhir |
-| R8 | Konfirmasi email mati menimbulkan akun dengan email palsu | Rendah | Tolerabel untuk konteks demo lomba; dicatat sebagai keterbatasan |
-
-### 10.2 Asumsi
-
-| ID | Asumsi |
-|----|--------|
-| A1 | Seluruh konten (modus, skenario, soal, kontak darurat, aturan cek) ditulis manual dan berbahasa Indonesia |
-| A2 | Data pribadi yang dikumpulkan hanya email + nama tampil + skor; tidak ada PII lain |
-| A3 | Skala penggunaan versi 1.0 (demo lomba) kecil; tidak perlu rate limiting atau anti-abuse khusus |
-| A4 | Tidak ada kebutuhan internasionalisasi (bahasa Indonesia saja) |
-| A5 | Akun Supabase dan Vercel (atau GitHub) sudah tersedia |
-| A6 | Konfirmasi email dimatikan hanya untuk keperluan demo lomba |
-| A7 | **Keputusan:** handoff tamu→login membawa **hanya 1 hasil percobaan terakhir** (disimpan di localStorage). Alasan: sesuai alur yang disetujui (hasil terakhir), paling sederhana dan andal dalam tenggat 3 hari; membawa banyak hasil menambah kompleksitas tanpa manfaat berarti |
-
----
-
-## 11. Usulan Rencana Pengerjaan 3 Hari
-
-> Usulan dari PM — menunggu persetujuan pemilik produk. Tidak mengubah ruang lingkup §5.
-
-**Hari 1 — Fondasi & Konten**
-- Setup Next.js + Tailwind + Supabase client; deploy skeleton ke Vercel (deploy awal = mitigasi R7).
-- Tulis seluruh konten JSON: 8 modus, 20 soal, 4 skenario, aturan cek pesan/tautan, kontak darurat.
-- Siapkan SQL Supabase (tabel, view, RLS, constraint) dan jalankan; buat akun demo.
-- Bangun Beranda, navigasi, halaman statis (Darurat, Pustaka).
-
-**Hari 2 — Fitur Inti**
-- Cek Pesan (rule-based), Simulasi Chat (4 skenario), Kuis (10 dari 20).
-- Auth (masuk/daftar/keluar) + profil otomatis.
-- Penyimpanan skor + poin/level + Riwayat Saya + Peringkat (Top 20).
-
-**Hari 3 — Mode Tamu, Handoff, dan Kilat Akhir**
-- Mode tamu penuh + handoff "Masuk untuk menyimpan" → "Tersimpan ✓".
-- Uji seluruh acceptance criteria (§9), termasuk uji RLS antar dua akun.
-- Seed akun demo; tulis README lengkap + `.env.example`; finalisasi Vercel; kirim.
-
----
-
-## 12. Lampiran — Daftar Isi README (syarat lomba)
-
-README wajib memuat: nama/tagline/deskripsi singkat · link website live · daftar fitur · teknologi · cara menjalankan lokal (clone, `npm install`, isi `.env.local`, `npm run dev`) · cara menyiapkan Supabase (file SQL disertakan) · akun demo juri · sumber library · catatan keterbatasan · `.env.example` tanpa nilai rahasia.
-
----
-
-*Akhir dokumen. Menunggu persetujuan sebelum implementasi dimulai.*
+1. **Cek Pesan adalah alat bantu edukasi, bukan jaminan keamanan 100%.** Pesan penipuan yang sangat canggih bisa lolos, dan pesan sah bisa tertandai. Pengguna tetap wajib melakukan verifikasi ke kanal resmi instansi terkait.
+2. **Kontak darurat** diverifikasi dari sumber resmi saat penyusunan konten; pengguna dianjurkan memeriksa kembali kanal resmi terbaru sebelum melapor.
+3. **Google OAuth (`Masuk dengan Google`)** pada mode *Testing* hanya mengizinkan akun Gmail yang terdaftar sebagai *Test users* pada Google Cloud Console sampai verifikasi aplikasi eksternal Google selesai dipublikasikan; login **Email & Password** tetap terbuka penuh untuk seluruh pengguna dan juri.
