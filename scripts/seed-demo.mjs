@@ -39,15 +39,41 @@ async function main() {
     console.log(`   ✓ User dibuat: ${userId}`);
   }
 
-  // 2. Pastikan profil dengan peran user (bukan admin - admin diset manual)
-  console.log("\n2. Memastikan profil demo...");
+  // 2. Pastikan profil Demo User (peran: user)
+  console.log("\n2. Memastikan profil Demo User...");
   const { error: profilError } = await supabase
     .from("profiles")
-    .upsert({ id: userId, nama_tampil: "Demo Juri", peran: "user" }, { onConflict: "id" });
+    .upsert({ id: userId, nama_tampil: "Demo User", peran: "user" }, { onConflict: "id" });
   if (profilError) throw profilError;
-  console.log("   ✓ Profil OK");
+  console.log("   ✓ Profil Demo User OK");
 
-  // 3. Seed kuis_hasil (3 riwayat skor berbeda)
+  // 2b. Pastikan Akun Demo Admin (admin@tangkissiber.id)
+  console.log("\n2b. Memastikan akun admin@tangkissiber.id...");
+  const adminExisting = existingUsers.users.find((u) => u.email === "admin@tangkissiber.id");
+  let adminId;
+  if (adminExisting) {
+    adminId = adminExisting.id;
+  } else {
+    const { data: newAdmin, error: adminErr } = await supabase.auth.admin.createUser({
+      email: "admin@tangkissiber.id",
+      password: "admin123456",
+      email_confirm: true,
+      user_metadata: { nama_tampil: "Demo Admin" },
+    });
+    if (adminErr) throw adminErr;
+    adminId = newAdmin.user.id;
+  }
+  const { error: adminProfilErr } = await supabase
+    .from("profiles")
+    .upsert({ id: adminId, nama_tampil: "Demo Admin", peran: "admin" }, { onConflict: "id" });
+  if (adminProfilErr) throw adminProfilErr;
+  console.log("   ✓ Profil Demo Admin OK");
+
+  // 3. Bersihkan riwayat lama Demo User lalu isi data bersih
+  await supabase.from("kuis_hasil").delete().eq("user_id", userId);
+  await supabase.from("simulasi_hasil").delete().eq("user_id", userId);
+
+  console.log("\n3. Seed kuis_hasil...");
   console.log("\n3. Seed kuis_hasil...");
   const kuisData = [
     { user_id: userId, skor: 70, ai_curiga: false, created_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString() },

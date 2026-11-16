@@ -1,32 +1,34 @@
-// Halaman percakapan /simulasi/[skenario]. Data dari JSON di repo (FR-F3-05).
+// Halaman percakapan /simulasi/[skenario]. Data dari Supabase `konten_aplikasi` (fallback JSON).
+export const dynamic = "force-dynamic";
+
 import { notFound } from "next/navigation";
-import kurir from "@/data/skenario/kurir-apk.json";
-import hadiah from "@/data/skenario/hadiah-palsu.json";
-import otp from "@/data/skenario/otp-bank.json";
-import lowongan from "@/data/skenario/lowongan-palsu.json";
+import { ambilKontenServer, KONTEN_DEFAULT } from "@/lib/konten";
 import Container from "@/components/layout/Container";
 import ChatSkenario from "@/components/simulasi/ChatSkenario";
 
-const SEMUA = { "kurir-apk": kurir, "hadiah-palsu": hadiah, "otp-bank": otp, "lowongan-palsu": lowongan };
+const VALID_IDS = ["kurir-apk", "hadiah-palsu", "otp-bank", "lowongan-palsu"];
 
 export function generateStaticParams() {
-  return Object.keys(SEMUA).map((skenario) => ({ skenario }));
+  return VALID_IDS.map((skenario) => ({ skenario }));
 }
 
 export async function generateMetadata({ params }) {
   const { skenario } = await params;
-  const data = SEMUA[skenario];
+  const data = VALID_IDS.includes(skenario)
+    ? KONTEN_DEFAULT[`skenario-${skenario}`]
+    : null;
   return { title: data ? `${data.judul} | Simulasi TangkisSiber` : "Simulasi | TangkisSiber" };
 }
 
 export default async function HalamanSkenario({ params }) {
   const { skenario } = await params;
-  const data = SEMUA[skenario];
+  if (!VALID_IDS.includes(skenario)) notFound();
+  const data = await ambilKontenServer(`skenario-${skenario}`);
   if (!data) notFound();
 
   return (
-    <Container className="py-8 lg:py-10">
+    <div className="flex h-dvh items-center justify-center overflow-hidden bg-bg sm:h-auto sm:min-h-dvh sm:px-4 sm:py-8">
       <ChatSkenario data={data} />
-    </Container>
+    </div>
   );
 }

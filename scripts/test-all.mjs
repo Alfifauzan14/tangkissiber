@@ -72,10 +72,10 @@ async function main() {
   });
 
   // ===== 2. GOOGLE OAUTH =====
-  await test("Google OAuth: button hidden when env not set", async () => {
+  await test("Google OAuth: tombol selalu tampil", async () => {
     await page.goto(`${BASE}/masuk`, { waitUntil: "load" });
     const count = await page.$$eval('button:has-text("Masuk dengan Google")', els => els.length);
-    if (count !== 0) throw new Error(`Google button should be hidden, found ${count}`);
+    if (count === 0) throw new Error("Tombol Google tidak ditemukan");
   });
 
   // ===== 3. AUTH FLOW (login demo) =====

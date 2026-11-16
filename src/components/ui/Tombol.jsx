@@ -6,9 +6,9 @@ import Ikon from "./Ikon";
 
 const GAYA = {
   primary:
-    "bg-primary text-white hover:bg-[#011c7d] disabled:hover:bg-primary",
+    "bg-primary text-white hover:bg-[#075985] disabled:hover:bg-primary",
   tonal:
-    "bg-primary-soft text-primary hover:bg-[#e0e7ff] disabled:hover:bg-primary-soft",
+    "bg-primary-soft text-primary hover:bg-[#bae6fd] dark:hover:bg-[#075985]/60 disabled:hover:bg-primary-soft",
   ghost:
     "bg-transparent text-muted hover:text-primary hover:bg-primary-soft/60",
   danger: "bg-bahaya text-white hover:bg-[#991b1b] disabled:hover:bg-bahaya",

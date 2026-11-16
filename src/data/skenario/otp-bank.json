@@ -85,6 +85,26 @@
           "umpan_balik": "APK ini bisa menampilkan layar tiruan, membaca SMS OTP, dan mengendalikan HP Anda. Hubungi bank lewat kanal resmi untuk bantuan penyelamatan."
         }
       ]
+    },
+    {
+      "pesan": "Kalau tidak mau pasang aplikasi, tolong aktifkan fitur berbagi layar (screen sharing) sambil buka m-banking Anda biar tim IT kami pandu langsung.",
+      "pilihan": [
+        {
+          "teks": "Pihak bank resmi tidak pernah meminta berbagi layar saat membuka m-banking. Saya tutup telepon.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat sekali! Berbagi layar membuat penipu melihat langsung saldo, PIN, dan notifikasi OTP di HP Anda."
+        },
+        {
+          "teks": "Saya tidak nyaman berbagi layar, biar saya ke kantor cabang bank saja.",
+          "nilai": "waspada",
+          "umpan_balik": "Keputusan bagus untuk menolak berbagi layar dan memverifikasi langsung di kantor cabang atau call center resmi."
+        },
+        {
+          "teks": "Baik, saya nyalakan screen sharing dan buka m-banking sekarang.",
+          "nilai": "bahaya",
+          "umpan_balik": "Penipu dapat mengintip seluruh informasi sensitif dan OTP yang muncul di layar Anda secara langsung."
+        }
+      ]
     }
   ]
 }

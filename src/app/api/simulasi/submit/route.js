@@ -5,12 +5,9 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import kurir from "@/data/skenario/kurir-apk.json";
-import hadiah from "@/data/skenario/hadiah-palsu.json";
-import otp from "@/data/skenario/otp-bank.json";
-import lowongan from "@/data/skenario/lowongan-palsu.json";
+import { ambilKontenServer } from "@/lib/konten";
 
-const SEMUA = { "kurir-apk": kurir, "hadiah-palsu": hadiah, "otp-bank": otp, "lowongan-palsu": lowongan };
+const VALID_SKENARIO = new Set(["kurir-apk", "hadiah-palsu", "otp-bank", "lowongan-palsu"]);
 const NILAI_SKOR = { aman: 100, waspada: 50, bahaya: 0 };
 
 // Heuristik AI thresholds untuk simulasi
@@ -134,7 +131,7 @@ export async function POST(request) {
     const body = await request.json();
     const { skenario_id, jawaban, timing } = body;
 
-    if (!skenario_id || !SEMUA[skenario_id]) {
+    if (!skenario_id || !VALID_SKENARIO.has(skenario_id)) {
       return NextResponse.json(
         { error: "Skenario tidak valid", code: "INVALID_SKENARIO" },
         { status: 400 }
@@ -148,7 +145,7 @@ export async function POST(request) {
       );
     }
 
-    const data = SEMUA[skenario_id];
+    const data = await ambilKontenServer(`skenario-${skenario_id}`);
     const langkah = data.langkah;
     const langkahCount = langkah.length;
 

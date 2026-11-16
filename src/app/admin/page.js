@@ -1,5 +1,5 @@
-// Halaman Admin (Post-v1.0 #4)
-// Hanya aksesible oleh user dengan peran 'admin' di profiles
+// Halaman Admin (/admin) — terpisah dari landing page dan navigasi publik.
+// Hanya bisa diakses oleh user dengan peran 'admin' di profiles.
 export const dynamic = "force-dynamic";
 
 import { Suspense } from "react";
@@ -7,6 +7,8 @@ import { redirect } from "next/navigation";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import Container from "@/components/layout/Container";
+import Tombol from "@/components/ui/Tombol";
+import Ikon from "@/components/ui/Ikon";
 import AdminContent from "./AdminContent";
 
 async function cekAdmin() {
@@ -29,7 +31,7 @@ async function cekAdmin() {
   );
 
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return { admin: false, user: null };
+  if (!user) return { status: "unauthenticated", user: null, profil: null };
 
   const { data: profil } = await supabase
     .from("profiles")
@@ -37,23 +39,48 @@ async function cekAdmin() {
     .eq("id", user.id)
     .single();
 
-  return { admin: profil?.peran === "admin", user, profil };
+  if (profil?.peran !== "admin") {
+    return { status: "forbidden", user, profil };
+  }
+
+  return { status: "admin", user, profil };
 }
 
 export default async function HalamanAdmin() {
-  const { admin, user, profil } = await cekAdmin();
+  const { status, user, profil } = await cekAdmin();
 
-  if (!admin) {
-    // Bukan admin: redirect ke beranda dengan pesan
-    redirect("/?error=unauthorized");
+  if (status === "unauthenticated") {
+    redirect("/admin/masuk");
+  }
+
+  if (status === "forbidden") {
+    return (
+      <div className="flex min-h-dvh items-center justify-center bg-bg px-5 py-10">
+        <div className="w-full max-w-[420px] rounded-xl border border-line bg-surface p-6 text-center shadow-[var(--shadow-card)] md:p-8">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-bahaya-soft text-bahaya">
+            <Ikon nama="lock" ukuran={24} />
+          </div>
+          <h1 className="text-xl font-bold text-ink">Akses Ditolak</h1>
+          <p className="mt-2 text-sm text-muted">
+            Halaman ini khusus untuk administrator. Akun Anda saat ini tidak memiliki hak akses admin.
+          </p>
+          <div className="mt-6 flex flex-col gap-2">
+            <Tombol gaya="primary" href="/admin/masuk" className="w-full">
+              Masuk dengan Akun Admin
+            </Tombol>
+            <Tombol gaya="tonal" href="/" className="w-full">
+              Kembali ke Beranda
+            </Tombol>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <Container className="max-w-[1120px] py-8 lg:py-10">
-      <Suspense fallback={<AdminSkeleton />}>
-        <AdminContent user={user} profil={profil} />
-      </Suspense>
-    </Container>
+    <Suspense fallback={<AdminSkeleton />}>
+      <AdminContent user={user} profil={profil} />
+    </Suspense>
   );
 }
 

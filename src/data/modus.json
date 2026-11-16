@@ -198,5 +198,93 @@
       "Jangan berbagi data pribadi, rekening, atau foto sensitif",
       "Jika sudah menjadi korban: lapor ke polisi dan jangan malu, korban banyak yang tak menyangka"
     ]
+  },
+  {
+    "id": "qris-palsu",
+    "judul": "Penipuan Stiker & Tautan QRIS Palsu",
+    "kategori": "Perbankan & OTP",
+    "ringkas": "Penipu menempel stiker QRIS palsu di atas QRIS toko atau mengirim QRIS bayar tagihan fiktif sehingga dana masuk ke rekening pelaku.",
+    "ciri": [
+      "Stiker QRIS di kasir atau kotak amal tampak ditempel menimpa stiker lama",
+      "Nama merchant yang muncul di layar konfirmasi aplikasi berbeda dengan nama toko atau lembaga",
+      "Pengirim chat meminta Anda memindai QRIS untuk menerima hadiah atau pengembalian dana (refund)"
+    ],
+    "contoh_pesanan": "Kak, ini QRIS resmi untuk pengembalian dana pesanan ya. Silakan scan lewat e-wallet atau m-banking lalu masukkan kode nominalnya supaya dana langsung masuk.",
+    "cara_kerja": [
+      "Pelaku mengganti stiker QRIS fisik di tempat umum atau mengirim gambar QRIS lewat chat",
+      "Korban memindai QRIS tanpa mengecek nama penerima yang muncul di layar",
+      "Alih-alih menerima dana atau membayar toko, uang langsung terkirim ke rekening pelaku"
+    ],
+    "tindakan": [
+      "Selalu periksa nama merchant dan kota penerima sebelum memasukkan PIN",
+      "Ingat: memindai QRIS selalu berarti MENGIRIM uang, bukan menerima refund atau hadiah",
+      "Jika ragu dengan stiker QRIS di toko, tanyakan langsung kepada kasir"
+    ]
+  },
+  {
+    "id": "voice-cloning-ai",
+    "judul": "Penyamaran Suara AI (Voice Cloning) Keluarga",
+    "kategori": "Pesan & Tautan",
+    "ringkas": "Pelaku memakai AI untuk meniru suara anggota keluarga atau atasan, lalu menelepon dengan cerita darurat agar korban segera transfer.",
+    "ciri": [
+      "Penelepon memakai nomor baru dengan alasan HP rusak, tertinggal, atau sedang di kantor polisi/rumah sakit",
+      "Suara sangat mirip orang dekat tetapi nada bicara terburu-buru dan menolak video call",
+      "Meminta transfer segera ke rekening atas nama orang lain"
+    ],
+    "contoh_pesanan": "Ma, ini aku lagi kecelakaan di jalan, HP-ku pecah jadi pakai HP orang. Tolong transfer Rp 3.000.000 ke rekening bengkel ini sekarang juga ya, jangan telpon lama-lama!",
+    "cara_kerja": [
+      "Pelaku mengambil sampel suara korban dari video publik di media sosial atau telepon singkat",
+      "Suara dikloning dengan AI lalu dipakai menelepon keluarga dengan skenario panik",
+      "Korban yang kaget langsung mentransfer uang tanpa memverifikasi ke nomor asli"
+    ],
+    "tindakan": [
+      "Tutup telepon dan hubungi langsung nomor asli anggota keluarga yang tersimpan di kontak Anda",
+      "Ajukan pertanyaan pribadi yang hanya diketahui keluarga atau minta video call",
+      "Sepakati kata sandi darurat keluarga untuk kondisi genting"
+    ]
+  },
+  {
+    "id": "tugas-like-berbayar",
+    "judul": "Penipuan Tugas Like & Follow Berbayar",
+    "kategori": "Rekrutmen & Kerja",
+    "ringkas": "Korban diberi komisi kecil untuk tugas ringan seperti me-like video, lalu dijebak menyetor deposit uang besar untuk membuka tugas berikutnya.",
+    "ciri": [
+      "Menjanjikan penghasilan mudah ratusan ribu per hari hanya dari HP lewat Telegram/WhatsApp",
+      "Membayar komisi awal Rp 15.000 - Rp 50.000 dengan lancar untuk membangun kepercayaan",
+      "Meminta setor deposit/top-up berjenjang agar saldo komisi besar bisa dicairkan"
+    ],
+    "contoh_pesanan": "Halo kak, kami dari agensi promosi digital. Tugasnya cukup like & screenshot video dapat Rp 25.000 per tugas. Untuk naik ke paket VIP komisi 30%, silakan deposit Rp 500.000 dulu.",
+    "cara_kerja": [
+      "Pelaku mengundang korban ke grup Telegram berisi testimoni pencairan palsu",
+      "Tugas awal dibayar sungguhan agar korban yakin sistemnya aman",
+      "Saat korban mulai menyetor deposit besar, pelaku mengklaim terjadi kesalahan tugas dan meminta setor tambahan terus-menerus"
+    ],
+    "tindakan": [
+      "Berhenti segera jika pekerjaan mulai meminta Anda menyetor atau mentransfer uang",
+      "Jangan percaya tangkapan layar bukti transfer di grup Telegram karena akun di dalamnya sering dikendalikan pelaku",
+      "Blokir kontak perekrut dan laporkan grup tersebut"
+    ]
+  },
+  {
+    "id": "phishing-instansi",
+    "judul": "Phishing E-Tilang, Pajak & BPJS Palsu",
+    "kategori": "Pesan & Tautan",
+    "ringkas": "Pesan mengaku dari kepolisian, kantor pajak, atau BPJS yang mengancam denda/pemblokiran dan menyertakan tautan palsu atau file APK.",
+    "ciri": [
+      "Mengatasnamakan instansi resmi tetapi dikirim dari nomor WhatsApp pribadi",
+      "Menyertakan file .apk (mis. Surat_Tilang.apk) atau tautan domain non-pemerintah (.xyz, .top, bit.ly)",
+      "Mengancam denda berlipat atau penonaktifan layanan jika tidak diurus hari ini"
+    ],
+    "contoh_pesanan": "PEMBERITAHUAN E-TILANG: Kendaraan Anda terekam melanggar lalu lintas. Cek bukti foto pelanggaran pada file Surat_Tilang_Resmi.apk sebelum denda naik.",
+    "cara_kerja": [
+      "Pelaku mengirim pesan bernada resmi lengkap dengan logo instansi",
+      "Korban yang takut terkena denda mengklik tautan atau memasang file APK",
+      "Data login, identitas, atau akses perbankan korban dicuri pelaku"
+    ],
+    "tindakan": [
+      "Ingat: situs resmi pemerintah Indonesia selalu memakai domain .go.id",
+      "Jangan pernah mengunduh atau memasang file .apk dari pesan WhatsApp",
+      "Cek status tilang, pajak, atau BPJS hanya lewat aplikasi/situs resmi masing-masing instansi"
+    ]
   }
 ]

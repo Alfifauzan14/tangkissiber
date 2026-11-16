@@ -85,6 +85,26 @@
           "umpan_balik": "Setelah transfer, akan muncul biaya baru lagi. Ini pola klasik: panik buatan lalu pembayaran berulang."
         }
       ]
+    },
+    {
+      "pesan": "Kalau tidak mau transfer, cek saja foto resi paketnya di file Resi_Paket_Swift.apk ini dalam 15 menit sebelum dibatalkan otomatis!",
+      "pilihan": [
+        {
+          "teks": "Foto asli formatnya JPG/PNG, bukan APK. Saya blokir dan laporkan nomor ini.",
+          "nilai": "aman",
+          "umpan_balik": "Tepat sekali! Penipu sering menyamarkan aplikasi pencuri OTP sebagai foto resi atau undangan berakhiran .apk."
+        },
+        {
+          "teks": "Kenapa formatnya .apk? Kirim saja nomor resinya dalam bentuk teks.",
+          "nilai": "waspada",
+          "umpan_balik": "Bagus Anda jeli melihat ekstensi .apk. Sebaiknya langsung tutup percakapan karena pengirim sudah jelas berniat menipu."
+        },
+        {
+          "teks": "Baik, saya buka filenya untuk melihat foto resinya.",
+          "nilai": "bahaya",
+          "umpan_balik": "File .apk bukan gambar, melainkan installer aplikasi berbahaya yang bisa menguras saldo rekening Anda."
+        }
+      ]
     }
   ]
 }

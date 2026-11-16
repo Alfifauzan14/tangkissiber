@@ -4,9 +4,9 @@
 
 | | |
 |---|---|
-| **Versi Dokumen** | 1.0 (Disetujui) |
-| **Status** | **Disetujui** — disetujui pemilik produk pada 14 November 2026; diselaraskan dengan DATABASE.md v1.1 (default `auth.uid()` pada `user_id`) |
-| **Tanggal** | 14 November 2026 |
+| **Versi Dokumen** | 1.2 (Diperbarui) |
+| **Status** | **Disetujui & Diimplementasikan** — diperbarui 16 November 2026 untuk mencerminkan API Routes, `konten_aplikasi`, Gemini AI, OAuth Google, dan Panel Admin |
+| **Tanggal** | 16 November 2026 (v1.0: 14 November 2026) |
 | **Prasyarat** | PRD v1.0 (Disetujui) · DESIGN.md v1.0 (Disetujui) |
 | **Prinsip** | Tanpa server API khusus; Supabase dipanggil langsung dari sisi klien (sesuai PRD) |
 
@@ -322,4 +322,16 @@ layout root → useSesi() → onAuthStateChange
 
 ---
 
-*Akhir dokumen. Implementasi tidak dimulai sebelum dokumen ini disetujui pemilik produk.*
+## 9. Arsitektur v1.2 (API Routes, Konten Dinamis & Panel Admin)
+
+- **Route Handlers Next.js (`src/app/api/`):**
+  - `POST /api/cek-pesan`: Analisis pesan memakai Google Gemini (`GEMINI_API_KEY`) dengan fallback deterministik ke `src/lib/cekPesan.js`.
+  - `POST /api/kuis/submit` & `POST /api/simulasi/submit`: Validasi skor di sisi server menggunakan kunci jawaban dari `konten_aplikasi` / JSON lokal + heuristik kecepatan/pola (`ai_curiga`) + rate limit.
+  - `GET /api/admin/verify`: Verifikasi peran admin dari sesi Supabase server-side.
+  - `GET /auth/callback`: Penukaran kode OAuth Google Supabase dan sinkronisasi handoff skor tamu (`ts_hasil_tunda`).
+- **Lapisan Konten (`src/lib/konten.js`):** Fungsi `ambilKontenServer` dan `ambilKontenKlien` membaca dari tabel `public.konten_aplikasi` dengan fallback otomatis ke `src/data/*.json` bila tabel/baris belum tersedia.
+- **Panel Admin Terpisah (`/admin`, `/admin/masuk`):** Menggunakan sidebar dashboard (`AdminContent.jsx`) dan editor terpisah (`KontenEditor.jsx`); `Header` dan `Footer` publik otomatis disembunyikan pada rute `/admin/*`, `/masuk`, `/simulasi/*`, dan mode fokus `/kuis`.
+
+---
+
+*Akhir dokumen.*

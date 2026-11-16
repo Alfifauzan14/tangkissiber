@@ -1,6 +1,8 @@
 // Halaman darurat: 6 langkah pertolongan pertama + 6 kanal resmi.
-// Konten dari darurat.json, semua kanal sudah diverifikasi lewat situs resmi.
-import darurat from "@/data/darurat.json";
+// Konten dari Supabase `konten_aplikasi` (fallback darurat.json).
+export const dynamic = "force-dynamic";
+
+import { ambilKontenServer } from "@/lib/konten";
 import Container from "@/components/layout/Container";
 import Kartu from "@/components/ui/Kartu";
 import Badge from "@/components/ui/Badge";
@@ -8,7 +10,8 @@ import Ikon from "@/components/ui/Ikon";
 
 export const metadata = { title: "Sudah Terlanjur? | TangkisSiber" };
 
-export default function HalamanDarurat() {
+export default async function HalamanDarurat() {
+  const darurat = await ambilKontenServer("darurat");
   return (
     <Container className="max-w-[720px] py-8 lg:py-10">
       <header>

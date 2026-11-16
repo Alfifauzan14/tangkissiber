@@ -4,9 +4,9 @@
 
 | | |
 |---|---|
-| **Versi Dokumen** | 1.1 |
-| **Status** | **Disetujui dan diterapkan** — disetujui pemilik produk 14 November 2026; skema sudah berjalan di project `tangkissiber`; verifikasi V1-V9 lulus (lihat §8a) |
-| **Tanggal** | 14 November 2026 |
+| **Versi Dokumen** | 1.2 |
+| **Status** | **Disetujui & Diimplementasikan** — v1.1 berjalan di `tangkissiber`; v1.2 menambahkan migrasi Admin CRUD & `konten_aplikasi` (16 November 2026) |
+| **Tanggal** | 16 November 2026 (v1.1: 14 November 2026) |
 | **Prasyarat** | PRD v1.0 (Disetujui) · DESIGN.md v1.0 (Disetujui) · ARCHITECTURE.md v1.0 (Disetujui) |
 | **Sumber rujukan** | Skill supabase-postgres-best-practices · Dokumentasi resmi Supabase (Context7) · Supabase MCP |
 
@@ -369,4 +369,16 @@ Setelah uji, pengguna uji dihapus (cascade membersihkan profil dan hasilnya), da
 
 ---
 
-*Akhir dokumen. SQL belum dijalankan dan `supabase/schema.sql` belum dibuat sampai dokumen ini disetujui pemilik produk.*
+## 10. Migrasi Post-v1.0 & Admin CRUD (`v1.2`)
+
+Penambahan skema di repo (selain `supabase/schema.sql`):
+- `supabase/migration-admin-role.sql` & `supabase/migration-ai-detection.sql`: Menambahkan kolom `profiles.peran` (`'user' | 'admin'`) serta kolom `ai_curiga boolean default false` pada `kuis_hasil` dan `simulasi_hasil`.
+- `supabase/migration-admin-crud.sql`:
+  - Fungsi `public.is_admin()` (`SECURITY DEFINER`, `set search_path = ''`) untuk memeriksa peran admin secara aman tanpa memicu rekursi RLS pada `profiles`.
+  - Policy CRUD admin untuk `profiles`, `kuis_hasil`, dan `simulasi_hasil`.
+  - Tabel `public.konten_aplikasi` (`kunci text primary key`, `data jsonb not null`, `updated_at timestamptz`) dengan RLS publik baca (`select`) dan hanya admin yang dapat menulis (`insert`, `update`, `delete`).
+  - **Status di project `fpmlbnhckvwsxtzzhmcn` (16 Nov 2026):** `profiles`, `kuis_hasil`, `simulasi_hasil`, dan `konten_aplikasi` (`rls_enabled: true`) sudah aktif seluruhnya.
+
+---
+
+*Akhir dokumen.*

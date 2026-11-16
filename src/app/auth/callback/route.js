@@ -7,7 +7,8 @@ import { NextResponse } from "next/server";
 export async function GET(request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
-  const next = searchParams.get("next") || "/";
+  const rawNext = searchParams.get("next") || "/";
+  const next = rawNext.startsWith("/") ? rawNext : "/";
 
   if (code) {
     const cookieStore = await cookies();
@@ -30,8 +31,8 @@ export async function GET(request) {
 
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      // Berhasil: redirect ke halaman yang diminta (respect ?kembali=)
-      return NextResponse.redirect(`${origin}${next}`);
+      // Lewati /masuk?oauth=1 agar handoff tamu->login (localStorage) ikut tersimpan jika ada
+      return NextResponse.redirect(`${origin}/masuk?kembali=${encodeURIComponent(next)}&oauth=1`);
     }
   }
 

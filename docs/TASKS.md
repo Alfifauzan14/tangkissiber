@@ -252,3 +252,65 @@ Pengguna sudah mengirim 3 referensi (`docs/design-ref/`) dan menetapkan skoolia.
 - ✅ TASKS.md updated
 - ✅ `docs/design-ref/` + `docs/design-notes.md` siap
 - ✅ Commit `1b908ff` pushed ke GitHub
+
+---
+
+## ✅ Pembaruan Admin Konten, Gemini AI & Google OAuth (16 Nov 2026)
+
+- [x] `src/app/masuk/page.js`: tombol "Masuk dengan Google" selalu tampil (butuh Google provider aktif di Supabase Dashboard); tombol/kredensial login demo dihapus agar siap live production
+- [x] Pemisahan Panel Admin & Landing Page: `Header.jsx` dan `Footer.jsx` disembunyikan di rute `/admin/*` dan tautan `Panel Admin` dihapus dari navigasi publik; halaman login khusus admin dibuat di `/admin/masuk`; `/admin` memiliki top bar tersendiri (`AdminTopBar`) dan guard akses ditolak khusus
+- [x] Redesign Login/Daftar (`/masuk`) sesuai gambar referensi pengguna (`src/app/masuk/page.js`): tanpa navbar dan tanpa footer (hanya tombol Kembali + kartu split: panel kiri gradien cyan-ocean + grid + gelombang, panel kanan form putih dengan input aksen garis kiri biru + tombol pill + Google OAuth)
+- [x] Google OAuth & handoff tamu→login (`src/app/auth/callback/route.js`, `src/app/masuk/page.js`): callback meneruskan ke `/masuk?oauth=1` untuk menyinkronkan handoff `ts_hasil_tunda`, plus pesan error jelas jika provider Google belum aktif di Supabase (`"google": false` terdeteksi di `/auth/v1/settings`)
+- [x] Penyeragaman tampilan 5 halaman fitur (`src/components/layout/PageBanner.jsx`): `/cek-pesan`, `/simulasi`, `/kuis`, `/pustaka`, dan `/peringkat` kini memakai banner kepala Cyber Ocean + cyber grid yang seragam dengan isi masing-masing fitur yang berbeda
+- [x] Navbar underline & tombol Dark Mode (`src/components/layout/Header.jsx`): garis bawah aktif/hover pada tautan nav desktop dan tombol dark mode berbingkai rapi
+- [x] Pembaruan UI Lanjutan (12 poin): ukuran kartu `/masuk` konsisten saat pindah tab (`lg:h-[600px]`), tombol SOS **Darurat** & ikon matahari dark mode (`light_mode`) di `Header.jsx`, penghapusan pill teks kecil di Beranda/Cek Pesan/Simulasi/Pustaka/Peringkat, grid 2x2 checklist `/cek-pesan`, simulasi `/simulasi/[skenario]` tanpa navbar/footer dengan tombol Kembali & chat ala WhatsApp, pilihan mode kuis Duolingo (`Campuran`, `OTP & Bank`, `Kurir & APK`, `Hadiah & Lowongan`, `Kilat`), Pustaka bergaya grid artikel + mode baca artikel, dan Podium Top 3 berundak di Peringkat
+- [x] `src/app/api/cek-pesan/route.js` & `src/app/cek-pesan/page.js`: integrasi Google Gemini (`gemini-2.5-flash` via `GEMINI_API_KEY`) dengan indikator sumber (`Dianalisis AI Gemini` vs `Mode aturan lokal`) + dokumentasi di `.env.example`
+- [x] `supabase/migration-admin-crud.sql`: fungsi `public.is_admin()` (`SECURITY DEFINER`, bebas rekursi RLS), policy admin CRUD untuk `profiles`/`kuis_hasil`/`simulasi_hasil`, serta tabel `konten_aplikasi` (`jsonb`)
+- [x] `src/lib/konten.js` & halaman konten (`/pustaka`, `/darurat`, `/kuis`, `/simulasi`, `/simulasi/[skenario]`, `/api/kuis/submit`, `/api/simulasi/submit`): baca konten dari `konten_aplikasi` dengan fallback JSON lokal
+- [x] `src/app/admin/AdminContent.jsx` & `src/app/admin/KontenEditor.jsx`: tab **Kelola Konten** untuk mengubah Pustaka Modus, Bank Soal Kuis, Panduan Darurat, Aturan Cek Pesan, dan 4 Skenario Simulasi
+- [x] Perbaikan UI Halaman Fitur & Dark Mode (`src/app/globals.css`, `src/app/kuis/page.js`, `src/app/cek-pesan/page.js`, `src/app/simulasi/page.js`, `src/app/pustaka/page.js`, `src/app/peringkat/page.js`): token dark mode AA (`--color-primary: #2563eb` dan semantik `-soft` gelap), Kuis bergaya Duolingo (top bar progres tebal, kartu pilihan 3D taktil `border-b-4`, banner umpan balik + tombol Lanjut), Cek Pesan dengan contoh cepat + penghitung karakter, serta header/kartu konsisten di Simulasi, Pustaka, dan Peringkat
+- [x] Verifikasi `npm run build` lulus + Playwright E2E (beranda baru, `/masuk` tanpa demo login + ada Google, `/admin` terpisah tanpa header/footer publik, `/admin/masuk`, Kuis Duolingo, Cek Pesan, Simulasi, Pustaka, Peringkat, Dark Mode toggle, responsif 320px/390px/1024px 0 overflow-x)
+- [x] Pembaruan Kuis Kategori Card & Layar Hasil Simulasi (`src/app/kuis/page.js`, `src/components/simulasi/ChatSkenario.jsx`): halaman `/kuis` menampilkan grid kartu kategori (`Campuran Lengkap`, `OTP & Perbankan`, `Kurir, APK & Tautan`, `Hadiah & Lowongan`, `Kuis Kilat`) sebelum masuk ke mode kuis fokus ala Duolingo; layar hasil akhir simulasi disederhanakan dengan gauge SVG semantik & daftar `Tanda Bahaya` teks polos tanpa badge/card bertumpuk
+- [x] Pembaruan Navbar Scroll-Aware, Mode Fokus Kuis, Login/Daftar Stabil, Peringkat, Footer & Responsif HP/Tablet (`src/components/layout/Header.jsx`, `src/components/layout/Footer.jsx`, `src/app/masuk/page.js`, `src/app/peringkat/page.js`, `src/app/page.js`): navbar menyatu dengan gradien Hero di posisi atas lalu putih saat di-scroll + drawer HP dengan ikon & pintasan darurat; navbar/footer hilang otomatis saat masuk kuis; posisi teks/input Masuk & Daftar terkunci `0px` delta + latar luar Cyber Ocean; podium Top 3 & tabel peringkat #4–#20; footer sejajar tanpa card SOS/catatan; serta penyempurnaan responsif HP (`320px`/`390px`) & tablet (`768px`) dengan `0` overflow-x
+
+---
+
+## 📋 Rencana Desain Ulang Panel Admin (Sidebar Dashboard)
+
+Mengubah `/admin` dari tata letak tab atas menjadi **Sidebar Dashboard terstruktur** (referensi Gentelella) dengan konten yang dipisah per menu agar pengelolaan lebih rapi dan skalabel:
+
+### Fase 1 — Struktur UI Sidebar & Pemisahan Konten
+- [x] **Layout Shell Sidebar (`src/app/admin/AdminContent.jsx`)**:
+  - Sidebar gelap tetap (`#0f172a`, lebar `w-64`) di desktop (`lg:`) dan slide-over drawer di mobile/tablet (`< lg`)
+  - Header sidebar dengan logo perisai `TangkisSiber Admin`, footer sidebar dengan kartu profil admin, pintasan `Lihat Situs`, dan tombol `Keluar`
+  - Topbar utilitas (`h-16`) berisi toggle sidebar mobile, breadcrumb/judul bagian aktif, dan tombol `Muat Ulang`
+- [x] **Menu Sidebar Terkelompok**:
+  - `Overview`: **Ringkasan** (4 kartu KPI statistik dengan bar aksen bawah, Top 5 pengguna berpoin tertinggi, & ringkasan modul konten dengan pintasan langsung)
+  - `Manajemen`: **Pengguna & Riwayat** (pencarian pengguna, ubah nama tampil, ubah peran `user`/`admin`, serta panel riwayat kuis/simulasi & hapus baris)
+  - `Konten Aplikasi` (dipisah per kategori): **Pustaka Modus**, **Bank Soal Kuis**, **Skenario Simulasi**, **Panduan Darurat**, dan **Aturan Cek Pesan**
+- [x] **Pemisahan Editor Konten (`src/app/admin/KontenEditor.jsx`)**:
+  - Mendukung prop `kunciAktif` dari sidebar sehingga setiap kategori konten tampil fokus di halamannya sendiri (khusus **Skenario Simulasi** menampilkan pemilih 4 skenario)
+
+### Fase 2 — Verifikasi Build & Playwright
+- [x] `npm run build` lulus tanpa error (`exit code 0`)
+- [x] Pengujian Playwright pada `/admin/masuk` → `/admin`: perpindahan seluruh menu sidebar (`Ringkasan`, `Pengguna & Riwayat`, dan menu konten), fungsi pencarian/drawer mobile, dan `0` horizontal overflow di desktop (`1280px`) & mobile (`390px`)
+- [x] Sinkronisasi seluruh dokumentasi (`docs/PRD.md`, `docs/DESIGN.md`, `docs/ARCHITECTURE.md`, `docs/DATABASE.md`, `docs/TASKS.md`) ke v1.2 (16 Nov 2026)
+
+---
+
+## 🚀 Langkah Selanjutnya (Prioritas Produksi & Deploy)
+
+Seluruh UI dan fitur inti sudah lengkap. Berikut langkah konkret berikutnya untuk membawa aplikasi ke tahap **siap pakai / siap lomba di production**:
+
+1. [x] **Jalankan Migrasi `supabase/migration-admin-crud.sql` di Supabase Dashboard**
+   - Tabel `public.konten_aplikasi` (`rls_enabled: true`) sudah aktif bersama `profiles`, `kuis_hasil`, dan `simulasi_hasil` di project `fpmlbnhckvwsxtzzhmcn`; tombol **Simpan** di `/admin` terverifikasi aktif (`hasMigrationWarning: false`, `saveDisabled: false`).
+2. [x] **Aktifkan Google OAuth & Redirect URLs**
+   - Provider Google diaktifkan di Supabase Dashboard (`external.google === true`) dengan Redirect URL `http://localhost:3000/auth/callback` terpasang.
+3. [x] **Lengkapi Environment Variables Lokal (`.env.local`)**
+   - `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, dan `GEMINI_API_KEY` (`gemini-flash-lite-latest`, terverifikasi `"sumber": "gemini"`). *(Environment Variables di Vercel disiapkan saat tahap deploy terakhir.)*
+4. [x] **Perbanyak Konten Riset & Siapkan Pembersihan Database + 2 Akun Demo**
+   - `src/data/soal.json` diperbanyak dari 20 menjadi **35 soal** anti-penipuan terkini (QRIS palsu, APK undangan, AI voice cloning, task scam, phishing instansi, 2FA, money mule, screen sharing).
+   - `src/data/modus.json` diperbanyak dari 8 menjadi **12 artikel** pustaka modus.
+   - 4 skenario simulasi (`src/data/skenario/*.json`) diperkaya menjadi masing-masing **5 langkah** percakapan.
+   - `supabase/cleanup-and-seed-demo.sql` & `scripts/seed-demo.mjs` diperbarui untuk membersihkan data uji coba lama serta menyiapkan **Demo User** (`demo@juri.com` / `demo123456`) dan **Demo Admin** (`admin@tangkissiber.id` / `admin123456`).
+5. [ ] **Deploy ke Vercel & Uji End-to-End Live** (dilakukan terakhir setelah Anda selesai uji lokal)

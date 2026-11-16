@@ -6,9 +6,9 @@
 |---|---|
 | **Nama Produk** | TangkisSiber |
 | **Tagline** | Latihan Menangkis Penipuan Digital |
-| **Versi Dokumen** | 1.0 (Disetujui) |
-| **Status** | **Disetujui** — disetujui pemilik produk pada 14 November 2026; §11 disetujui tanpa perubahan |
-| **Tanggal** | 14 November 2026 |
+| **Versi Dokumen** | 1.2 (Diselaraskan dengan implementasi) |
+| **Status** | **Disetujui & Diimplementasikan** — v1.0 disetujui 14 Nov 2026; diperbarui 16 Nov 2026 |
+| **Tanggal** | 16 November 2026 (v1.0: 14 November 2026) |
 | **Batas Waktu Pengiriman** | 3 hari sejak dokumen ini disetujui |
 | **Repo** | https://github.com/Alfifauzan14/tangkissiber.git |
 
@@ -115,6 +115,18 @@ Fitur berikut **sengaja ditunda** ke rencana pengembangan (tercatat agar tidak d
 - Peran admin
 - Validasi skor di sisi server
 - Deteksi berbasis AI pada Cek Pesan
+
+### 5.3 Pembaruan Terimplementasi (v1.2 — 16 November 2026)
+
+Seluruh fitur Post-v1.0 berikut telah diimplementasikan sesuai kebutuhan produk:
+- **Analisis Pesan AI Gemini (`/api/cek-pesan`):** Mendukung analisis berbasis Google Gemini (`gemini-2.5-flash` via `GEMINI_API_KEY`) dengan fallback otomatis ke mesin aturan lokal dan indikator sumber analisis.
+- **Kuis Kategori & Mode Fokus (`/kuis`):** Diawali 5 kartu kategori (`Campuran Lengkap`, `OTP & Perbankan`, `Kurir, APK & Tautan`, `Hadiah & Lowongan`, `Kuis Kilat`) mengambil soal dari bank **35 soal** terkurasi, lalu masuk ke mode fokus ala Duolingo (tanpa navbar/footer) dengan skor gauge SVG di akhir.
+- **Pustaka Modus (`/pustaka`):** Berisi **12 artikel** modus penipuan digital terkini (termasuk QRIS palsu, AI voice cloning, task scam, dan phishing instansi) lengkap dengan pencarian dan filter kategori.
+- **Simulasi Chat Frame Ponsel (`/simulasi/[skenario]`):** 4 skenario masing-masing **5 langkah** dengan antarmuka chat ala WhatsApp di dalam frame ponsel, area pesan scroll terisolasi, dan ringkasan hasil akhir.
+- **Akun Demo Terpisah:** Tersedia akun Demo User (`demo@juri.com`) dan akun Demo Admin (`admin@tangkissiber.id`) melalui `supabase/cleanup-and-seed-demo.sql` / `scripts/seed-demo.mjs`.
+- **Validasi Skor Server & Heuristik AI (`/api/kuis/submit`, `/api/simulasi/submit`):** Validasi kunci jawaban di server serta deteksi anomali kecepatan/pola jawaban (`ai_curiga`).
+- **Panel Admin Sidebar Terpisah (`/admin`, `/admin/masuk`):** Terpisah dari navigasi publik; memiliki menu `Ringkasan`, `Pengguna & Riwayat` (CRUD), dan 5 modul `Kelola Konten` (`Pustaka Modus`, `Bank Soal Kuis`, `Skenario Simulasi`, `Panduan Darurat`, `Aturan Cek Pesan`).
+- **Mode Gelap & Login Google (`/masuk`, `/auth/callback`):** Dukungan tema gelap/terang serta OAuth Google opsional dengan handoff skor tamu.
 
 ---
 

@@ -238,5 +238,185 @@
     ],
     "jawaban": 0,
     "penjelasan": "Layanan logistik sah punya aplikasi resmi untuk pembayaran dan status paket. Permintaan transfer ke rekening pribadi adalah tanda penipuan."
+  },
+  {
+    "id": "s21",
+    "pertanyaan": "Saat hendak membayar lewat QRIS di sebuah toko, Anda melihat stiker QRIS tertempel di atas stiker lama dan nama merchant di layar tidak sesuai nama toko. Tindakan paling aman?",
+    "pilihan": [
+      "Tetap bayar karena yang penting kode QR bisa dipindai",
+      "Batalkan pembayaran, lalu konfirmasi langsung ke kasir toko",
+      "Foto stiker tersebut lalu transfer ke rekening pribadi kasir",
+      "Kirim nominal kecil dulu untuk mencoba"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Penipuan QRIS palsu sering menempelkan stiker baru di atas QRIS asli. Selalu periksa nama merchant di layar konfirmasi sebelum memasukkan PIN."
+  },
+  {
+    "id": "s22",
+    "pertanyaan": "Anda menerima pesan WhatsApp berisi file bernama \"Undangan_Pernikahan.apk\" dari nomor tidak dikenal. Apa risikonya jika file itu dipasang?",
+    "pilihan": [
+      "File tidak bisa dibuka karena bukan foto",
+      "APK berbahaya dapat mencuri SMS OTP dan mengambil alih mobile banking",
+      "HP hanya menjadi sedikit lebih lambat",
+      "Aman selama Anda tidak memiliki saldo di e-wallet"
+    ],
+    "jawaban": 1,
+    "penjelasan": "File .apk adalah paket instalasi aplikasi Android, bukan undangan atau dokumen. Penipu menyamarkan malware pencuri OTP sebagai undangan atau resi."
+  },
+  {
+    "id": "s23",
+    "pertanyaan": "Seseorang menelepon memakai suara mirip anggota keluarga Anda yang terdengar panik dan meminta transfer segera ke rekening baru. Apa langkah pertama yang benar?",
+    "pilihan": [
+      "Langsung transfer sebagian agar keluarga cepat tertolong",
+      "Tutup telepon, lalu hubungi balik nomor asli anggota keluarga tersebut",
+      "Minta penelpon mengirim foto KTP lewat chat",
+      "Kirim uang lewat minimarket agar lebih cepat"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Teknologi AI voice cloning bisa meniru suara orang terdekat dari rekaman media sosial. Selalu verifikasi lewat panggilan ke nomor asli yang Anda simpan."
+  },
+  {
+    "id": "s24",
+    "pertanyaan": "Anda ditawari kerja paruh waktu hanya dengan me-like atau follow akun media sosial, lalu setelah beberapa tugas diminta setor deposit agar komisi cair. Ini adalah modus?",
+    "pilihan": [
+      "Program afiliasi resmi perusahaan besar",
+      "Penipuan tugas berbayar (task scam)",
+      "Pelatihan kerja bersertifikat",
+      "Pinjaman modal kerja tanpa agunan"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Modus task scam memberi komisi kecil di awal untuk memancing kepercayaan, lalu menjebak korban dengan setoran deposit yang makin besar."
+  },
+  {
+    "id": "s25",
+    "pertanyaan": "Sebuah pesan mengaku dari instansi pemerintah menyebut Anda kena E-Tilang dan menyertakan tautan bayar di domain \".xyz\". Apa yang harus Anda lakukan?",
+    "pilihan": [
+      "Segera bayar lewat tautan tersebut sebelum denda naik",
+      "Abaikan tautan, cek status resmi hanya melalui situs atau aplikasi resmi instansi terkait (.go.id)",
+      "Balas pesan untuk menanyakan lokasi pelanggaran",
+      "Teruskan tautan ke grup keluarga agar mereka mengecek juga"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Instansi resmi pemerintah Indonesia menggunakan domain .go.id dan pembayaran resmi melalui kanal negara seperti BRIVA/e-Tilang resmi, bukan tautan .xyz atau shortlink."
+  },
+  {
+    "id": "s26",
+    "pertanyaan": "Mengapa mengaktifkan autentikasi dua faktor (2FA) berbasis aplikasi autentikator lebih aman daripada hanya mengandalkan SMS OTP?",
+    "pilihan": [
+      "Karena tidak butuh koneksi internet sama sekali",
+      "Karena kode tidak bisa disadap lewat pengalihan SMS atau malware pembaca SMS",
+      "Karena membuat kata sandi tidak diperlukan lagi",
+      "Karena otomatis memblokir semua nomor asing"
+    ],
+    "jawaban": 1,
+    "penjelasan": "SMS OTP rentan dicuri oleh APK berbahaya atau penipuan SIM swap. Aplikasi autentikator menghasilkan kode lokal di perangkat Anda."
+  },
+  {
+    "id": "s27",
+    "pertanyaan": "Di media sosial ada akun \"CS Bank\" yang menghubungi Anda duluan lewat DM dan meminta Anda mengisi formulir pemulihan di Google Form. Bagaimana menilainya?",
+    "pilihan": [
+      "Wajar karena Google Form dibuat oleh Google",
+      "Penipuan: CS bank resmi bercentang biru dan tidak pernah meminta data rahasia lewat Google Form",
+      "Aman asal tidak mengisi nama ibu kandung",
+      "Boleh dicoba jika Anda memang sedang ada kendala"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Penipu sering membuat akun tiruan lalu mengarahkan korban ke Google Form atau situs palsu untuk mencuri PIN, OTP, dan data kartu."
+  },
+  {
+    "id": "s28",
+    "pertanyaan": "Seseorang menawarkan bayaran Rp 500.000 per minggu hanya untuk meminjam atau menyewa rekening bank Anda. Mengapa tawaran ini sangat berbahaya?",
+    "pilihan": [
+      "Rekening Anda bisa dipakai untuk menampung uang hasil penipuan sehingga Anda ikut terseret hukum",
+      "Saldo Anda hanya akan terkena biaya admin bulanan",
+      "Bank akan menaikkan limit transfer Anda",
+      "Aman selama saldo di rekening Anda nol rupiah"
+    ],
+    "jawaban": 0,
+    "penjelasan": "Menyewakan rekening menjadikan Anda kaki tangan pencucian uang (money mule). Pemilik rekening tetap bertanggung jawab secara hukum."
+  },
+  {
+    "id": "s29",
+    "pertanyaan": "Saat berada di kafe, Anda terhubung ke Wi-Fi publik gratis tanpa kata sandi. Aktivitas mana yang sebaiknya dihindari?",
+    "pilihan": [
+      "Membaca berita daring",
+      "Melakukan login mobile banking dan transaksi transfer",
+      "Mengecek jadwal kereta api",
+      "Melihat peta lokasi"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Wi-Fi publik terbuka rawan penyadapan jaringan atau titik akses palsu. Gunakan paket data seluler pribadi untuk transaksi keuangan."
+  },
+  {
+    "id": "s30",
+    "pertanyaan": "Nomor asing mengirim kode 6 digit lewat SMS, lalu beberapa detik kemudian mengirim chat WhatsApp: \"Maaf, kode saya salah kirim ke nomor Anda, boleh minta kodenya?\" Apa yang sebenarnya terjadi?",
+    "pilihan": [
+      "Orang tersebut memang salah mengetik nomor",
+      "Penipu sedang mencoba membajak akun WhatsApp atau e-wallet Anda menggunakan kode OTP tersebut",
+      "Provider seluler sedang melakukan pemeliharaan jaringan",
+      "Kode tersebut tidak berguna jika tidak ada PIN"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Penipu memasukkan nomor Anda saat login agar OTP masuk ke HP Anda, lalu berpura-pura salah kirim untuk meminta kode pengambilalihan akun."
+  },
+  {
+    "id": "s31",
+    "pertanyaan": "Manakah ciri aplikasi pinjaman online (pinjol) ilegal yang harus dihindari?",
+    "pilihan": [
+      "Terdaftar dan diawasi oleh OJK",
+      "Meminta akses ke seluruh daftar kontak, galeri foto, dan menawarkan pinjaman lewat SMS/WhatsApp pribadi",
+      "Menampilkan rincian bunga dan tenor dengan jelas sebelum pencairan",
+      "Memiliki layanan pengaduan resmi yang tercatat di situs OJK"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Pinjol ilegal dilarang mengakses kontak dan galeri, serta sering menebar teror penagihan ke kontak korban. Selalu cek legalitas di situs resmi OJK."
+  },
+  {
+    "id": "s32",
+    "pertanyaan": "Penerima telepon mengaku dari bank dan meminta Anda mengaktifkan fitur berbagi layar (screen sharing) saat membuka aplikasi m-banking untuk \"bantuan perbaikan\". Apa risikonya?",
+    "pilihan": [
+      "Layar HP menjadi lebih boros baterai",
+      "Penipu bisa melihat langsung PIN, saldo, dan kode OTP yang muncul di layar Anda",
+      "Tidak ada risiko selama penelpon tidak menyentuh HP Anda",
+      "Fitur berbagi layar hanya menampilkan wallpaper"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Screen sharing memperlihatkan seluruh tampilan layar secara langsung kepada penipu, termasuk notifikasi OTP dan data sensitif."
+  },
+  {
+    "id": "s33",
+    "pertanyaan": "Anda mendapat email berisi pemberitahuan bahwa akun marketplace Anda akan dibekukan dalam 2 jam kecuali Anda login lewat tautan di email tersebut. Apa langkah aman?",
+    "pilihan": [
+      "Klik tautan di email lalu ganti kata sandi di halaman tersebut",
+      "Tutup email, lalu buka aplikasi resmi marketplace langsung dari HP untuk mengecek notifikasi asli",
+      "Balas email dengan melampirkan tangkapan layar profil akun",
+      "Matikan HP selama 2 jam agar pembekuan gagal"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Desakan waktu 2 jam adalah teknik phishing klasik. Selalu periksa status akun langsung lewat aplikasi resmi, bukan tautan dari email."
+  },
+  {
+    "id": "s34",
+    "pertanyaan": "Jika Anda terlanjur memasang file APK mencurigakan di HP Android, langkah darurat paling tepat secara berurutan adalah?",
+    "pilihan": [
+      "Biarkan saja sampai baterai habis",
+      "Putuskan koneksi internet (Mode Pesawat), amankan/blokir rekening lewat perangkat lain, hapus APK, dan ubah semua sandi",
+      "Hapus riwayat chat WhatsApp agar tidak terlihat",
+      "Kirim ulang file APK ke teman untuk mengecek isinya"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Memutus koneksi internet menghentikan akses jarak jauh dari APK berbahaya, memberi waktu untuk mengamankan rekening bank dan mengubah sandi dari perangkat lain."
+  },
+  {
+    "id": "s35",
+    "pertanyaan": "Apa fungsi utama portal Indonesia Anti-Scam Centre (IASC) atau kanal pengaduan resmi perbankan saat korban baru saja mentransfer uang ke penipu?",
+    "pilihan": [
+      "Menggandakan saldo yang hilang secara otomatis",
+      "Mempercepat pelaporan untuk pemblokiran rekening penipu dan pelacakan aliran dana",
+      "Menghapus riwayat transaksi agar tidak muncul di mutasi",
+      "Memberikan pinjaman pengganti tanpa bunga"
+    ],
+    "jawaban": 1,
+    "penjelasan": "Pelaporan cepat ke pihak bank dan IASC/OJK membantu pemblokiran rekening tujuan sebelum dana keburu ditarik habis oleh pelaku."
   }
 ]

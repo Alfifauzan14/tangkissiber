@@ -10,17 +10,18 @@
 6. **Authorized JavaScript origins**:
    - `http://localhost:3000` (dev)
    - `https://tangkissiber.vercel.app` (production)
-7. **Authorized redirect URIs**:
-   - `http://localhost:3000/auth/callback` (dev)
-   - `https://tangkissiber.vercel.app/auth/callback` (production)
+7. **Authorized redirect URIs** (di Google Cloud Console):
+   - `https://fpmlbnhckvwsxtzzhmcn.supabase.co/auth/v1/callback`
 8. Simpan → dapatkan **Client ID** dan **Client Secret**
 
 ## 2. Supabase Dashboard
 
 1. Buka project `tangkissiber` di https://supabase.com/dashboard
 2. **Authentication** → **Providers** → **Google** → **Enable**
-3. Paste **Client ID** dan **Client Secret** dari Google Cloud
-4. Save
+3. Paste **Client ID** dan **Client Secret** dari Google Cloud → **Save**
+4. **Authentication** → **URL Configuration** → **Redirect URLs**, tambahkan:
+   - `http://localhost:3000/auth/callback` (dev)
+   - `https://domain-vercel-anda.vercel.app/auth/callback` (production)
 
 ## 3. Environment Variables (Vercel)
 
@@ -39,10 +40,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=<sudah ada>
 
 ## 5. Catatan Implementasi
 
-- Tombol "Masuk dengan Google" **hanya dirender** jika `supabase.auth.getProvider('google')` tersedia (conditional render)
-- Menggunakan `supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin + '/auth/callback' } })`
-- Callback route: `app/auth/callback/route.js` handle exchange code → session
-- Setelah login, redirect ke `?kembali=` atau `/` (sama dengan email/password)
+- Tombol "Masuk dengan Google" selalu tampil di `/masuk` (menampilkan pesan jelas jika provider Google belum aktif di Supabase)
+- Menggunakan `supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin + '/auth/callback?kembali=...' } })`
+- Callback route: `src/app/auth/callback/route.js` menukar code menjadi session lalu meneruskan ke `/masuk?oauth=1&kembali=...` agar handoff skor tamu (`ts_hasil_tunda`) tersinkron otomatis sebelum redirect ke tujuan akhir
 
 ## 6. Troubleshooting
 

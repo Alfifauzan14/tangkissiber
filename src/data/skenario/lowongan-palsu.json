@@ -85,6 +85,26 @@
           "umpan_balik": "Sejak aplikasi ini terpasang, penipu bisa membaca SMS OTP Anda dan mengambil alih akun bank di HP ini."
         }
       ]
+    },
+    {
+      "pesan": "Kalau begitu gabung grup Telegram kami saja. Untuk mencairkan komisi tugas like & follow pertama, kakak perlu setor deposit VIP Rp 500.000 dulu.",
+      "pilihan": [
+        {
+          "teks": "Pekerjaan yang meminta setor deposit itu modus task scam. Saya blokir sekarang.",
+          "nilai": "aman",
+          "umpan_balik": "Sempurna! Pekerjaan sah membayar pekerja, bukan meminta pekerja menyetor deposit agar komisi cair."
+        },
+        {
+          "teks": "Kenapa harus deposit dulu? Potong saja dari komisi saya.",
+          "nilai": "waspada",
+          "umpan_balik": "Logika Anda tepat. Penipu pasti menolak karena tujuan sebenarnya adalah menguras uang deposit Anda."
+        },
+        {
+          "teks": "Baik kak, saya transfer deposit Rp 500.000 supaya komisi VIP cepat cair.",
+          "nilai": "bahaya",
+          "umpan_balik": "Ini jebakan task scam: setelah transfer Rp 500.000, pelaku akan meminta deposit jutaan rupiah dengan berbagai alasan."
+        }
+      ]
     }
   ]
 }

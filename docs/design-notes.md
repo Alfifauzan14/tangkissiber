@@ -40,7 +40,7 @@ Untuk setiap referensi yang dikirim, catat:
 
 | Token | Preferensi | Catatan |
 |-------|------------|---------|
-| Primary hue | `#01239C` (biru royal) + tint `#EEF2FF`/`#DBEAFE` | Kontras AA terjaga di atas surface |
+| Primary hue | `#0369a1` (Cyber Ocean Blue) + `#0284c7` (dark) + tint `#e0f2fe`/`#0c4a6e` | Kontras AA terjaga di atas surface (diperbarui di DESIGN.md v1.2) |
 | Radius scale | Tombol/input 12px, Kartu 16px, Panel 24px | Tombol tidak pil |
 | Spacing scale | Skala 4px, gutter 20/24/32px | Sesuai DESIGN.md §5 |
 | Motion level | MOTION 1 (lift 2px, fade 150-200ms, tanpa animasi scroll) | `prefers-reduced-motion` menghentikan semua |

@@ -4,8 +4,8 @@
 
 | | |
 |---|---|
-| **Versi Dokumen** | 1.1 |
-| **Status** | **Disetujui** — revisi 16 November 2026 menyetujui tiga referensi visual pengguna |
+| **Versi Dokumen** | 1.2 |
+| **Status** | **Disetujui & Diimplementasikan** — revisi 16 Nov 2026 (Cyber Ocean Blue, Dark Mode, Sidebar Admin) |
 | **Tanggal** | 16 November 2026 (v1.0: 14 November 2026) |
 | **Prasyarat** | PRD v1.1 (Disetujui) |
 | **Referensi karakter** | skoolia.id (gaya halaman umum) + `docs/design-ref/` (authoritative untuk halaman masuk dan navigasi mobile) |
@@ -78,11 +78,12 @@ Maksimal 3 warna inti + 1 aksen (kepatuhan Anti-Slop R-29). Netral tidak dihitun
 
 ### 3.1 Warna inti
 
-| Token | Hex | Peran | Alasan |
+| Token | Hex (Light / Dark) | Peran | Alasan |
 |---|---|---|---|
-| `--ink` | `#15162A` | Teks utama, heading | Navy tinta dari referensi; kontras tinggi di latar terang |
-| `--primary` | `#01239C` | Tombol utama, tautan, status aktif | Biru royal: tepercaya, resmi, edukatif (karakter referensi) |
-| `--primary-soft` | `#EEF2FF` | Latar panel/tint, hover sekunder | Tint biru untuk luas permukaan tanpa bersaing dengan primary |
+| `--color-ink` | `#0f172a` / `#f1f5f9` | Teks utama, heading | Kontras tinggi di latar terang maupun gelap |
+| `--color-primary` | `#0369a1` / `#0284c7` | Tombol utama, tautan, status aktif | Cyber Ocean Blue: tepercaya, segar, edukatif |
+| `--color-primary-soft` | `#e0f2fe` / `#0c4a6e` | Latar panel/tint, hover sekunder | Tint biru laut lembut tanpa bersaing dengan primary |
+| `--color-accent` | `#0ea5e9` | Fokus ring, sorotan interaktif | Aksen sian cerah untuk fokus dan aksen Cyber Ocean |
 
 ### 3.2 Aksen tunggal
 
@@ -338,4 +339,14 @@ Mobile (< 1024px): panel disembunyikan; form satu kolom penuh dengan ikon dan he
 
 ---
 
-*Akhir dokumen. Implementasi tidak dimulai sebelum dokumen ini disetujui pemilik produk.*
+## 13. Pembaruan Desain v1.2 (16 November 2026)
+
+- **Palet Cyber Ocean Blue & Dark Mode:** Tema utama memakai gradien Cyber Ocean (`#0c4a6e` → `#0369a1` → `#0ea5e9`) dengan dukungan penuh mode gelap (`prefers-color-scheme` + toggle manual `localStorage`) serta tetap mempertahankan warna semantik risiko 3 status (`Aman` / `Waspada` / `Bahaya`).
+- **Hero & `PageBanner` Seragam:** Halaman Beranda dan 5 halaman fitur (`/cek-pesan`, `/simulasi`, `/kuis`, `/pustaka`, `/peringkat`) memakai banner Cyber Ocean berpola grid dengan pembatas gelombang SVG.
+- **Navbar Scroll-Aware & Drawer HP:** Navbar menyatu dengan gradien Hero di bagian atas halaman, bertransisi ke permukaan putih/gelap saat di-scroll, serta menggunakan drawer slide-over berikon di HP/tablet (`< lg`).
+- **Footer 12-Kolom:** Aksen garis gradien atas, kolom `Latihan` dan `Rujukan` berdampingan (`grid-cols-2`) di layar HP, serta catatan edukasi sejajar tanpa kotak berlebih.
+- **Halaman Fokus & Panel Admin Sidebar:** `/kuis` (saat mengerjakan) dan `/simulasi/[skenario]` menyembunyikan navbar/footer agar fokus; `/masuk` mengunci posisi vertikal elemen antar-tab dengan latar luar Cyber Ocean; `/admin` memakai sidebar gelap (`#0f172a`) dengan garis aksen kiri dan editor konten terpisah.
+
+---
+
+*Akhir dokumen.*

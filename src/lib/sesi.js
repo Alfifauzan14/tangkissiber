@@ -9,13 +9,22 @@
 import { useEffect, useState } from "react";
 
 async function ambilProfil(supabase, uid) {
-  // Fetch from profiles table to get peran (role) for admin check
-  const { data } = await supabase
-    .from("profiles")
-    .select("id, nama_tampil, total_poin, peran")
-    .eq("id", uid)
-    .single();
-  return data ?? null;
+  // Poin/nama dari view publik peringkat; peran dari tabel profiles.
+  // Dua query paralel: view tidak punya kolom peran, profiles tidak punya
+  // total_poin (kolom itu hasil agregasi view).
+  const [{ data: poin }, { data: peranRow }] = await Promise.all([
+    supabase
+      .from("peringkat")
+      .select("id, nama_tampil, total_poin")
+      .eq("id", uid)
+      .single(),
+    supabase.from("profiles").select("peran").eq("id", uid).single(),
+  ]);
+  if (!poin && !peranRow) return null;
+  return {
+    ...(poin ?? { id: uid, nama_tampil: null, total_poin: null }),
+    peran: peranRow?.peran ?? "user",
+  };
 }
 
 export function useSesi() {

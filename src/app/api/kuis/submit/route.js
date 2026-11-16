@@ -5,7 +5,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import soalSemua from "@/data/soal.json";
+import { ambilKontenServer } from "@/lib/konten";
 
 const POIN_PER_SOAL = 10;
 const JUMLAH_SOAL = 10;
@@ -41,7 +41,7 @@ function cekRateLimit(userId) {
 }
 
 // Heuristik deteksi AI untuk kuis
-function deteksiAI_Kuis({ jawaban, timing }) {
+function deteksiAI_Kuis({ jawaban, timing, soalSemua }) {
   if (!timing || !timing.mulai || !timing.selesai) return false;
   
   const totalWaktu = timing.selesai - timing.mulai;
@@ -129,7 +129,8 @@ export async function POST(request) {
       );
     }
 
-    // Validasi: cek jawaban vs kunci
+    // Validasi: cek jawaban vs kunci (dari konten_aplikasi atau fallback soal.json)
+    const soalSemua = await ambilKontenServer("soal");
     let benar = 0;
     const detail = [];
 
@@ -150,7 +151,7 @@ export async function POST(request) {
     const skor = benar * POIN_PER_SOAL;
 
     // Deteksi AI
-    const ai_curiga = deteksiAI_Kuis({ jawaban, timing });
+    const ai_curiga = deteksiAI_Kuis({ jawaban, timing, soalSemua });
 
     // Simpan ke kuis_hasil
     const { error: insertError } = await supabase

@@ -85,6 +85,26 @@
           "umpan_balik": "Dengan OTP, penipu bisa menyelesaikan transaksi atas nama Anda. Segera blokir rekening dan lapor jika ini benar-benar terjadi."
         }
       ]
+    },
+    {
+      "pesan": "Atau biar lebih mudah tanpa OTP, silakan scan kode QRIS berikut lewat m-banking Anda untuk mencairkan hadiahnya secara otomatis.",
+      "pilihan": [
+        {
+          "teks": "Scan QRIS itu untuk membayar, bukan menerima uang. Ini jelas penipuan.",
+          "nilai": "aman",
+          "umpan_balik": "Benar sekali! Memindai QRIS selalu berarti mengirim dana dari rekening Anda, tidak pernah untuk menerima hadiah atau refund."
+        },
+        {
+          "teks": "Kenapa saya yang harus scan QRIS kalau saya yang menerima hadiah?",
+          "nilai": "waspada",
+          "umpan_balik": "Pertanyaan kritis yang tepat. Jangan pernah lanjutkan memindai QRIS dari orang asing."
+        },
+        {
+          "teks": "Baik, saya scan QRIS-nya sekarang.",
+          "nilai": "bahaya",
+          "umpan_balik": "Memindai QRIS dari penipu justru akan mengirimkan saldo Anda langsung ke rekening pelaku."
+        }
+      ]
     }
   ]
 }
