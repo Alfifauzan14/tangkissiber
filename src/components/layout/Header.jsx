@@ -98,12 +98,11 @@ function Wordmark({ terang = false }) {
 // Supabase diimpor dinamis di handler agar bundel auth tidak menghalangi
 // halaman pertama yang dibuka tamu (performa Lighthouse).
 function TombolKeluar({ penuh = false, className = "", saatSelesai, terang = false }) {
-  const router = useRouter();
   async function keluar() {
     const { supabase } = await import("@/lib/supabase");
     await supabase.auth.signOut();
     saatSelesai?.();
-    router.replace("/");
+    window.location.assign("/");
   }
   return (
     <button
@@ -113,7 +112,7 @@ function TombolKeluar({ penuh = false, className = "", saatSelesai, terang = fal
       className={
         penuh
           ? `flex min-h-11 items-center justify-center gap-2 rounded-md border border-line bg-surface px-4 text-sm font-semibold text-muted transition-colors duration-150 hover:text-bahaya ${className}`
-          : `inline-flex h-9 w-9 items-center justify-center rounded-md transition-colors duration-150 ${
+          : `inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-semibold transition-colors duration-150 lg:w-auto lg:gap-1.5 lg:px-3 ${
               terang
                 ? "text-white/90 hover:bg-white/15 hover:text-white"
                 : "text-muted hover:bg-primary-soft hover:text-primary"

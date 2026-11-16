@@ -107,6 +107,8 @@ function FormulirMasuk() {
 
   const kembali = params.get("kembali") || "/";
   const aman = kembali.startsWith("/") ? kembali : "/";
+  const tujuanKembali =
+    aman.startsWith("/riwayat") || aman.startsWith("/admin") ? "/" : aman;
   const oauthError = params.get("error");
 
   useEffect(() => {
@@ -252,7 +254,7 @@ function FormulirMasuk() {
       {/* Hanya tombol kembali + kartu login (tanpa navbar dan footer) */}
       <div className="relative z-10 mb-4 w-full max-w-[940px]">
         <Link
-          href={aman}
+          href={tujuanKembali}
           className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-line bg-surface px-4 text-sm font-semibold text-ink shadow-sm transition-colors duration-150 hover:bg-primary-soft hover:text-primary"
         >
           <span aria-hidden="true">←</span>
