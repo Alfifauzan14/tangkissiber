@@ -284,6 +284,16 @@ function Drawer({ terbuka, tutup, refHamburger }) {
                 </span>
                 {profil?.nama_tampil || "Pengguna"}
               </Link>
+              {profil?.peran === "admin" ? (
+                <Link
+                  href="/admin"
+                  onClick={tutup}
+                  className="flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-bold text-white shadow-sm transition-colors duration-200 hover:bg-[#075985]"
+                >
+                  <Ikon nama="admin_panel_settings" ukuran={18} />
+                  Panel Admin
+                </Link>
+              ) : null}
               <TombolKeluar penuh saatSelesai={tutup} />
             </div>
           ) : (
@@ -457,6 +467,19 @@ export default function Header() {
                   </span>
                 ) : null}
               </Link>
+              {profil?.peran === "admin" ? (
+                <Link
+                  href="/admin"
+                  className={`inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full px-3 text-sm font-semibold transition-colors ${
+                    diAtas
+                      ? "bg-white text-primary hover:bg-white/90"
+                      : "bg-primary text-white hover:bg-[#075985]"
+                  }`}
+                >
+                  <Ikon nama="admin_panel_settings" ukuran={16} />
+                  <span>Panel Admin</span>
+                </Link>
+              ) : null}
               <TombolKeluar terang={diAtas} />
             </div>
           ) : (
