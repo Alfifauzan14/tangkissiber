@@ -142,7 +142,16 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col gap-2 border-t border-slate-800/80 pt-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 TangkisSiber. Edukasi Anti Penipuan Digital.</p>
-          <p className="text-slate-400">Gratis • Tanpa Login Wajib</p>
+          <div className="flex flex-wrap items-center gap-4 text-slate-400">
+            <Link
+              href="/privasi"
+              className="underline-offset-2 transition-colors duration-150 hover:text-[#38bdf8] hover:underline"
+            >
+              Kebijakan Privasi
+            </Link>
+            <span>•</span>
+            <span>Gratis • Tanpa Login Wajib</span>
+          </div>
         </div>
       </Container>
     </footer>

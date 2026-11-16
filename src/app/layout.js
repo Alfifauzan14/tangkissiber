@@ -14,6 +14,13 @@ export const metadata = {
   title: "TangkisSiber: Latihan Menangkis Penipuan Digital",
   description:
     "Website edukasi interaktif untuk melatih mengenali dan menangkis penipuan digital: cek pesan, simulasi percakapan, kuis, dan halaman darurat.",
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
 };
 
 export default function RootLayout({ children }) {
